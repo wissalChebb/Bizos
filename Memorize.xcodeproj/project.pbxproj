@@ -21,6 +21,7 @@
 		8809CBF22916A28D0052B31E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809CBF12916A28D0052B31E /* Persistence.swift */; };
 		8809CBF52916A28D0052B31E /* Memorize.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8809CBF32916A28D0052B31E /* Memorize.xcdatamodeld */; };
 		8809CC1C2916BFD20052B31E /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809CC1B2916BFD20052B31E /* SwiftUIView.swift */; };
+		B0A1D996291D695B0032C19D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A1D995291D695B0032C19D /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		8809CBF12916A28D0052B31E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		8809CBF42916A28D0052B31E /* Memorize.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memorize.xcdatamodel; sourceTree = "<group>"; };
 		8809CC1B2916BFD20052B31E /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		B0A1D995291D695B0032C19D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				72E6DED729198C0300B2B644 /* HomePageView.swift */,
 				72E6DED52919733700B2B644 /* LoginView.swift */,
 				06BA7FA02916F96A00DDBDFF /* GettingStartedView.swift */,
+				B0A1D995291D695B0032C19D /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8809CBF22916A28D0052B31E /* Persistence.swift in Sources */,
+				B0A1D996291D695B0032C19D /* ProfileView.swift in Sources */,
 				72E6DEDC29199F0200B2B644 /* ForgetView.swift in Sources */,
 				72E6DEDA29198C4200B2B644 /* RegisterCView.swift in Sources */,
 				72E6DED62919733700B2B644 /* LoginView.swift in Sources */,
