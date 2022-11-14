@@ -1,11 +1,20 @@
 import Foundation
 
 // MARK: - Welcome
-struct Response: Codable {
-    let message: String
-    let user: User
+
+
+
+struct SignInRequest:Encodable{
+    var mail : String?
+    var password : String?
 }
-struct User: Codable {
+struct ResponseSignIn: Decodable {
+    var message: String
+    var user: User
+    var token : String
+}
+/*
+struct User: Decodable {
     let id, firstName, lastName, email: String
     let password: String
     let verified: Bool
@@ -21,4 +30,12 @@ struct User: Codable {
         case v = "__v"
         case code
     }
+}*/
+struct User: Decodable {
+    let id, firstName, lastName, email,image : String
+    let password: String
+ 
+   
+    
 }
+

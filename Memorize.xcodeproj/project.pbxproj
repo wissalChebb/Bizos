@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		06BA7FA12916F96A00DDBDFF /* GettingStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BA7FA02916F96A00DDBDFF /* GettingStartedView.swift */; };
+		14D05B49291DE0FF004D5448 /* ChosePackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D05B48291DE0FF004D5448 /* ChosePackView.swift */; };
 		72E6DED62919733700B2B644 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E6DED52919733700B2B644 /* LoginView.swift */; };
 		72E6DED829198C0300B2B644 /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E6DED729198C0300B2B644 /* HomePageView.swift */; };
 		72E6DEDA29198C4200B2B644 /* RegisterCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E6DED929198C4200B2B644 /* RegisterCView.swift */; };
 		72E6DEDC29199F0200B2B644 /* ForgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E6DEDB29199F0200B2B644 /* ForgetView.swift */; };
 		72E6DEDE2919A88C00B2B644 /* ResetCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E6DEDD2919A88C00B2B644 /* ResetCodeView.swift */; };
-		72E6DEE22919B1E900B2B644 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E6DEE12919B1E900B2B644 /* User.swift */; };
 		8809CBE92916A28B0052B31E /* MemorizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809CBE82916A28B0052B31E /* MemorizeApp.swift */; };
 		8809CBEB2916A28B0052B31E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809CBEA2916A28B0052B31E /* ContentView.swift */; };
 		8809CBED2916A28D0052B31E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8809CBEC2916A28D0052B31E /* Assets.xcassets */; };
@@ -21,17 +21,24 @@
 		8809CBF22916A28D0052B31E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809CBF12916A28D0052B31E /* Persistence.swift */; };
 		8809CBF52916A28D0052B31E /* Memorize.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8809CBF32916A28D0052B31E /* Memorize.xcdatamodeld */; };
 		8809CC1C2916BFD20052B31E /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809CC1B2916BFD20052B31E /* SwiftUIView.swift */; };
+		B07970EA291EAEB700E35121 /* EditProfileUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07970E9291EAEB700E35121 /* EditProfileUView.swift */; };
+		B07970EC291EBD3300E35121 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07970EB291EBD3300E35121 /* ImagePicker.swift */; };
 		B0A1D996291D695B0032C19D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A1D995291D695B0032C19D /* ProfileView.swift */; };
+		B0A89CF3291FC41500BB6BEF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A89CF2291FC41500BB6BEF /* UserModel.swift */; };
+		B0A89CFE291FE2F600BB6BEF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B0A89CFD291FE2F600BB6BEF /* Alamofire */; };
+		B0A89D00292000C200BB6BEF /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A89CFF292000C200BB6BEF /* UserViewModel.swift */; };
+		B0C56D7D2922C3DE008CD804 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */; };
+		B0C56D7F2922DF71008CD804 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C56D7E2922DF71008CD804 /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		06BA7FA02916F96A00DDBDFF /* GettingStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GettingStartedView.swift; sourceTree = "<group>"; };
+		14D05B48291DE0FF004D5448 /* ChosePackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosePackView.swift; sourceTree = "<group>"; };
 		72E6DED52919733700B2B644 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		72E6DED729198C0300B2B644 /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageView.swift; sourceTree = "<group>"; };
 		72E6DED929198C4200B2B644 /* RegisterCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCView.swift; sourceTree = "<group>"; };
 		72E6DEDB29199F0200B2B644 /* ForgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetView.swift; sourceTree = "<group>"; };
 		72E6DEDD2919A88C00B2B644 /* ResetCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetCodeView.swift; sourceTree = "<group>"; };
-		72E6DEE12919B1E900B2B644 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8809CBE52916A28B0052B31E /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8809CBE82916A28B0052B31E /* MemorizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeApp.swift; sourceTree = "<group>"; };
 		8809CBEA2916A28B0052B31E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,7 +47,13 @@
 		8809CBF12916A28D0052B31E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		8809CBF42916A28D0052B31E /* Memorize.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memorize.xcdatamodel; sourceTree = "<group>"; };
 		8809CC1B2916BFD20052B31E /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		B07970E9291EAEB700E35121 /* EditProfileUView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileUView.swift; sourceTree = "<group>"; };
+		B07970EB291EBD3300E35121 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B0A1D995291D695B0032C19D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		B0A89CF2291FC41500BB6BEF /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		B0A89CFF292000C200BB6BEF /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
+		B0C56D7E2922DF71008CD804 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0A89CFE291FE2F600BB6BEF /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,23 +71,17 @@
 		06BA7F9F2916F94700DDBDFF /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				B0A89CF1291FC38800BB6BEF /* Models */,
+				B07970F4291EDFA700E35121 /* ViewModels */,
 				72E6DEE02919B12300B2B644 /* Views */,
-				72E6DEDF2919B11100B2B644 /* ModelView */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		72E6DEDF2919B11100B2B644 /* ModelView */ = {
-			isa = PBXGroup;
-			children = (
-				72E6DEE12919B1E900B2B644 /* User.swift */,
-			);
-			path = ModelView;
 			sourceTree = "<group>";
 		};
 		72E6DEE02919B12300B2B644 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B07970ED291EBD5C00E35121 /* utils */,
 				72E6DEDB29199F0200B2B644 /* ForgetView.swift */,
 				72E6DEDD2919A88C00B2B644 /* ResetCodeView.swift */,
 				72E6DED929198C4200B2B644 /* RegisterCView.swift */,
@@ -81,6 +89,10 @@
 				72E6DED52919733700B2B644 /* LoginView.swift */,
 				06BA7FA02916F96A00DDBDFF /* GettingStartedView.swift */,
 				B0A1D995291D695B0032C19D /* ProfileView.swift */,
+				14D05B48291DE0FF004D5448 /* ChosePackView.swift */,
+				B07970E9291EAEB700E35121 /* EditProfileUView.swift */,
+				B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */,
+				B0C56D7E2922DF71008CD804 /* File.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -124,6 +136,30 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		B07970ED291EBD5C00E35121 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				B07970EB291EBD3300E35121 /* ImagePicker.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		B07970F4291EDFA700E35121 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B0A89CFF292000C200BB6BEF /* UserViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B0A89CF1291FC38800BB6BEF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B0A89CF2291FC41500BB6BEF /* UserModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,6 +176,9 @@
 			dependencies = (
 			);
 			name = Memorize;
+			packageProductDependencies = (
+				B0A89CFD291FE2F600BB6BEF /* Alamofire */,
+			);
 			productName = Memorize;
 			productReference = 8809CBE52916A28B0052B31E /* Memorize.app */;
 			productType = "com.apple.product-type.application";
@@ -156,6 +195,7 @@
 				TargetAttributes = {
 					8809CBE42916A28B0052B31E = {
 						CreatedOnToolsVersion = 13.2.1;
+						LastSwiftMigration = 1410;
 					};
 				};
 			};
@@ -168,6 +208,9 @@
 				Base,
 			);
 			mainGroup = 8809CBDC2916A28B0052B31E;
+			packageReferences = (
+				B0A89CFC291FE2F600BB6BEF /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 8809CBE62916A28B0052B31E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -201,12 +244,18 @@
 				72E6DED62919733700B2B644 /* LoginView.swift in Sources */,
 				8809CBF52916A28D0052B31E /* Memorize.xcdatamodeld in Sources */,
 				8809CBEB2916A28B0052B31E /* ContentView.swift in Sources */,
+				B0A89D00292000C200BB6BEF /* UserViewModel.swift in Sources */,
+				B07970EA291EAEB700E35121 /* EditProfileUView.swift in Sources */,
 				8809CBE92916A28B0052B31E /* MemorizeApp.swift in Sources */,
+				14D05B49291DE0FF004D5448 /* ChosePackView.swift in Sources */,
+				B0A89CF3291FC41500BB6BEF /* UserModel.swift in Sources */,
 				72E6DEDE2919A88C00B2B644 /* ResetCodeView.swift in Sources */,
-				72E6DEE22919B1E900B2B644 /* User.swift in Sources */,
 				06BA7FA12916F96A00DDBDFF /* GettingStartedView.swift in Sources */,
+				B07970EC291EBD3300E35121 /* ImagePicker.swift in Sources */,
 				72E6DED829198C0300B2B644 /* HomePageView.swift in Sources */,
 				8809CC1C2916BFD20052B31E /* SwiftUIView.swift in Sources */,
+				B0C56D7F2922DF71008CD804 /* File.swift in Sources */,
+				B0C56D7D2922C3DE008CD804 /* ChangePasswordView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,11 +383,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Memorize/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -352,6 +403,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.esprit.Memorize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Memorize/Login/ViewModels/Memorize-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -362,11 +415,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Memorize/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -380,6 +435,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.esprit.Memorize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Memorize/Login/ViewModels/Memorize-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -407,6 +463,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B0A89CFC291FE2F600BB6BEF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B0A89CFD291FE2F600BB6BEF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B0A89CFC291FE2F600BB6BEF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		8809CBF32916A28D0052B31E /* Memorize.xcdatamodeld */ = {

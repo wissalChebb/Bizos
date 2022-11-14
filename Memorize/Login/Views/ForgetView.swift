@@ -36,7 +36,7 @@ struct ForgetView: View {
                     
                 )
             HStack{
-                NavigationLink(destination: ResetCodeView(),isActive: $isShowingRegisterView){
+                NavigationLink(destination: ResetCodeView().navigationBarBackButtonHidden(true),isActive: $isShowingRegisterView){
                     Button("enter", action: {
                         isShowingRegisterView = true
                     })

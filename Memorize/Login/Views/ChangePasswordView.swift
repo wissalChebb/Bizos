@@ -1,4 +1,11 @@
 //
+//  ChangePasswordView.swift
+//  Memorize
+//
+//  Created by Apple Esprit on 14/11/2022.
+//
+
+//
 //  LoginView.swift
 //  Memorize
 //
@@ -7,10 +14,11 @@
 
 import SwiftUI
 
-struct LoginView: View {
+struct ChangePasswordView: View {
     
     @ObservedObject var viewModel = UserViewModel()
     @State private var isShowingContentView = false
+    @State private var isShowingLoginR = false
     
     
     @State private var isShowingRegisterView = false
@@ -24,19 +32,19 @@ struct LoginView: View {
                         VStack( spacing: 10) {
                             Spacer()
                             
-                            Text("Username")
+                            Text("your New password ")
                                 .font(.callout)
                                 .bold()
                             
-                            TextField("Enter username...",text:$viewModel.email)
+                            SecureField("Enter your new password...",text:$viewModel.email)
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
-                            Text("Password")
+                            Text("Confirm Password")
                                 .font(.callout)
                                 .bold()
                             
-                            SecureField("Enter password..." , text:$viewModel.password)
+                            SecureField("Confirme password..." , text:$viewModel.password)
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
@@ -46,36 +54,22 @@ struct LoginView: View {
                         
                     )
                 HStack{
-                  
-                        Button("Login", action: {
-              
-                            viewModel.LogIn(email: viewModel.email, password: viewModel.password,onSuccess: {
-                                isShowingContentView = true
-                                
-                            } , onError:    {
-                                (errorMessage) in
-                            }
-                                            
-                            )
-                            
+                    NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true), isActive: $isShowingLoginR){
+                        Button("confirm", action: {
+                            isShowingLoginR = true
                         })
-                        .foregroundColor(.black)
-                        .frame(width: 100, height: 40)
-                        .border(.black,width: 2.0)
-                        .padding(20)
                         
-                 
-                    
-                    Spacer()
-                    NavigationLink(destination: ForgetView()){
-                        Text("forget ")
-                            .foregroundColor(.blue)
+                        
+                            .foregroundColor(.black)
                             .frame(width: 100, height: 40)
+                            .border(.black,width: 2.0)
                             .padding(20)
                         
                         
-                    }}
-                
+                        
+                        Spacer()
+                    }
+                }
                 // Bottom View
                 Image("bottomLogin")
                     .overlay (
@@ -83,17 +77,7 @@ struct LoginView: View {
                         HStack {
                             
                             Spacer()
-                            NavigationLink(destination: RegisterCView(),isActive: $isShowingRegisterView){
-                                Button("Register", action: {
-                                    
-                                    isShowingRegisterView = true
-                                })
-                                .foregroundColor(.black)
-                                .frame(width: 100, height: 40)
-                                .border(.black,width: 2.0)
-                                
-                                
-                            }
+                           
                             
                             
                         }.padding(50)
@@ -110,12 +94,10 @@ struct LoginView: View {
     
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct ChangePasswordView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView()
+        ChangePasswordView()
     }
 }
-
-
 
 

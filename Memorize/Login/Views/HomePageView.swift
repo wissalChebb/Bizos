@@ -10,7 +10,7 @@ import SwiftUI
 struct HomePageView: View {
     @State private var isShowingDetailView = false
     var body: some View {
-                NavigationView{
+                
             
             
         VStack{
@@ -36,7 +36,7 @@ struct HomePageView: View {
 
     }
     
-}}
+}
 
 
 struct HomePageView_Previews: PreviewProvider {

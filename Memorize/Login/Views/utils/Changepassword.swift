@@ -1,9 +1,10 @@
 //
-//  LoginView.swift
+//  Changepassword.swift
 //  Memorize
 //
-//  Created by Mac mini 8 on 7/11/2022.
+//  Created by Apple Esprit on 14/11/2022.
 //
+
 
 import SwiftUI
 
@@ -46,19 +47,19 @@ struct LoginView: View {
                         
                     )
                 HStack{
-                  
+                    NavigationLink(destination: LoginView()){
                         Button("Login", action: {
-              
+                            print(viewModel.email)
                             viewModel.LogIn(email: viewModel.email, password: viewModel.password,onSuccess: {
                                 isShowingContentView = true
                                 
-                            } , onError:    {
+                            } ,onError:    {
                                 (errorMessage) in
                             }
                                             
                             )
                             
-                        })
+                        })}
                         .foregroundColor(.black)
                         .frame(width: 100, height: 40)
                         .border(.black,width: 2.0)
@@ -115,7 +116,4 @@ struct LoginView_Previews: PreviewProvider {
         LoginView()
     }
 }
-
-
-
 

@@ -37,7 +37,7 @@ struct ResetCodeView: View {
                     
                 )
             HStack{
-                NavigationLink(destination: LoginView(),isActive: $isShowingRegisterView){
+                NavigationLink(destination: ChangePasswordView(),isActive: $isShowingRegisterView){
                     Button("enter", action: {
                         isShowingRegisterView = true
                     })

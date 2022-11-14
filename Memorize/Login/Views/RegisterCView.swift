@@ -13,7 +13,7 @@ struct RegisterCView: View {
     @State var   lastname:String = ""
     @State var   email:String = ""
 
-    
+    @ObservedObject var viewModel = UserViewModel()
 
     var body: some View {
         
@@ -29,7 +29,7 @@ struct RegisterCView: View {
                                 .font(.callout)
                                 .bold()
                                 
-                        TextField("Enter first Name...", text: $username)
+                        TextField("Enter first Name...", text:  $viewModel.firstName)
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
@@ -37,7 +37,7 @@ struct RegisterCView: View {
                                 .font(.callout)
                                 .bold()
                                 
-                        TextField("Last name...", text: $lastname)
+                        TextField("Last name...", text:  $viewModel.lastName)
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
@@ -45,7 +45,7 @@ struct RegisterCView: View {
                                 .font(.callout)
                                 .bold()
                                 
-                        TextField(" Email...", text: $email)
+                        TextField(" Email...", text: $viewModel.email)
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
@@ -53,7 +53,7 @@ struct RegisterCView: View {
                                 .font(.callout)
                                 .bold()
                                 
-                           SecureField("Enter password...", text: $password)
+                        SecureField("Enter password...", text: $viewModel.password)
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
@@ -65,8 +65,7 @@ struct RegisterCView: View {
             Spacer(minLength: 100)
             NavigationLink(destination: LoginView()){
                 Button("Register", action: {
-                    // To do
-                    // action: navigate to Login page
+                    viewModel.SignUp(user: User(firstname: viewModel.firstName, password:viewModel.password, email: viewModel.email, lastName: viewModel.lastName))
                 })
                 .foregroundColor(.black)
                 .frame(width: 100, height: 40)

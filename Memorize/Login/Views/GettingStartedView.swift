@@ -14,7 +14,6 @@ struct GettingStartedView: View {
             
             
         VStack{
-            
             // Top View
             Image("headerLogin")
                 .overlay(
@@ -32,7 +31,7 @@ struct GettingStartedView: View {
                     HStack {
                         
                         Spacer()
-                        NavigationLink(destination: LoginView(), isActive: $isShowingDetailView){
+                        NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true), isActive: $isShowingDetailView){
                             Button("Get Started") {
                                 isShowingDetailView = true
                             }
@@ -52,7 +51,9 @@ struct GettingStartedView: View {
 
     }
     
-}}
+    }
+    
+}
 
 
 struct GettingStartView_Previews: PreviewProvider {
