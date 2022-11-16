@@ -18,7 +18,7 @@ struct ContentView: View {
                 ProfileView()
                     .badge(2)
                     .tabItem {
-                        Label("Received", systemImage: "tray.and.arrow.down.fill").foregroundColor(.black)
+                        Label("Received", systemImage: "tray.and.arrow.down.fill").foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))
                     }
                 ChosePackView()
               
@@ -30,8 +30,8 @@ struct ContentView: View {
                     .tabItem {
                         Label("Account", systemImage: "person.crop.circle.fill")
                     }
-            }.background(.blue)
-        }.background(.red)    }
+            }.background(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))
+        }.background(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))    }
     
 }
 

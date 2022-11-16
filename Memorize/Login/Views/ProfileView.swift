@@ -13,7 +13,7 @@ struct ProfileView: View {
         ZStack{
             ZStack{
                 VStack{
-                    VStack{}.frame(maxWidth: .infinity,maxHeight: 230).background(.blue)
+                    VStack{}.frame(maxWidth: .infinity,maxHeight: 230).background(Color(uiColor: UIColor(red: 0.97, green: 0.95, blue: 0.89, alpha: 1)))
                     Spacer()
                 }
                 VStack(){
@@ -47,9 +47,9 @@ struct ProfileView: View {
                     
                     HStack{
                         Button{/*action*/}label: {
-                            Text("Message").frame(width: 150,height:50).foregroundColor(.green).background(.white).cornerRadius(5).shadow(radius: 6).padding()
+                            Text("Message").frame(width: 150,height:50).foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1))).background(.white).cornerRadius(5).shadow(radius: 6).padding()
                         }
-                        Button{/*action*/}label:{Text("Apple").frame(width: 150,height: 50).foregroundColor(.white).background(.green).cornerRadius(5).shadow(radius: 3).padding()}
+                        Button{/*action*/}label:{Text("Apple").frame(width: 150,height: 50).foregroundColor(.white).background(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1))).cornerRadius(5).shadow(radius: 3).padding()}
                         
                     }
                     VStack(alignment: .leading){

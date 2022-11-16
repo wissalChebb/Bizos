@@ -64,7 +64,7 @@ struct EditProfileUView: View {
                                                 HStack {
                                                     Spacer()
                                                     Spacer()
-                                                    Image(systemName: "camera").font(.system(size: 40, weight:.medium)).foregroundColor(.red).onTapGesture {
+                                                    Image(systemName: "camera").font(.system(size: 40, weight:.medium)).foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1))).onTapGesture {
                                                         self.showImagePicker = true
                                                     }
                                                     Spacer()

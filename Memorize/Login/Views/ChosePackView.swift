@@ -26,14 +26,14 @@ struct ChosePackView: View {
                     PackItem()
                     
                 }.frame(maxWidth: .infinity,maxHeight: .infinity)
-            }.background(.red)
-        }.background(.blue)
+            }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
+        }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
     }
 }
 struct PackItem:View{
     var body: some View {
         ZStack{
-            Image("wissal").frame(width: 340,height: 190).cornerRadius(30)
+            Image("pac").frame(width: 340,height: 190).cornerRadius(30)
             HStack{
                 VStack(alignment: .leading){
                     Text("Pack Gold")
