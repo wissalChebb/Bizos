@@ -8,11 +8,13 @@ import Foundation
 
 struct User {
     
+    
     var firstName : String
     var lastName : String
     var password : String
-    var email : String
- 
+    var email : String 
+    var id: String!
+    var image : String = ""
     
     init(firstname: String, password: String, email: String, lastName: String) {
         self.firstName = firstname
@@ -21,5 +23,6 @@ struct User {
         self.lastName = lastName
    
     }
+    
     
 }

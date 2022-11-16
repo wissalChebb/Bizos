@@ -28,7 +28,6 @@
 		B0A89CFE291FE2F600BB6BEF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B0A89CFD291FE2F600BB6BEF /* Alamofire */; };
 		B0A89D00292000C200BB6BEF /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A89CFF292000C200BB6BEF /* UserViewModel.swift */; };
 		B0C56D7D2922C3DE008CD804 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */; };
-		B0C56D7F2922DF71008CD804 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C56D7E2922DF71008CD804 /* File.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +52,6 @@
 		B0A89CF2291FC41500BB6BEF /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		B0A89CFF292000C200BB6BEF /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
-		B0C56D7E2922DF71008CD804 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +90,6 @@
 				14D05B48291DE0FF004D5448 /* ChosePackView.swift */,
 				B07970E9291EAEB700E35121 /* EditProfileUView.swift */,
 				B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */,
-				B0C56D7E2922DF71008CD804 /* File.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -254,7 +251,6 @@
 				B07970EC291EBD3300E35121 /* ImagePicker.swift in Sources */,
 				72E6DED829198C0300B2B644 /* HomePageView.swift in Sources */,
 				8809CC1C2916BFD20052B31E /* SwiftUIView.swift in Sources */,
-				B0C56D7F2922DF71008CD804 /* File.swift in Sources */,
 				B0C56D7D2922C3DE008CD804 /* ChangePasswordView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

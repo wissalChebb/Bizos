@@ -12,6 +12,7 @@ struct RegisterCView: View {
    @State var   password:String = ""
     @State var   lastname:String = ""
     @State var   email:String = ""
+    @State private var redirectLogin = false
 
     @ObservedObject var viewModel = UserViewModel()
 
@@ -63,9 +64,12 @@ struct RegisterCView: View {
                     
                 )
             Spacer(minLength: 100)
-            NavigationLink(destination: LoginView()){
+            NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true),isActive: $redirectLogin){
+             
                 Button("Register", action: {
                     viewModel.SignUp(user: User(firstname: viewModel.firstName, password:viewModel.password, email: viewModel.email, lastName: viewModel.lastName))
+                    redirectLogin=true
+                    
                 })
                 .foregroundColor(.black)
                 .frame(width: 100, height: 40)

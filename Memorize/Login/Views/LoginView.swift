@@ -11,8 +11,9 @@ struct LoginView: View {
     
     @ObservedObject var viewModel = UserViewModel()
     @State private var isShowingContentView = false
+    @State private var isLogin = false
     
-    
+    var currentUser: User?
     @State private var isShowingRegisterView = false
     var body: some View {
         NavigationView{
@@ -46,19 +47,24 @@ struct LoginView: View {
                         
                     )
                 HStack{
-                  
+                    NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true), isActive: $isLogin){
                         Button("Login", action: {
-              
-                            viewModel.LogIn(email: viewModel.email, password: viewModel.password,onSuccess: {
-                                isShowingContentView = true
-                                
-                            } , onError:    {
-                                (errorMessage) in
-                            }
-                                            
-                            )
                             
-                        })
+                            viewModel.LogIn(email: viewModel.email, password: viewModel.password,complited: {(user ) in
+                                if let  _ = user {
+                                   
+                                    print("logged in ")
+                                    isLogin=true
+                                }else{
+                                    print("not loged in ")
+                                    isLogin=false
+                                }
+                            })
+                            
+                        }
+                        )
+                        
+                    }
                         .foregroundColor(.black)
                         .frame(width: 100, height: 40)
                         .border(.black,width: 2.0)

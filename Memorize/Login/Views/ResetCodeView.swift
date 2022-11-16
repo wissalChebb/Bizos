@@ -10,7 +10,9 @@ import SwiftUI
 struct ResetCodeView: View {
     @State var Code:String = ""
    
-    
+    @ObservedObject var viewModel = UserViewModel()
+    @State private var isValidCode = false
+    @Binding var email: String
     @State private var isShowingRegisterView = false
     var body: some View {
         
@@ -26,7 +28,7 @@ struct ResetCodeView: View {
                                 .font(.callout)
                                 .bold()
                                 
-                            TextField("Enter CODE...", text: $Code)
+                        TextField("Enter CODE...", text: $viewModel.validateCode)
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
@@ -37,9 +39,20 @@ struct ResetCodeView: View {
                     
                 )
             HStack{
-                NavigationLink(destination: ChangePasswordView(),isActive: $isShowingRegisterView){
+                NavigationLink(destination: ChangePasswordView(email:$email),isActive: $isValidCode){
                     Button("enter", action: {
-                        isShowingRegisterView = true
+                        
+                        viewModel.ValideCode(code:viewModel.validateCode,complited: {(success ) in
+                            if success {
+                               
+                                print("Valid email ")
+                                isValidCode=true
+                            }else{
+                                print("try to write a valid email ")
+                                isValidCode=false
+                            }
+                        })
+                        
                     })
                     .foregroundColor(.black)
                     .frame(width: 100, height: 40)
@@ -65,9 +78,4 @@ struct ResetCodeView: View {
     
 }
 
-struct ResetCode_Previews: PreviewProvider {
-    static var previews: some View {
-        ResetCodeView()
-    }
-}
 

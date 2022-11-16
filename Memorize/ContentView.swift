@@ -8,7 +8,9 @@
 import SwiftUI
 import CoreData
 
-struct ContentView: View { 
+
+struct ContentView: View {
+    
 
     var body: some View {
         ZStack{

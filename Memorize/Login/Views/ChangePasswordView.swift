@@ -20,7 +20,8 @@ struct ChangePasswordView: View {
     @State private var isShowingContentView = false
     @State private var isShowingLoginR = false
     
-    
+    @State private var  Stringpass  = "";
+    @Binding var email: String
     @State private var isShowingRegisterView = false
     var body: some View {
         NavigationView{
@@ -36,7 +37,7 @@ struct ChangePasswordView: View {
                                 .font(.callout)
                                 .bold()
                             
-                            SecureField("Enter your new password...",text:$viewModel.email)
+                            SecureField("Enter your new password...",text:$viewModel.newPassword)
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
@@ -44,19 +45,23 @@ struct ChangePasswordView: View {
                                 .font(.callout)
                                 .bold()
                             
-                            SecureField("Confirme password..." , text:$viewModel.password)
+                            SecureField("Confirme password..." , text:$Stringpass)
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
                             
                         }.padding([.leading,.trailing],27.5)
-                        
-                        
+          
                     )
                 HStack{
                     NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true), isActive: $isShowingLoginR){
                         Button("confirm", action: {
-                            isShowingLoginR = true
+                           
+                                print(email);
+                            viewModel.changePassword(email: email , newPassword: viewModel.newPassword)
+                                isShowingLoginR = true
+                            
+                            
                         })
                         
                         
@@ -88,16 +93,11 @@ struct ChangePasswordView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea()
             
-        }
+        }.navigationBarBackButtonHidden(true)
         
     }
     
 }
 
-struct ChangePasswordView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChangePasswordView()
-    }
-}
 
 

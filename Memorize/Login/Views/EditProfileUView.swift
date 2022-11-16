@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct EditProfileUView: View {
-    @State var username:String = ""
-    @State var  password:String = "kghfiy"
+    @State var username:String = UserViewModel.currentUser?.firstName ?? ""
+    @State var  password:String =  UserViewModel.currentUser?.password ?? ""
+    @ObservedObject var viewModel = UserViewModel()
     @State var   verifpassword:String=""
-    @State var   lastname:String = "msdi"
-    @State var   email:String = "kjhf@gmail/com"
+    @State var   lastname:String = UserViewModel.currentUser?.lastName ?? ""
+
+    @State var   email:String = UserViewModel.currentUser?.email ?? ""
     @State var  description:String = ""
     @State private var image: String = ""
     @State var selectedImage: UIImage?
     @State var showImagePicker : Bool = false
     @State var update : Bool = false
-
-    
+    @State var isdisabledEmail : Bool = true
+    @State var activateSecurePwd : Bool = false
+    @State var logout : Bool = false
     
     var body: some View {
         ZStack{
@@ -90,10 +93,8 @@ struct EditProfileUView: View {
                             ZStack{
                                 RoundedRectangle(cornerRadius:15).stroke(Color.gray).background(Color.black.opacity(0.1)).cornerRadius(15)
                                 ZStack(alignment: .leading){
-                                    if update == false{
-                                        Text("wissal").foregroundColor(.red).padding()
-                                    }else{
-                                        TextField("", text: $username).foregroundColor(Color.blue).padding()}
+                                    
+                                    TextField("", text: $username).disabled(isdisabledEmail).foregroundColor(Color.blue).padding()
                                 }
                                 
                             }.frame(width:350, height: 50).padding(.top,16)
@@ -103,7 +104,7 @@ struct EditProfileUView: View {
                                     if lastname.isEmpty {
                                         Text("lastname").foregroundColor(.red).padding()
                                     }
-                                    TextField("", text: $lastname).foregroundColor(Color.blue).padding()
+                                    TextField("", text: $lastname).disabled(isdisabledEmail).foregroundColor(Color.blue).padding()
                                 }
                                 
                             }.frame(width:350, height: 50)
@@ -114,23 +115,11 @@ struct EditProfileUView: View {
                                     if email.isEmpty {
                                         Text("email").foregroundColor(.red).padding()
                                     }
-                                  TextField("", text: $email).foregroundColor(Color.blue).padding()
+                                    TextField("", text: $email).disabled(isdisabledEmail).foregroundColor(Color.blue).padding()
                                 }
                                 
                             }.frame(width:350, height: 50)
-                            ZStack{
-                                RoundedRectangle(cornerRadius:15).stroke(Color.gray).background(Color.black.opacity(0.1)).cornerRadius(15)
-                                ZStack(alignment: .leading){
-                                    if description.isEmpty {
-                                        VStack{
-                                            Text("add your description").foregroundColor(.red).padding(.horizontal)
-                                            
-                                        }
-                                    }
-                                    TextField("", text: $description).foregroundColor(Color.blue)
-                                }
-                                
-                            }.frame(width:350,height: 100)
+                            
                             
                             ZStack{
                                 RoundedRectangle(cornerRadius:15).stroke(Color.gray).background(Color.black.opacity(0.1)).cornerRadius(15)
@@ -138,28 +127,58 @@ struct EditProfileUView: View {
                                     if password.isEmpty {
                                         Text("passowrd").foregroundColor(.red).padding()
                                     }
-                                    SecureField("", text: $password).foregroundColor(Color.blue).padding()
+                                    SecureField("", text: $password).disabled(isdisabledEmail).onChange(of: password, perform: { newValue in
+                                        isChangedPwd(currentPwd:  UserViewModel.currentUser?.password ?? "", pwd: $password.wrappedValue)
+                                    }).foregroundColor(Color.blue).padding()
+                                    
+                                    
+                                    
+                                    
                                 }
                                 
                             }.frame(width:350, height: 50)
-                            ZStack{
-                                RoundedRectangle(cornerRadius:15).stroke(Color.gray).background(Color.black.opacity(0.1)).cornerRadius(15)
-                                ZStack(alignment: .leading){
-                                    if verifpassword.isEmpty {
-                                        Text("verify passowrd").foregroundColor(.red).padding()
+                            if activateSecurePwd{
+                                
+                                
+                                ZStack{
+                                    RoundedRectangle(cornerRadius:15).stroke(Color.gray).background(Color.black.opacity(0.1)).cornerRadius(15)
+                                    ZStack(alignment: .leading){
+                                        
+                                        
+                                        SecureField("", text: $verifpassword).foregroundColor(Color.blue).padding()
+                                        
+                                        
+                                        
                                     }
-                                    SecureField("", text: $verifpassword).foregroundColor(Color.blue).padding()
-                                }
-                                
-                            }.frame(width:350, height: 50)
+                                }.frame(width:350, height: 50)
+                            }
                             
                             Button{   self.update = true
                                 print(update)
+                                isdisabledEmail.toggle()
+                                if isdisabledEmail == true{
+                                    UserViewModel.currentUser?.email = email
+                                    UserViewModel.currentUser?.firstName = username
+                                    UserViewModel.currentUser?.lastName = lastname
+                                    UserViewModel.currentUser?.password = password
+                                    
+                                    viewModel.updateUser(user: UserViewModel.currentUser!, image: selectedImage!)
+                                }
                                 
                             }label:{Text("UPDATE").frame(width:350, height: 50).foregroundColor(.white).background(.gray).cornerRadius(15).shadow(radius: 3).padding()}
                             
+                            NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true),isActive: $logout ){
+                                Button{
+                                    UserViewModel.currentUser = nil
+                                    logout=true
+                                    
+                                }label:{Text("LOG OUT").frame(width:350, height: 50).foregroundColor(.white).background(.gray).cornerRadius(15).shadow(radius: 3).padding()}
                             
                             
+                            
+                            
+                            
+                        }
                         }
                         
                     }
@@ -172,15 +191,24 @@ struct EditProfileUView: View {
                 ImagePicker(sourceType: .photoLibrary, selectedImage: $selectedImage)
                 
             }
+        
+        
+        
+        }
+    
+    func isChangedPwd(currentPwd:String,pwd:String)  {
+        if !(currentPwd == pwd){
+            activateSecurePwd = true
+            
+        }else{
+            activateSecurePwd = false
+            
         }
     }
-
-
-
-
-
-struct EditProfileUView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditProfileUView()
+    
+    
+    
     }
-}
+
+
+
