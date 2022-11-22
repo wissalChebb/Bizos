@@ -30,10 +30,12 @@ struct RegisterCView: View {
                                 .font(.callout)
                                 .bold()
                                 
+                                
                         TextField("Enter first Name...", text:  $viewModel.firstName)
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
+                                .disableAutocorrection(true)
                         Text("Last Name")
                                 .font(.callout)
                                 .bold()
@@ -42,6 +44,7 @@ struct RegisterCView: View {
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
+                                .disableAutocorrection(true)
                         Text("Email")
                                 .font(.callout)
                                 .bold()
@@ -50,6 +53,8 @@ struct RegisterCView: View {
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
+                                .disableAutocorrection(true)
+                        
                         Text("Password")
                                 .font(.callout)
                                 .bold()
@@ -58,6 +63,7 @@ struct RegisterCView: View {
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
+                                .disableAutocorrection(true)
                         
                     }.padding([.leading,.trailing],27.5)
                     
@@ -68,13 +74,17 @@ struct RegisterCView: View {
              
                 Button("Register", action: {
                     viewModel.SignUp(user: User(firstname: viewModel.firstName, password:viewModel.password, email: viewModel.email, lastName: viewModel.lastName))
-                    redirectLogin=true
+                    
+                        redirectLogin=true
+                        
+                    
                     
                 })
                 .foregroundColor(.black)
                 .frame(width: 100, height: 40)
                 .border(.black,width: 2.0)
                 .padding(20)
+                
                 
                 
             }

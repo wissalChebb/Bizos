@@ -16,11 +16,20 @@ struct User {
     var id: String!
     var image : String = ""
     
-    init(firstname: String, password: String, email: String, lastName: String) {
+    init(firstname: String, password: String, email: String, lastName: String , image:String) {
         self.firstName = firstname
         self.password = password
         self.email = email
         self.lastName = lastName
+        self.image = image
+   
+    }
+    init(firstname: String, password: String, email: String, lastName: String ) {
+        self.firstName = firstname
+        self.password = password
+        self.email = email
+        self.lastName = lastName
+        
    
     }
     

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditProfileUView: View {
-    @State var username:String = UserViewModel.currentUser?.firstName ?? ""
+    @State var firstName:String = UserViewModel.currentUser?.firstName ?? ""
     @State var  password:String =  UserViewModel.currentUser?.password ?? ""
     @ObservedObject var viewModel = UserViewModel()
     @State var   verifpassword:String=""
@@ -94,12 +94,12 @@ struct EditProfileUView: View {
                                 RoundedRectangle(cornerRadius:15).stroke(Color.gray).background(Color.black.opacity(0.1)).cornerRadius(15)
                                 ZStack(alignment: .leading){
                                     
-                                    TextField("", text: $username).disabled(isdisabledEmail).foregroundColor(Color.blue).padding()
+                                    TextField("", text: $firstName).disabled(isdisabledEmail).foregroundColor(Color.blue).padding()
                                 }
                                 
                             }.frame(width:350, height: 50).padding(.top,16)
                             ZStack{
-                                RoundedRectangle(cornerRadius:15).stroke(Color.gray).background(Color.black.opacity(0.1)).cornerRadius(15)
+                                RoundedRectangle(cornerRadius:15).stroke(Color.gray.opacity(0.5)).background(Color.black.opacity(0.1)).cornerRadius(15)
                                 ZStack(alignment: .leading){
                                     if lastname.isEmpty {
                                         Text("lastname").foregroundColor(.red).padding()
@@ -158,7 +158,7 @@ struct EditProfileUView: View {
                                 isdisabledEmail.toggle()
                                 if isdisabledEmail == true{
                                     UserViewModel.currentUser?.email = email
-                                    UserViewModel.currentUser?.firstName = username
+                                    UserViewModel.currentUser?.firstName = firstName
                                     UserViewModel.currentUser?.lastName = lastname
                                     UserViewModel.currentUser?.password = password
                                     

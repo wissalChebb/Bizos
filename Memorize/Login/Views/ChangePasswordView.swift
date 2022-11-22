@@ -45,7 +45,7 @@ struct ChangePasswordView: View {
                                 .font(.callout)
                                 .bold()
                             
-                            SecureField("Confirme password..." , text:$Stringpass)
+                            SecureField("Confirme password..." , text:$viewModel.confirmpass)
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)

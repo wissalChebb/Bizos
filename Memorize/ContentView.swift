@@ -15,6 +15,12 @@ struct ContentView: View {
     var body: some View {
         ZStack{
             TabView {
+                
+                HomeView()
+              
+                    .tabItem {
+                        Label("Home", systemImage: "house")
+                    }
                 ProfileView()
                     .badge(2)
                     .tabItem {
@@ -28,8 +34,10 @@ struct ContentView: View {
                 EditProfileUView()
                     .badge("!")
                     .tabItem {
-                        Label("Account", systemImage: "person.crop.circle.fill")
+                        Label("Profile", systemImage: "person.crop.circle.fill")
                     }
+               
+                
             }.background(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))
         }.background(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))    }
     
