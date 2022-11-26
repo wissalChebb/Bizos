@@ -1,26 +1,22 @@
 //
-//  ContentView.swift
+//  HomePageAvocat.swift
 //  Memorize
 //
-//  Created by iMac on 5/11/2022.
+//  Created by Apple Esprit on 25/11/2022.
 //
 
 import SwiftUI
-import CoreData
 
-
-struct ContentView: View {
-    
-
+struct BarHomePageAvocat: View {
     var body: some View {
         ZStack{
             TabView {
-                
-                HomeView()
-              
+                HomeAvocatView()
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }
+               
+           
                 ProfileView()
                     .badge(2)
                     .tabItem {
@@ -36,17 +32,16 @@ struct ContentView: View {
                     .tabItem {
                         Label("Profile", systemImage: "person.crop.circle.fill")
                     }
-               
+                
+                
                 
             }.background(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))
-        }.background(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))    }
-    
+        }.background(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))
+    }
 }
 
-
-
-struct ContentView_Previews: PreviewProvider {
+struct BarHomePageAvocat_Previews: PreviewProvider {
     static var previews: some View {
-     ContentView()
+        BarHomePageAvocat()
     }
 }

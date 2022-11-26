@@ -93,7 +93,9 @@ struct EditProfileUView: View {
                             ZStack{
                                 RoundedRectangle(cornerRadius:15).stroke(Color.gray).background(Color.black.opacity(0.1)).cornerRadius(15)
                                 ZStack(alignment: .leading){
-                                    
+                                    if lastname.isEmpty {
+                                        Text("firstName").foregroundColor(.red).padding()
+                                    }
                                     TextField("", text: $firstName).disabled(isdisabledEmail).foregroundColor(Color.blue).padding()
                                 }
                                 
@@ -196,6 +198,7 @@ struct EditProfileUView: View {
         
         }
     
+    
     func isChangedPwd(currentPwd:String,pwd:String)  {
         if !(currentPwd == pwd){
             activateSecurePwd = true
@@ -209,6 +212,11 @@ struct EditProfileUView: View {
     
     
     }
+struct EditProfileUView_Previews: PreviewProvider {
+    static var previews: some View {
+        EditProfileUView()
+    }
+}
 
 
 

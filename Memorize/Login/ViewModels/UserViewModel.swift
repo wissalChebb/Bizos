@@ -5,7 +5,7 @@ import UIKit
 class UserViewModel: ObservableObject {
      var firstName : String = ""
     var lastName : String  = ""
-    var password : String  = "aaa"
+    var password : String  = "123"
     var email : String  = "chebbi.wissal@esprit.tn"
     var resetCode : String = ""
     var validateCode : String = ""
@@ -15,14 +15,14 @@ class UserViewModel: ObservableObject {
     
     static var currentUser: User?
     
-    static let sharedInstance = UserViewModel()
-    
+ 
+    let url = "172.17.4.74:5000"
      
     func LogIn(email: String,password: String, complited: @escaping(User?)-> Void )
     
     {
         
-        AF.request("http://172.17.7.126:5000/user/Signin" , method: .post, parameters: ["email": email,"password": password] ,encoding: JSONEncoding.default)
+        AF.request("http://\(url)/user/Signin" , method: .post, parameters: ["email": email,"password": password] ,encoding: JSONEncoding.default)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseJSON {
@@ -38,11 +38,13 @@ class UserViewModel: ObservableObject {
                     let firstName = userResponse.object(forKey: "first_name") as? String ?? ""
                     let image = userResponse.object(forKey: "image") as? String ?? ""
                     let id = userResponse.object(forKey: "_id")  as? String ?? ""
+                    let role = userResponse.object(forKey: "role")  as? String ?? ""
                     print("success  \(email )")
                     print("success  \(lastName )")
                     print("success  \(password )")
                     print("success  \(image )")
-                    var currentUser = User(firstname: firstName, password: password, email: email, lastName: lastName,image: image)
+                    print("success  \(role )")
+                    var currentUser = User(firstname: firstName, password: password, email: email, lastName: lastName,image: image,role: role)
                     currentUser.id = id
                     currentUser.image = image
                     Self.currentUser = currentUser
@@ -62,13 +64,13 @@ class UserViewModel: ObservableObject {
     func SignUp(user: User) {
         print(user)
         let parametres: [String: Any] = [
-            "name": user.firstName,
+            "first_name": user.firstName,
             "last_name": user.lastName,
             "email": user.email,
             "password": user.password,
             
         ]
-        AF.request("http://172.17.7.126:5000/user/compte" , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
+        AF.request("http://\(url)/user/compte" , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
             .validate(statusCode: 200..<500)
             .validate(contentType: ["application/json"])
             .responseData {
@@ -107,7 +109,7 @@ class UserViewModel: ObservableObject {
                     multipartFormData.append(  (value as! String).data(using: .utf8)!, withName: key)
                     } //Optional for extra parameters
             },
-                  to:"http://172.17.7.126:5000/user/updateUser/\(user.id ?? "")").responseData(completionHandler: { response in
+                  to:"http://\(url)/user/updateUser/\(user.id ?? "")").responseData(completionHandler: { response in
             switch response.result {
              case .success:
 
@@ -156,7 +158,7 @@ class UserViewModel: ObservableObject {
             let parametres: [String: Any] = [
                 "email": email
             ]
-            AF.request("http://172.17.7.126:5000/user/resetpwd" , method: .post,parameters: parametres,encoding: JSONEncoding.default)
+            AF.request("http://\(url)/user/resetpwd" , method: .post,parameters: parametres,encoding: JSONEncoding.default)
                 .responseJSON {
                     (response) in
                     switch response.result {
@@ -175,7 +177,7 @@ class UserViewModel: ObservableObject {
             let parametres: [String: Any] = [
                 "code": code
             ]
-            AF.request("http://172.17.7.126:5000/user/resetpassword" , method: .post,parameters: parametres,encoding: JSONEncoding.default)
+            AF.request("http://\(url)/user/resetpassword" , method: .post,parameters: parametres,encoding: JSONEncoding.default)
                 .responseJSON {
                     (response) in
                     switch response.result {
@@ -197,7 +199,7 @@ class UserViewModel: ObservableObject {
                 "email": email,
                 "password": newPassword
             ]
-            AF.request("http://172.17.7.126:5000/user/changepwd" , method: .post,parameters: parametres,encoding: JSONEncoding.default)
+            AF.request("http://\(url)/user/changepwd" , method: .post,parameters: parametres,encoding: JSONEncoding.default)
                 .responseJSON {
                     (response) in
                     switch response.result {

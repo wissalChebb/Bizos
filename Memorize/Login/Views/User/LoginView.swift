@@ -46,8 +46,9 @@ struct LoginView: View {
                         
                         
                     )
+                //ContentView()
                 HStack{
-                    NavigationLink(destination: ContentView().navigationBarBackButtonHidden(true), isActive: $isLogin){
+                    NavigationLink(destination:ControlLogin() .navigationBarBackButtonHidden(true), isActive: $isLogin){
                         Button("Login", action: {
                             
                             viewModel.LogIn(email: viewModel.email, password: viewModel.password,complited: {(user ) in
