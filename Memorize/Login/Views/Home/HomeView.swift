@@ -10,9 +10,11 @@ import SDWebImageSwiftUI
 import Alamofire
 import SwiftyJSON
 struct HomeView: View {
-    
-
+    var user : User
+    @ObservedObject  var categorieViewModel = CategorieViewModel()
+    @ObservedObject  var userViewModel = UserViewModel()
     var body: some View {
+        
         NavigationView{
             ZStack{
                 Color("Bg").edgesIgnoringSafeArea(.all)
@@ -42,8 +44,10 @@ struct HomeView: View {
                         }.padding(.horizontal)
                         ScrollView(.horizontal,showsIndicators: false) {
                             HStack{
-                                ForEach(0 ..< 4) { item in
-                                    CategorieView(image: Image("c1"), size: 100)
+                          
+
+                                ForEach(0..<categorieViewModel.categories.count,id: \.self ) { item in
+                                    CategorieView(categorie: categorieViewModel.categories[item],size: 100)
                                 }.padding(.trailing)
                             }
                         }
@@ -60,9 +64,10 @@ struct HomeView: View {
                         }.padding(.horizontal)
                         ScrollView(.horizontal,showsIndicators: false) {
                             HStack{
-                                ForEach(0 ..< 4) { item in
-                                    CategorieView2(image: Image("c1"), size: 210)
+                                ForEach(0..<categorieViewModel.categories.count,id: \.self ) { item in
+                                    AvocatView(user: userViewModel.avocats[item],size: 100)
                                 }.padding(.trailing)
+                              
                             }
                         }
                         
@@ -75,7 +80,7 @@ struct HomeView: View {
 }
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(user: <#T##User#>, categorieViewModel: <#T##CategorieViewModel#>)
     }
 }
 
@@ -114,7 +119,7 @@ struct TagLineView: View {
 
 struct SearchView: View {
     @State private var searsh : String = ""
-
+   
     var body: some View {
         HStack {
             HStack {
@@ -128,22 +133,39 @@ struct SearchView: View {
         }
     }
 }
-
 struct CategorieView: View {
-    let image : Image
-    let size : CGFloat
+    var image : Image? = Image("")
+    var categorie :Categorie
+    var size : CGFloat
     var body: some View {
+        
         VStack {
-            image.resizable().frame( width: size , height: 200*(size/210)).cornerRadius(20.0)
-            Text("Nom categorie").font(.title)   }.frame(width: size).padding().background(Color.white).cornerRadius(20.0)
+            AsyncImage(url: URL(string: "http://172.17.4.74:5000/img/"+categorie.image),
+                                      content:{ image in
+                               image  .resizable().frame( width: size , height: 200*(size/210)).cornerRadius(20.0)
+                           },placeholder: { })
+/*
+            image
+                .resizable().frame( width: size , height: 200*(size/210)).cornerRadius(20.0)*/
+            Text(categorie.name).font(.title)  }.frame(width: size).padding().background(Color.white).cornerRadius(20.0)
     }
 }
-struct CategorieView2: View {
-    let image : Image
-    let size : CGFloat
+struct AvocatView: View {
+    var image : Image? = Image("")
+    var user : User
+    var size : CGFloat
     var body: some View {
+        
         VStack {
-            image.resizable().frame( width: size , height: 200*(size/210)).cornerRadius(20.0)
-            Text("Nom categorie").font(.title)   }.frame(width: size).padding().background(Color.white).cornerRadius(20.0)
+            AsyncImage(url: URL(string: "http://172.17.4.74:5000/img/"+user.image),
+                                      content:{ image in
+                               image  .resizable().frame( width: size , height: 200*(size/210)).cornerRadius(20.0)
+                           },placeholder: { })
+/*
+            image
+                .resizable().frame( width: size , height: 200*(size/210)).cornerRadius(20.0)*/
+            Text(user.firstName).font(.title)  }.frame(width: size).padding().background(Color.white).cornerRadius(20.0)
     }
 }
+
+

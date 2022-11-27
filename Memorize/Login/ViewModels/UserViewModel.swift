@@ -1,7 +1,10 @@
 import Foundation
 import Alamofire
 import UIKit
-
+import AlamofireImage
+import SDWebImageSwiftUI
+import Alamofire
+import SwiftyJSON
 class UserViewModel: ObservableObject {
      var firstName : String = ""
     var lastName : String  = ""
@@ -11,7 +14,7 @@ class UserViewModel: ObservableObject {
     var validateCode : String = ""
     var newPassword : String = ""
     var confirmpass : String = ""
-    
+    @Published   var avocats : [User] = []
     
     static var currentUser: User?
     
@@ -153,6 +156,16 @@ class UserViewModel: ObservableObject {
             }*/
         
     }
+//    func fgghhg(user: User) {
+//        var url = URL(string: "http://\(url)/user/updateUser/\(user.id ?? "")")
+//        print(url)
+//        selectedImage.af.setImage(withURL: url!)
+//
+//    }
+//
+        
+           
+  
     
     func ResetPassword(email: String) {
             let parametres: [String: Any] = [
@@ -215,6 +228,50 @@ class UserViewModel: ObservableObject {
             
 
         }
+    
+    func getAllAvoat(complited: @escaping(Bool, [User]?) -> Void) {
+      
+        
+        AF.request("http://\(url)/allAvocat" , method: .get ,encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<500)
+            .validate(contentType: ["application/json"])
+            .responseData {
+                response in
+                switch response.result {
+                case .success:
+                    print("hyyyy",response)
+                    
+               
+                    for singleJsonItem in JSON(response.data!){
+                      
+                        self.avocats.append(self.makeItem(jsonItem:singleJsonItem.1))
+                    }
+                    
+                    complited(true,self.avocats)
+                case let .failure(error):
+                    debugPrint(error)
+                complited(false,nil)
+                }
+            }
+        
+    }
+    func makeItem(jsonItem : JSON) -> User {
+        return User (firstname: jsonItem["first_name"].stringValue,
+                     lastName:jsonItem["last_name"].stringValue,
+                     specialite:  jsonItem["specialite"].stringValue,
+                     image:    jsonItem["image"].stringValue,
+                     experience:  jsonItem["experience"].intValue
+        )
+
+    }
+    
+
+    
+   
+
+ 
+
+    
     
     
    

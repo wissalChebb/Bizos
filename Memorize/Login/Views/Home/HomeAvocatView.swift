@@ -50,7 +50,7 @@ struct HomeAvocatView: View {
 
 struct HomeAvocatView_Previews: PreviewProvider {
     static var previews: some View {
-       home()
+      HomeAvocatView()
     }
 }
 
@@ -69,7 +69,7 @@ struct HomeAvocatView_Previews: PreviewProvider {
                     }
                     Text("Dark Mode Menu")
                 }
-                MenuView(dark: self.$dark, show:self.$show ).preferredColorScheme(self.dark ? .dark : .light)
+           MenuView(dark: self.$dark, show:self.$show ).preferredColorScheme(self.dark ? .dark : .light)
                     
             }
         }

@@ -11,13 +11,25 @@ import Alamofire
 import SwiftyJSON
 
 class CategorieViewModel: ObservableObject{
-    @Published   var categories : [Categorie]? = []
+    @Published   var categories : [Categorie] = []
     var name : String = ""
     var image : String = ""
     
     let url = "172.17.4.74:5000"
     
-    func getCategorie() {
+    init() {
+        getCategorie(complited: {(success , respnse)in
+            if success{
+                let categories = respnse!
+                print("ahyaaaaa",categories)
+            }else {
+                print("error cant connect ")
+            }
+            
+        })
+    }
+    
+    func getCategorie(complited: @escaping(Bool, [Categorie]?) -> Void) {
       
         
         AF.request("http://\(url)/categorie" , method: .get ,encoding: JSONEncoding.default)
@@ -27,16 +39,28 @@ class CategorieViewModel: ObservableObject{
                 response in
                 switch response.result {
                 case .success:
-                    let json = try! JSON (data : response.data!)
-                    for i in json{
+                    
+               
+                    for singleJsonItem in JSON(response.data!){
                       
-                        self.categories?.append(Categorie(id: i.1["id"].stringValue, name: i.1["name"].stringValue, image: i.1["image"].stringValue))
+                        self.categories.append(self.makeItem(jsonItem:singleJsonItem.1))
                     }
+                    
+                    complited(true,self.categories)
                 case let .failure(error):
-                print(error)
+                    debugPrint(error)
+                complited(false,nil)
                 }
             }
         
+    }
+    
+    func makeItem(jsonItem : JSON) -> Categorie {
+        return Categorie (id: jsonItem["_id"].stringValue,
+                          name: jsonItem["name"].stringValue,
+                          image: jsonItem["image"].stringValue
+        )
+
     }
      
    

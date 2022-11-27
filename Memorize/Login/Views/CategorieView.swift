@@ -12,7 +12,7 @@ struct CaategorieView: View {
     var body: some View {
         HStack{
             Button("try", action: {
-                cat.getCategorie()
+                
             })
         }
     

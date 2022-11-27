@@ -17,7 +17,7 @@ struct Categorie {
     
     init(  id : String ,name: String,image:String) {
         self.id = id
-        self.name = image
+        self.name = name
         self.image = image
       
     }
