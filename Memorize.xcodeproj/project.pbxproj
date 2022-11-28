@@ -19,12 +19,13 @@
 		8809CBF22916A28D0052B31E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809CBF12916A28D0052B31E /* Persistence.swift */; };
 		8809CBF52916A28D0052B31E /* Memorize.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8809CBF32916A28D0052B31E /* Memorize.xcdatamodeld */; };
 		8809CC1C2916BFD20052B31E /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809CC1B2916BFD20052B31E /* SwiftUIView.swift */; };
+		B02863472935439D0065E12F /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02863462935439D0065E12F /* NewsModel.swift */; };
+		B028634C2935467C0065E12F /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028634B2935467C0065E12F /* NewsViewModel.swift */; };
 		B063F1F3292BC0020088B3CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063F1F2292BC0020088B3CD /* HomeView.swift */; };
 		B063F1F5292BD4A70088B3CD /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = B063F1F4292BD4A70088B3CD /* Fonts */; };
 		B063F1F7292C4B770088B3CD /* CategorieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063F1F6292C4B770088B3CD /* CategorieView.swift */; };
 		B07970EA291EAEB700E35121 /* EditProfileUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07970E9291EAEB700E35121 /* EditProfileUView.swift */; };
 		B07970EC291EBD3300E35121 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07970EB291EBD3300E35121 /* ImagePicker.swift */; };
-		B09B47222932D33600F25A5D /* NewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09B47212932D33600F25A5D /* NewModel.swift */; };
 		B0A131672931096100DC690F /* BarHomePageAvocat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A131662931096100DC690F /* BarHomePageAvocat.swift */; };
 		B0A1316929310B4100DC690F /* HomeAvocatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A1316829310B4100DC690F /* HomeAvocatView.swift */; };
 		B0A131722931609F00DC690F /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B0A131712931609F00DC690F /* SDWebImageSwiftUI */; };
@@ -59,12 +60,13 @@
 		8809CBF12916A28D0052B31E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		8809CBF42916A28D0052B31E /* Memorize.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memorize.xcdatamodel; sourceTree = "<group>"; };
 		8809CC1B2916BFD20052B31E /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		B02863462935439D0065E12F /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		B028634B2935467C0065E12F /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		B063F1F2292BC0020088B3CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B063F1F4292BD4A70088B3CD /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../../../Downloads/Furniture-Shop-App-UI-SwiftUI-main/Furniture_app/Fonts"; sourceTree = "<group>"; };
 		B063F1F6292C4B770088B3CD /* CategorieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorieView.swift; sourceTree = "<group>"; };
 		B07970E9291EAEB700E35121 /* EditProfileUView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileUView.swift; sourceTree = "<group>"; };
 		B07970EB291EBD3300E35121 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		B09B47212932D33600F25A5D /* NewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewModel.swift; sourceTree = "<group>"; };
 		B0A131662931096100DC690F /* BarHomePageAvocat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarHomePageAvocat.swift; sourceTree = "<group>"; };
 		B0A1316829310B4100DC690F /* HomeAvocatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAvocatView.swift; sourceTree = "<group>"; };
 		B0A13176293163EF00DC690F /* CategorieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorieModel.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				B0A89CFF292000C200BB6BEF /* UserViewModel.swift */,
 				B0A131782931662200DC690F /* CategorieViewModel.swift */,
 				B0AB614529327A390051A892 /* CaseViewModel.swift */,
+				B028634B2935467C0065E12F /* NewsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -209,7 +212,7 @@
 				B0A89CF2291FC41500BB6BEF /* UserModel.swift */,
 				B0A13176293163EF00DC690F /* CategorieModel.swift */,
 				B0AB6140293279D30051A892 /* Casemodel.swift */,
-				B09B47212932D33600F25A5D /* NewModel.swift */,
+				B02863462935439D0065E12F /* NewsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				8809CBF52916A28D0052B31E /* Memorize.xcdatamodeld in Sources */,
 				B0AB6148293290E00051A892 /* EditPackView.swift in Sources */,
 				8809CBEB2916A28B0052B31E /* ContentView.swift in Sources */,
+				B028634C2935467C0065E12F /* NewsViewModel.swift in Sources */,
 				B0ACC297292D6BD200EEE7A1 /* ControlLogin.swift in Sources */,
 				B0A89D00292000C200BB6BEF /* UserViewModel.swift in Sources */,
 				B07970EA291EAEB700E35121 /* EditProfileUView.swift in Sources */,
@@ -316,12 +320,12 @@
 				14D05B49291DE0FF004D5448 /* ChosePackView.swift in Sources */,
 				B0A89CF3291FC41500BB6BEF /* UserModel.swift in Sources */,
 				B0AB6141293279D30051A892 /* Casemodel.swift in Sources */,
-				B09B47222932D33600F25A5D /* NewModel.swift in Sources */,
 				72E6DEDE2919A88C00B2B644 /* ResetCodeView.swift in Sources */,
 				B063F1F3292BC0020088B3CD /* HomeView.swift in Sources */,
 				B0A131672931096100DC690F /* BarHomePageAvocat.swift in Sources */,
 				B07970EC291EBD3300E35121 /* ImagePicker.swift in Sources */,
 				B0A131792931662200DC690F /* CategorieViewModel.swift in Sources */,
+				B02863472935439D0065E12F /* NewsModel.swift in Sources */,
 				B0A13177293163EF00DC690F /* CategorieModel.swift in Sources */,
 				B0A56B6C2926F07E00A6B137 /* RegisterAvocatView.swift in Sources */,
 				B0AB614629327A390051A892 /* CaseViewModel.swift in Sources */,

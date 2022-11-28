@@ -15,11 +15,23 @@ class UserViewModel: ObservableObject {
     var newPassword : String = ""
     var confirmpass : String = ""
     @Published   var avocats : [User] = []
+    init() {
+        getAllAvoat(complited: {(success , respnse)in
+            if success{
+                let avocats = respnse!
+                print("ahyaaaaa", avocats)
+            }else {
+                print("error cant connect ")
+            }
+            
+        })
+    }
+   
     
     static var currentUser: User?
     
  
-    let url = "172.17.4.74:5000"
+    let url = "172.17.3.77:5000"
      
     func LogIn(email: String,password: String, complited: @escaping(User?)-> Void )
     
@@ -99,31 +111,31 @@ class UserViewModel: ObservableObject {
             
         ]
         
-      
-       
+        
+        
         let imgData = image.jpegData(compressionQuality: 0.2)!
-
-       
-
+        
+        
+        
         AF.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(imgData, withName: "image",fileName: "file.jpg", mimeType: "image/jpg")
-                for ( key,value) in parametres {
-                  
-                    multipartFormData.append(  (value as! String).data(using: .utf8)!, withName: key)
-                    } //Optional for extra parameters
-            },
+            multipartFormData.append(imgData, withName: "image",fileName: "file.jpg", mimeType: "image/jpg")
+            for ( key,value) in parametres {
+                
+                multipartFormData.append(  (value as! String).data(using: .utf8)!, withName: key)
+            } //Optional for extra parameters
+        },
                   to:"http://\(url)/user/updateUser/\(user.id ?? "")").responseData(completionHandler: { response in
             switch response.result {
-             case .success:
-
-              print("success image")
-
-             case .failure(let encodingError):
-                 print(encodingError)
-             }
+            case .success:
+                
+                print("success image")
+                
+            case .failure(let encodingError):
+                print(encodingError)
+            }
         })
         
-        
+    }
       /* AF.request("http://172.17.3.91:5000/user/updateUser/\(user.id ?? "")" , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
             .validate(statusCode: 200..<500)
             .validate(contentType: ["application/json"])
@@ -155,7 +167,7 @@ class UserViewModel: ObservableObject {
                 }
             }*/
         
-    }
+    
 //    func fgghhg(user: User) {
 //        var url = URL(string: "http://\(url)/user/updateUser/\(user.id ?? "")")
 //        print(url)
@@ -232,20 +244,22 @@ class UserViewModel: ObservableObject {
     func getAllAvoat(complited: @escaping(Bool, [User]?) -> Void) {
       
         
-        AF.request("http://\(url)/allAvocat" , method: .get ,encoding: JSONEncoding.default)
+        AF.request("http://\(url)/user/allAvocat" , method: .get ,encoding: JSONEncoding.default)
             .validate(statusCode: 200..<500)
             .validate(contentType: ["application/json"])
             .responseData {
                 response in
                 switch response.result {
                 case .success:
-                    print("hyyyy",response)
+             
                     
                
                     for singleJsonItem in JSON(response.data!){
                       
                         self.avocats.append(self.makeItem(jsonItem:singleJsonItem.1))
                     }
+                    print(self.avocats)
+                    
                     
                     complited(true,self.avocats)
                 case let .failure(error):
@@ -259,8 +273,10 @@ class UserViewModel: ObservableObject {
         return User (firstname: jsonItem["first_name"].stringValue,
                      lastName:jsonItem["last_name"].stringValue,
                      specialite:  jsonItem["specialite"].stringValue,
-                     image:    jsonItem["image"].stringValue,
-                     experience:  jsonItem["experience"].intValue
+                     experience:  jsonItem["experience"].intValue,
+                     image:    jsonItem["image"].stringValue
+                    
+                     
         )
 
     }

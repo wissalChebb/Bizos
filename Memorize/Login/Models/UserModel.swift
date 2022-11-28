@@ -57,6 +57,16 @@ struct User {
         
    
     }
+    init(firstname:  String, lastName: String, specialite: String, experience:Int ,image:String ) {
+        self.firstName = firstname
+        self.lastName = lastName
+        self.specialite = specialite
+        self.image = image
+        self.experience = experience
+        
+        
+   
+    }
     
     
     

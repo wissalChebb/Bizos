@@ -8,40 +8,42 @@
 import SwiftUI
 
 struct HomeAvocatView: View {
+    @ObservedObject  var newsViewModel = NewsViewModel()
+    @State var dark = false
+    @State var show = false
     var body: some View {
         NavigationView{
           
                 ZStack{
-                    Color("Bg").edgesIgnoringSafeArea(.all)
-                    
-                    ScrollView() {
-                        VStack(alignment:.leading){
-                            AppBar()
-                            TagLineView().padding()
-                            SearchView()
-                            
-                            HStack {
-                                Text("Categories")
-                                    .font(.custom("PlayFairDisplay-Bold", size: 20))
-                                
-                                
-                                
-                                
-                            }.padding(.vertical)
-                            ScrollView(.vertical,showsIndicators: false) {
-                                VStack(spacing:20.0){
-                                    ForEach(0 ..< 4) { item in
-                                        CategorieView1(image: Image("c1"), size: 320)
-                                    }.padding(.trailing)
+                    GeometryReader{_ in
+                        
+                        Color("Bg").edgesIgnoringSafeArea(.all)
+                        ScrollView() {
+                            VStack(alignment:.leading){
+                                AppBar1()
+                                TagLineView().padding()
+                                SearchView()
+                                HStack {
+                                    Text("News")
+                                        .font(.custom("PlayFairDisplay-Bold", size: 20))
+                                    
+                                }.padding(.vertical)
+                                ScrollView(.vertical,showsIndicators: false) {
+                                    VStack(spacing:20.0){
+                                        ForEach(0..<newsViewModel.news.count , id: \.self ) { item in
+                                            CategorieView1(news: newsViewModel.news[item])
+                                        }.padding(.trailing)
+                                    }
                                 }
-                            }
-                           
-                          
-                            
-                            
-                        }.padding(.horizontal)
+                                
+                                
+                                
+                                
+                            }.padding(.horizontal)
+                        }
+                        
+                       
                     }
-                    
                 }
             
         }
@@ -137,21 +139,30 @@ struct SearchView1: View {
 }
 
 struct CategorieView1: View {
-    let image : Image
-    let size : CGFloat
+    var news : News
+    
+  
     var body: some View {
        
             HStack(alignment: .top){
-                image.resizable().frame( width: 80, height: 80*(size/210)).cornerRadius(20.0)
+                AsyncImage(url: URL(string: news.thumbnail),
+                                          content:{ image in
+                                   image  .resizable()
+                        .aspectRatio( contentMode: .fill)
+                        .clipped()
+                        .clipShape(Rectangle())
+                        .frame( width:100 , height: 100).cornerRadius(20.0)
+                               },placeholder: { })
                 Spacer()
                
                 VStack{
-                    Text("Nom categorie").font(.title)
-                    Text("hjgjhgjhgjhgjhgjhgjhgjhgjhgjhgjhhjgjhgjhgjhgjhgjhgjhgj").font(.title3)
+                    
+                    Text(news.title).font(.title3).frame(width: 100,height: 10)
+                    Text("dfsd").font(.headline).multilineTextAlignment(.center)
                 }
                
                 
-            }.frame(width: size).padding().background(Color.white).cornerRadius(20.0)
+            }.frame(width:300,height: 300).padding().background(Color.white).cornerRadius(20.0)
           
             
            

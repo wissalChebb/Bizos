@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 import Alamofire
 import SwiftyJSON
 struct HomeView: View {
-    var user : User
+    
     @ObservedObject  var categorieViewModel = CategorieViewModel()
     @ObservedObject  var userViewModel = UserViewModel()
     var body: some View {
@@ -64,8 +64,8 @@ struct HomeView: View {
                         }.padding(.horizontal)
                         ScrollView(.horizontal,showsIndicators: false) {
                             HStack{
-                                ForEach(0..<categorieViewModel.categories.count,id: \.self ) { item in
-                                    AvocatView(user: userViewModel.avocats[item],size: 100)
+                                ForEach(0..<userViewModel.avocats.count,id: \.self ) { item in
+                                    AvocatView(user: userViewModel.avocats[item])
                                 }.padding(.trailing)
                               
                             }
@@ -80,16 +80,20 @@ struct HomeView: View {
 }
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(user: <#T##User#>, categorieViewModel: <#T##CategorieViewModel#>)
+        HomeView()
     }
 }
 
 
 struct AppBar: View {
+    @State var dark = false
+    @State var show = false
     var body: some View {
         HStack{
             
-            Button(action:{}){
+            Button(action:{
+                MenuView(dark: self.$dark, show:self.$show ).preferredColorScheme(self.dark ? .dark : .light)
+            }){
                 Image("men").padding().background(Color(.white)).cornerRadius(10.0)
             }
             
@@ -140,31 +144,39 @@ struct CategorieView: View {
     var body: some View {
         
         VStack {
-            AsyncImage(url: URL(string: "http://172.17.4.74:5000/img/"+categorie.image),
+            AsyncImage(url: URL(string: "http://172.17.3.77:5000/img/"+categorie.image),
                                       content:{ image in
-                               image  .resizable().frame( width: size , height: 200*(size/210)).cornerRadius(20.0)
+                               image.resizable()
+                    .aspectRatio( contentMode: .fill)
+                    .clipped()
+                    .clipShape(Rectangle())
+                    .frame( width: 50 , height: 200*(50/210)).cornerRadius(20.0)
                            },placeholder: { })
 /*
             image
                 .resizable().frame( width: size , height: 200*(size/210)).cornerRadius(20.0)*/
-            Text(categorie.name).font(.title)  }.frame(width: size).padding().background(Color.white).cornerRadius(20.0)
+            Text(categorie.name).font(.title3)  }.frame(width: 100, height: 170).padding().background(Color.white).cornerRadius(20.0)
     }
 }
 struct AvocatView: View {
     var image : Image? = Image("")
     var user : User
-    var size : CGFloat
+
     var body: some View {
         
         VStack {
-            AsyncImage(url: URL(string: "http://172.17.4.74:5000/img/"+user.image),
+            AsyncImage(url: URL(string: "http://172.17.3.77:5000/img/"+user.image),
                                       content:{ image in
-                               image  .resizable().frame( width: size , height: 200*(size/210)).cornerRadius(20.0)
+                               image  .resizable()
+                    .aspectRatio( contentMode: .fill)
+                    .clipped()
+                    .clipShape(Rectangle())
+                    .frame( width: 100 , height: 200*(100/210)).cornerRadius(20.0)
                            },placeholder: { })
 /*
             image
                 .resizable().frame( width: size , height: 200*(size/210)).cornerRadius(20.0)*/
-            Text(user.firstName).font(.title)  }.frame(width: size).padding().background(Color.white).cornerRadius(20.0)
+            Text(user.firstName).font(.title)  }.frame(width: 200).padding().background(Color.white).cornerRadius(20.0)
     }
 }
 
