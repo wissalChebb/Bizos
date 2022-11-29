@@ -45,7 +45,7 @@ struct TagLineView3: View {
 struct PackItem:View{
     var body: some View {
         ZStack{
-            Image("pac").frame(width: 340,height: 190).cornerRadius(30)
+            Image("card").frame(width: 340,height: 190).cornerRadius(30)
             HStack{
                 VStack(alignment: .leading){
                     Text("Pack Gold")

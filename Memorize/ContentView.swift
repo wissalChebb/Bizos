@@ -16,7 +16,7 @@ struct ContentView: View {
         ZStack{
             TabView {
                 
-                HomeView()
+                HomeView(user: UserViewModel.currentUser ?? User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
               
                     .tabItem {
                         Label("Home", systemImage: "house")

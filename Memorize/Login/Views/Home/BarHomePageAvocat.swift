@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct BarHomePageAvocat: View {
+    @ObservedObject var viewModel = UserViewModel()
     var body: some View {
         ZStack{
             TabView {
-                HomeAvocatView()
+                HomeAvocatView(user: UserViewModel.currentUser ?? User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
                     .tabItem {
                         Label("Home", systemImage: "house")
                     }

@@ -9,7 +9,7 @@ class UserViewModel: ObservableObject {
      var firstName : String = ""
     var lastName : String  = ""
     var password : String  = "123"
-    var email : String  = "chebbi.wissal@esprit.tn"
+    var email : String  = "wissal.chebbi@esprit.tn"
     var resetCode : String = ""
     var validateCode : String = ""
     var newPassword : String = ""
@@ -59,7 +59,7 @@ class UserViewModel: ObservableObject {
                     print("success  \(password )")
                     print("success  \(image )")
                     print("success  \(role )")
-                    var currentUser = User(firstname: firstName, password: password, email: email, lastName: lastName,image: image,role: role)
+                    var currentUser = User(firstname: firstName, password: password, email: email, lastName: lastName, specialite: "", image: image, experience: 0, role: role)
                     currentUser.id = id
                     currentUser.image = image
                     Self.currentUser = currentUser
@@ -281,16 +281,38 @@ class UserViewModel: ObservableObject {
 
     }
     
-
-    
-   
-
- 
-
-    
-    
-    
-   
-    
+    func updateAvocat(id: String ,specialite:String, experience:Int) {
+       
+        let parametres: [String: Any] = [
+            "categorie": specialite,
+            "experience": experience,
+            
+        ]
+        
+        AF.request("http://172.17.11.147:5000/user/UpdateAvocat/"+id , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<500)
+            .validate(contentType: ["application/json"])
+            .responseJSON {
+                response in
+                switch response.result {
+                case .success:
+                    print("success")
+                case let .failure(error):
+                    print(error)
+                }
+            }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
     
 }

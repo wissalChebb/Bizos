@@ -10,77 +10,110 @@ import SDWebImageSwiftUI
 import Alamofire
 import SwiftyJSON
 struct HomeView: View {
-    
+    var user:User
     @ObservedObject  var categorieViewModel = CategorieViewModel()
     @ObservedObject  var userViewModel = UserViewModel()
+    @State var dark = false
+    @State var show = false
+    @State var showSidebar = false
     var body: some View {
         
-        NavigationView{
+     
             ZStack{
-                Color("Bg").edgesIgnoringSafeArea(.all)
-                
-                ScrollView() {
-                    VStack(alignment:.leading){
-                        AppBar()
-                        TagLineView().padding()
-                        SearchView()
-                        ZStack {
-                            Image("card")
-                            HStack{Text("Looking for Your specialist lL")
-                                Image("maitre")
+                GeometryReader{_ in
+                    Color("Bg").edgesIgnoringSafeArea(.all)
+                    
+                    ScrollView() {
+                        VStack(alignment:.leading){
+                            HStack{
+                                
+                                Button(action:{
+                                    self.showSidebar.toggle()
+                                }){
+                                    Image("men").padding().background(Color(.white)).cornerRadius(10.0)
+                                }
+                                
+                                Spacer()
+                                
+                                Button(action:{
+                                    
+                                }) {
+                                    AsyncImage(url: URL(string: "http://172.17.11.147:5000/img/"+user.image),
+                                               content:{ image in
+                                        image  .resizable()
+                                            .aspectRatio( contentMode: .fill)
+                                            .clipped()
+                                            .clipShape(Rectangle())
+                                            .frame( width:50, height: 50).cornerRadius(20.0)
+                                    },placeholder: { })
+                                }
+                                
                             }
-                            
-                        }
-                        HStack {
-                            Text("Categories")
-                                .font(.custom("PlayFairDisplay-Bold", size: 20))
-                            Spacer()
-                            Button(action: {}){
-                                Text("see All").font(.custom("PlayFairDisplay-Bold", size: 12)).foregroundColor(.gray)
+                            TagLineView1().padding()
+                            SearchView()
+                            ZStack {
+                                Image("card")
+                                HStack{Text("Looking for Your specialist lL")
+                                    Image("maitre")
+                                }
+                                
                             }
-                            
+                            HStack {
+                                Text("Categories")
+                                    .font(.custom("PlayFairDisplay-Bold", size: 20))
+                                Spacer()
+                                Button(action: {}){
+                                    Text("see All").font(.custom("PlayFairDisplay-Bold", size: 12)).foregroundColor(.gray)
+                                }
+                                
+                                
+                                
+                            }.padding(.horizontal)
+                            ScrollView(.horizontal,showsIndicators: false) {
+                                HStack{
+                                    
+                                    
+                                    ForEach(0..<categorieViewModel.categories.count,id: \.self ) { item in
+                                        CategorieView(categorie: categorieViewModel.categories[item],size: 100)
+                                    }.padding(.trailing)
+                                }
+                            }
+                            HStack {
+                                Text("Availabel Lawyer")
+                                    .font(.custom("PlayFairDisplay-Bold", size: 20)).padding(.horizontal).padding(.top)
+                                Spacer()
+                                Button(action: {}){
+                                    Text("see All").font(.custom("PlayFairDisplay-Bold", size: 12))
+                                }
+                                
+                                
+                                
+                            }.padding(.horizontal)
+                            ScrollView(.horizontal,showsIndicators: false) {
+                                HStack{
+                                    ForEach(0..<userViewModel.avocats.count,id: \.self ) { item in
+                                        AvocatView(user: userViewModel.avocats[item])
+                                    }.padding(.trailing)
+                                    
+                                }
+                            }
                             
                             
                         }.padding(.horizontal)
-                        ScrollView(.horizontal,showsIndicators: false) {
-                            HStack{
-                          
-
-                                ForEach(0..<categorieViewModel.categories.count,id: \.self ) { item in
-                                    CategorieView(categorie: categorieViewModel.categories[item],size: 100)
-                                }.padding(.trailing)
-                            }
-                        }
-                        HStack {
-                            Text("Availabel Lawyer")
-                                .font(.custom("PlayFairDisplay-Bold", size: 20)).padding(.horizontal).padding(.top)
-                            Spacer()
-                            Button(action: {}){
-                                Text("see All").font(.custom("PlayFairDisplay-Bold", size: 12))
-                            }
-                            
-                            
-                            
-                        }.padding(.horizontal)
-                        ScrollView(.horizontal,showsIndicators: false) {
-                            HStack{
-                                ForEach(0..<userViewModel.avocats.count,id: \.self ) { item in
-                                    AvocatView(user: userViewModel.avocats[item])
-                                }.padding(.trailing)
-                              
-                            }
-                        }
+                    }
+                    if(showSidebar){
+                        MenuView(dark: self.$dark, show:self.$show ).preferredColorScheme(self.dark ? .dark : .light)
                         
-                        
-                    }.padding(.horizontal)
+                    }
                 }
-                
             }
-        }}
+        
+        
+    }
 }
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(user: User(firstname: "", lastName: "", specialite: "", image: "", experience: 0))
     }
 }
 

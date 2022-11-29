@@ -66,6 +66,30 @@ class CasesViewModel: ObservableObject{
                     prenom: jsonItem["LastnameUser"].stringValue)
 
     }
+    
+    func addCase(casee: Case) {
+ 
+        let parametres: [String: Any] = [
+            "nameUser": casee.name,
+            "LastNameUser": casee.prenom,
+            "description": casee.description,
+            "title": casee.title
+            
+        ]
+        AF.request("http://\(url)/Case/add" , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<500)
+            .validate(contentType: ["application/json"])
+            .responseData {
+                response in
+                switch response.result {
+                case .success:
+                    print("success")
+                case let .failure(error):
+                    print(error)
+                }
+            }
+        
+    }
      
    
 }

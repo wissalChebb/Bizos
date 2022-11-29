@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct CaseView: View {
+    @State private var showNewPostView = false
     var casee : Case
     @ObservedObject  var caseViewModel = CasesViewModel()
     var body: some View {
@@ -25,10 +26,36 @@ struct CaseView: View {
                         ForEach(0..<caseViewModel.cases.count , id: \.self ) { item in
                             PackItemCase(casee: caseViewModel.cases[item])
                         }.padding(.trailing)
+                        
                     }
                     
                 }.frame(maxWidth: .infinity,maxHeight: .infinity)
+                
+                
             }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
+            ZStack {
+                Button{
+                                showNewPostView.toggle()
+                            }label: {
+                                Image("t")
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .frame(width: 40,height: 40)
+                                    .padding()
+                            }
+                            .background(Color(.gray))
+                            .foregroundColor(.white)
+                            .clipShape(Circle())
+                            .padding()
+                
+                           
+                
+                            
+                            .fullScreenCover(isPresented: $showNewPostView){
+                                AddCaseView()
+                        }
+            }
+            
         }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
     }
 }
@@ -48,10 +75,11 @@ struct TagLineViewCase: View {
     }
 }
 struct PackItemCase:View{
+   
     var casee : Case
     var body: some View {
         ZStack{
-            Image("pac").frame(width: 340,height: 190).cornerRadius(30)
+            Image("card").frame(width: 340,height: 190).cornerRadius(30)
             HStack{
                 VStack(alignment: .leading){
                     Text(casee.name)
@@ -64,8 +92,10 @@ struct PackItemCase:View{
                     Text(casee.description)
                     
                 }.padding()
+               
                 
             }.frame(width: 350,height: 200).cornerRadius(40)
+            
         }
 }
 }

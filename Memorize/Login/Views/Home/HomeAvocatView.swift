@@ -12,8 +12,9 @@ struct HomeAvocatView: View {
     @State var dark = false
     @State var show = false
     @State var showSidebar = false
+    var user:User
     var body: some View {
-        NavigationView{
+        
           
                 ZStack{
                     GeometryReader{_ in
@@ -30,12 +31,18 @@ struct HomeAvocatView: View {
                                     }
                                     
                                     Spacer()
+                                    
                                     Button(action:{
                                         
                                     }) {
-                                        Image(uiImage: #imageLiteral(resourceName: "Profile") ).resizable()
-                                            .frame(width: 42, height: 42)
-                                            .cornerRadius(10.0)
+                                        AsyncImage(url: URL(string: "http://172.17.11.147:5000/img/"+user.image),
+                                                                  content:{ image in
+                                                           image  .resizable()
+                                                .aspectRatio( contentMode: .fill)
+                                                .clipped()
+                                                .clipShape(Rectangle())
+                                                .frame( width:80, height: 80).cornerRadius(20.0)
+                                                       },placeholder: { })
                                     }
                                     
                                 }
@@ -90,13 +97,13 @@ struct HomeAvocatView: View {
                 }
 
             
-        }
+        
     }
 }
 
 struct HomeAvocatView_Previews: PreviewProvider {
     static var previews: some View {
-      HomeAvocatView()
+      HomeAvocatView(user: User(firstname: "", lastName: "", specialite: "", image: "", experience: 0))
     }
 }
 
@@ -115,7 +122,7 @@ struct HomeAvocatView_Previews: PreviewProvider {
                     }
                     Text("Dark Mode Menu")
                 }
-           MenuView(dark: self.$dark, show:self.$show ).preferredColorScheme(self.dark ? .dark : .light)
+                MenuView(dark: self.$dark, show:self.$show ).preferredColorScheme(self.dark ? .dark : .light).offset(x: self.show ? 0 : -UIScreen.main.bounds.width/1.5 )
                     
             }
         }
