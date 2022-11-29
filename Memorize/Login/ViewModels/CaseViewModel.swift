@@ -14,17 +14,17 @@ import Alamofire
 import SwiftyJSON
 
 class CasesViewModel: ObservableObject{
-    @Published   var cases : [] = []
+    @Published   var cases : [Case] = []
     var name : String = ""
     var image : String = ""
     
-    let url = "172.17.3.77:5000"
+    let url = "172.17.11.147:5000"
     
     init() {
-        getCategorie(complited: {(success , respnse)in
+        getCases(complited: {(success , respnse)in
             if success{
-                let categories = respnse!
-                print("ahyaaaaa",categories)
+                let cases = respnse!
+                print("ahyaaaaa",cases)
             }else {
                 print("error cant connect ")
             }
@@ -32,10 +32,10 @@ class CasesViewModel: ObservableObject{
         })
     }
     
-    func getCases(complited: @escaping(Bool, [Categorie]?) -> Void) {
+    func getCases(complited: @escaping(Bool, [Case]?) -> Void) {
       
         
-        AF.request("http://\(url)/categorie" , method: .get ,encoding: JSONEncoding.default)
+        AF.request("http://\(url)/case" , method: .get ,encoding: JSONEncoding.default)
             .validate(statusCode: 200..<500)
             .validate(contentType: ["application/json"])
             .responseData {
@@ -46,10 +46,10 @@ class CasesViewModel: ObservableObject{
                
                     for singleJsonItem in JSON(response.data!){
                       
-                        self.categories.append(self.makeItem(jsonItem:singleJsonItem.1))
+                        self.cases.append(self.makeItem(jsonItem:singleJsonItem.1))
                     }
                     
-                    complited(true,self.categories)
+                    complited(true,self.cases)
                 case let .failure(error):
                     debugPrint(error)
                 complited(false,nil)
@@ -58,11 +58,12 @@ class CasesViewModel: ObservableObject{
         
     }
     
-    func makeItem(jsonItem : JSON) -> Categorie {
-        return Categorie (id: jsonItem["_id"].stringValue,
-                          name: jsonItem["name"].stringValue,
-                          image: jsonItem["image"].stringValue
-        )
+    func makeItem(jsonItem : JSON) -> Case {
+        return Case(traite: jsonItem["traite"].boolValue,
+                    description: jsonItem["description"].stringValue,
+                    title: jsonItem["title"].stringValue,
+                    name: jsonItem["nameUser"].stringValue,
+                    prenom: jsonItem["LastnameUser"].stringValue)
 
     }
      

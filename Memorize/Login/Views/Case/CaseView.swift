@@ -1,13 +1,16 @@
 //
-//  ChosePackView.swift
+//  CaseView.swift
 //  Memorize
 //
-//  Created by baccoucheyessin on 11/11/2022.
+//  Created by Apple Esprit on 29/11/2022.
 //
+
 
 import SwiftUI
 
-struct ChosePackView: View {
+struct CaseView: View {
+    var casee : Case
+    @ObservedObject  var caseViewModel = CasesViewModel()
     var body: some View {
         VStack{
             HStack{
@@ -17,10 +20,12 @@ struct ChosePackView: View {
             Spacer()
             ZStack{
                 ScrollView{
-                    PackItem()
-                    PackItem()
-                    PackItem()
-                   
+               
+                    VStack(spacing:20.0){
+                        ForEach(0..<caseViewModel.cases.count , id: \.self ) { item in
+                            PackItemCase(casee: caseViewModel.cases[item])
+                        }.padding(.trailing)
+                    }
                     
                 }.frame(maxWidth: .infinity,maxHeight: .infinity)
             }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
@@ -28,7 +33,7 @@ struct ChosePackView: View {
     }
 }
 
-struct TagLineView3: View {
+struct TagLineViewCase: View {
     @State private var isAvocat = false
     var body: some View {
         
@@ -42,22 +47,21 @@ struct TagLineView3: View {
         
     }
 }
-struct PackItem:View{
+struct PackItemCase:View{
+    var casee : Case
     var body: some View {
         ZStack{
             Image("pac").frame(width: 340,height: 190).cornerRadius(30)
             HStack{
                 VStack(alignment: .leading){
-                    Text("Pack Gold")
+                    Text(casee.name)
+                    Text(casee.prenom)
                     
-                    VStack{
-                        Text("dfhjghkjljklk").bold()
-                        Text("ghjh")
-                    }.padding()
+                    
                 }.padding()
                 VStack(alignment: .leading){
-                    Text("About").bold()
-                    Text("hxcgkhcvgclkgkhgckhgckhckhcghgchghclhgclclyc")
+                    Text(casee.title).bold()
+                    Text(casee.description)
                     
                 }.padding()
                 
@@ -65,8 +69,9 @@ struct PackItem:View{
         }
 }
 }
-struct ChosePackView_Previews: PreviewProvider {
+struct CaseView_Previews: PreviewProvider {
+    var casee : Case
     static var previews: some View {
-        ChosePackView()
+        CaseView(casee: Case(traite: true, description: "", title: "", name: "", prenom: ""))
     }
 }

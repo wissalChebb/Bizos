@@ -22,7 +22,7 @@ struct BarHomePageAvocat: View {
                     .tabItem {
                         Label("Messagerie", systemImage: "tray.and.arrow.down.fill").foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))
                     }
-                ChosePackView()
+                CaseView(casee: Case(traite: true, description: "", title: "", name: "", prenom: ""))
               
                     .tabItem {
                         Label("Sent", systemImage: "folder.badge.person.crop")

@@ -144,7 +144,7 @@ struct CategorieView: View {
     var body: some View {
         
         VStack {
-            AsyncImage(url: URL(string: "http://172.17.3.77:5000/img/"+categorie.image),
+            AsyncImage(url: URL(string: "http://172.17.11.147:5000/img/"+categorie.image),
                                       content:{ image in
                                image.resizable()
                     .aspectRatio( contentMode: .fill)
@@ -158,26 +158,40 @@ struct CategorieView: View {
             Text(categorie.name).font(.title3)  }.frame(width: 100, height: 170).padding().background(Color.white).cornerRadius(20.0)
     }
 }
-struct AvocatView: View {
-    var image : Image? = Image("")
-    var user : User
 
+struct AvocatView:View{
+    var user:User
     var body: some View {
-        
-        VStack {
-            AsyncImage(url: URL(string: "http://172.17.3.77:5000/img/"+user.image),
-                                      content:{ image in
-                               image  .resizable()
-                    .aspectRatio( contentMode: .fill)
-                    .clipped()
-                    .clipShape(Rectangle())
-                    .frame( width: 100 , height: 200*(100/210)).cornerRadius(20.0)
-                           },placeholder: { })
-/*
-            image
-                .resizable().frame( width: size , height: 200*(size/210)).cornerRadius(20.0)*/
-            Text(user.firstName).font(.title)  }.frame(width: 200).padding().background(Color.white).cornerRadius(20.0)
-    }
+        ZStack{
+            Image("pac").frame(width: 340,height: 190).cornerRadius(30)
+            HStack{
+                VStack(alignment: .leading){
+                    HStack{
+                        Text(user.firstName).font(.custom("PlayfairDisplay-Regular", size: 25))
+                            .foregroundColor(Color("Primary"))
+                        + Text(" "+user.lastName).font(.custom("PlayfairDisplay-Bold", size: 25))
+                            .foregroundColor(Color("Primary"))
+                        
+                            }
+                    Text(user.specialite)
+                    Text("Experioence:")
+                    
+                    Text(String(user.experience)+" Years")
+                    
+                }.padding()
+                VStack(alignment: .leading){
+                  
+                    AsyncImage(url: URL(string: "http://172.17.11.147:5000/img/"+user.image),
+                                              content:{ image in
+                                       image  .resizable()
+                            .aspectRatio( contentMode: .fill)
+                            .clipped()
+                            .clipShape(Rectangle())
+                            .frame( width: 100 , height: 300*(100/210)).cornerRadius(20.0)
+                                   },placeholder: { })                }.padding()
+                
+            }.frame(width: 350,height: 200).cornerRadius(40)
+        }
 }
-
+}
 

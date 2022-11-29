@@ -19,7 +19,7 @@ class NewsViewModel: ObservableObject{
     var search : String = ""
     var image : String = ""
     
-    let url = "172.17.3.77:5000"
+    let url = "172.17.11.147:5000"
     
     init() {
         getNews(complited: {(success , respnse)in

@@ -9,14 +9,18 @@
 import Foundation
 struct Case{
     
-    var id: String!
-    var nameU : String
-    var title : String
-    var description : String
-    var traite :Bool
-    init(  traite : Bool ,nameU: String, description:String,title:String) {
+    var id: String = ""
+  
+    var title : String = ""
+    var description : String = ""
+    var traite :Bool = false
+    var prenom : String = ""
+    var name : String = ""
+
+    init(  traite : Bool , description:String,title:String,name:String,prenom:String) {
         self.traite = traite
-        self.nameU = nameU
+        self.name = name
+        self.prenom = prenom
         self.description = description
         self.title = title
       
