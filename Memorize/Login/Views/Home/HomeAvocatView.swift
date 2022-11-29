@@ -11,6 +11,7 @@ struct HomeAvocatView: View {
     @ObservedObject  var newsViewModel = NewsViewModel()
     @State var dark = false
     @State var show = false
+    @State var showSidebar = false
     var body: some View {
         NavigationView{
           
@@ -20,9 +21,48 @@ struct HomeAvocatView: View {
                         Color("Bg").edgesIgnoringSafeArea(.all)
                         ScrollView() {
                             VStack(alignment:.leading){
-                                AppBar1()
+                                HStack{
+                                    
+                                    Button(action:{
+                                        self.showSidebar.toggle()
+                                    }){
+                                        Image("men").padding().background(Color(.white)).cornerRadius(10.0)
+                                    }
+                                    
+                                    Spacer()
+                                    Button(action:{
+                                        
+                                    }) {
+                                        Image(uiImage: #imageLiteral(resourceName: "Profile") ).resizable()
+                                            .frame(width: 42, height: 42)
+                                            .cornerRadius(10.0)
+                                    }
+                                    
+                                }
                                 TagLineView().padding()
-                                SearchView()
+                                HStack {
+                                    HStack {
+                                     
+                                        Button(action: {
+                                            newsViewModel.getNewsRecherche(search: newsViewModel.search, complited: {(success , respnse)in
+                                                if success{
+                                                    let news = respnse!
+                                                    newsViewModel.news = news
+                                                }else {
+                                                    print("error cant connect ")
+                                                }
+                                                
+                                            })
+                                        }){
+                                            Image("Search").padding(.trailing)
+                                        }
+                                        TextField("Searsh Avocat", text: $newsViewModel.search)
+                                    }.padding()
+                                        .background(Color.white)
+                                        .cornerRadius(10.0)
+                                    
+                                    
+                                }
                                 HStack {
                                     Text("News")
                                         .font(.custom("PlayFairDisplay-Bold", size: 20))
@@ -41,10 +81,14 @@ struct HomeAvocatView: View {
                                 
                             }.padding(.horizontal)
                         }
-                        
+                        if(showSidebar){
+                            MenuView(dark: self.$dark, show:self.$show ).preferredColorScheme(self.dark ? .dark : .light)
+                        }
                        
                     }
+                    
                 }
+
             
         }
     }
@@ -81,26 +125,6 @@ struct HomeAvocatView_Previews: PreviewProvider {
 
 
 
-struct AppBar1: View {
-    var body: some View {
-        HStack{
-            
-            Button(action:{}){
-                Image("men").padding().background(Color(.white)).cornerRadius(10.0)
-            }
-            
-            Spacer()
-            Button(action:{
-                
-            }) {
-                Image(uiImage: #imageLiteral(resourceName: "Profile") ).resizable()
-                    .frame(width: 42, height: 42)
-                    .cornerRadius(10.0)
-            }
-            
-        }
-    }
-}
 
 struct TagLineView1: View {
     @State private var isAvocat = false
@@ -121,22 +145,6 @@ struct TagLineView1: View {
                 }  }      }}
 }
 
-struct SearchView1: View {
-    @State private var searsh : String = ""
-
-    var body: some View {
-        HStack {
-            HStack {
-                Image("Search").padding(.trailing)
-                TextField("Searsh Avocat", text: $searsh)
-            }.padding()
-                .background(Color.white)
-                .cornerRadius(10.0)
-            
-            
-        }
-    }
-}
 
 struct CategorieView1: View {
     var news : News
@@ -151,18 +159,18 @@ struct CategorieView1: View {
                         .aspectRatio( contentMode: .fill)
                         .clipped()
                         .clipShape(Rectangle())
-                        .frame( width:100 , height: 100).cornerRadius(20.0)
+                        .frame( width:100, height: 100).cornerRadius(20.0)
                                },placeholder: { })
-                Spacer()
+                
                
                 VStack{
                     
-                    Text(news.title).font(.title3).frame(width: 100,height: 10)
-                    Text("dfsd").font(.headline).multilineTextAlignment(.center)
+                    Text(news.title).font(.title3).frame( alignment: .leading)
+                 
                 }
                
                 
-            }.frame(width:300,height: 300).padding().background(Color.white).cornerRadius(20.0)
+            }.frame(width:300,height: 200).padding().background(Color.white).cornerRadius(20.0)
           
             
            
@@ -230,7 +238,7 @@ struct MenuView: View {
                     HStack(spacing : 22){
                         Image("c1").resizable().frame(width: 25,height: 25).foregroundColor(.yellow)
                         
-                        Text("chats")
+                        Text("Packs")
                         
                         Spacer()
                     }
@@ -241,7 +249,7 @@ struct MenuView: View {
                     HStack(spacing : 22){
                         Image("c1").resizable().frame(width: 25,height: 25).foregroundColor(.yellow)
                         
-                        Text("chats")
+                        Text("cases")
                         
                         Spacer()
                     }
@@ -251,7 +259,7 @@ struct MenuView: View {
                     HStack(spacing : 22){
                         Image("c1").resizable().frame(width: 25,height: 25).foregroundColor(.yellow)
                         
-                        Text("chats")
+                        Text("logout")
                         
                         Spacer()
                     }

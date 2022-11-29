@@ -143,6 +143,7 @@
 			children = (
 				06BA7F9F2916F94700DDBDFF /* Login */,
 				8809CBE82916A28B0052B31E /* MemorizeApp.swift */,
+				72E6DEDD2919A88C00B2B644 /* ResetCodeView.swift */,
 				8809CBEA2916A28B0052B31E /* ContentView.swift */,
 				8809CBEC2916A28D0052B31E /* Assets.xcassets */,
 				B063F1F4292BD4A70088B3CD /* Fonts */,
@@ -200,7 +201,6 @@
 				B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */,
 				72E6DED52919733700B2B644 /* LoginView.swift */,
 				B07970E9291EAEB700E35121 /* EditProfileUView.swift */,
-				72E6DEDD2919A88C00B2B644 /* ResetCodeView.swift */,
 				72E6DED929198C4200B2B644 /* RegisterCView.swift */,
 			);
 			path = User;

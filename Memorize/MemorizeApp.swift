@@ -13,7 +13,7 @@ struct MemorizeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LoginView()
+           HomeAvocatView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
