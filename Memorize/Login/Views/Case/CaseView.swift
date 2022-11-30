@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CaseView: View {
     @State private var showNewPostView = false
-    var casee : Case
+    
     @ObservedObject  var caseViewModel = CasesViewModel()
     var body: some View {
         VStack{
@@ -102,6 +102,6 @@ struct PackItemCase:View{
 struct CaseView_Previews: PreviewProvider {
     var casee : Case
     static var previews: some View {
-        CaseView(casee: Case(traite: true, description: "", title: "", name: "", prenom: ""))
+        CaseView()
     }
 }

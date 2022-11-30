@@ -8,32 +8,127 @@
 import SwiftUI
 
 struct AddCaseView: View {
+    
+    @State var   titre:String = ""
+    @State var   name:String = ""
+    @State var   lastname:String = ""
+    @State var   description:String = ""
+    @ObservedObject var viewModel = CasesViewModel()
+    
+    @State private var r = false
     var body: some View {
-        ZStack{
-            Image("pac").frame(width: 400,height:1000).ignoresSafeArea()
-            HStack{
-                HStack{
-                    Text("vbnvb")
-                   
+        NavigationView{
+            ZStack{
+                Image("pac").resizable().ignoresSafeArea()
+                VStack{
+                    VStack{
+                        HStack{
+                            Text("Title :")
+                                .font(.callout)
+                                .bold()
+                                .padding()
+                            TextField("Enter Title...",text:$titre)
+                                .frame(width: 200)
+                                .padding()
+                                .background()
+                                .cornerRadius(20.0)
+                            
+                        }
+                        HStack{
+                            Text("Name User")
+                                .font(.callout)
+                                .bold()
+                                .padding()
+                            TextField("Enter user name...",text:$name)
+                                .frame(width: 200)
+                                .padding()
+                                .background()
+                                .cornerRadius(20.0)
+                            
+                        }
+                        HStack{
+                            Text("Last Name User :")
+                                .font(.callout)
+                                .bold()
+                                .padding()
+                            TextField("Enter user Last name...",text:$lastname)
+                                .frame(width: 200)
+                                .padding()
+                                .background()
+                                .cornerRadius(20.0)
+                            
+                        }
+                        Spacer()
+                        HStack{
+                            Text("Description")
+                                .font(.callout)
+                                .bold()
+                                .padding()
+                            
+                            
+                            
+                            TextEditor(text:$description).frame(width: 200,height: 75)
+                        }
+                        
+                        NavigationLink(destination: CaseView(), isActive: $r ){
+                            Button("Register", action: {
+                                viewModel.addCase(casee: Case(traite: false, description: description, title: titre, name: name, prenom: lastname))
+                                r = true
+                                
+                                
+                                
+                                
+                            })
+                            .foregroundColor(.black)
+                            .frame(width: 100, height: 40)
+                            .border(.black,width: 2.0)
+                            .padding(20)
+                            
+                        }
+                        
+                        
+                        
+                        
+                        
+                        
+                    }.frame(width: 400,height: 450).cornerRadius(40).ignoresSafeArea()
                     
-                    
-                }.padding()
-                VStack(alignment: .leading){
-                    Text("cvbc").bold()
-                    Text("cbvb")
-                    
-                }.padding()
-               
-                
-            }.frame(width: 350,height: 200).cornerRadius(40)
-            
-        }.ignoresSafeArea()
-}
+                }
+            }
+        }
     }
-
-
-struct AddCaseView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddCaseView()
+    
+    struct AddCaseView_Previews: PreviewProvider {
+        static var previews: some View {
+            AddCaseView()
+        }
+    }
+    struct TextAreaView: View {
+        
+        @Binding var text :String
+        let placeholder :String
+        
+        init (_ placeholder : String ,text :Binding<String>  ){
+            self.placeholder = placeholder
+            self._text = text
+            UITextView.appearance().backgroundColor = .clear
+            
+        }
+        
+        
+        var body: some View {
+            
+            ZStack(alignment: .topLeading){
+                if text.isEmpty{
+                    Text(placeholder)
+                        .foregroundColor(Color(.placeholderText))
+                        .padding(.horizontal, 8)
+                        .padding(.vertical , 12 )
+                }
+                TextEditor(text: $text)
+                    .padding(4)
+            }
+            .font(.body)
+        }
     }
 }

@@ -177,7 +177,7 @@ struct CategorieView1: View {
                 }
                
                 
-            }.frame(width:300,height: 200).padding().background(Color.white).cornerRadius(20.0)
+            }.frame(width:300,height: 150).padding().background(Color.white).cornerRadius(20.0)
           
             
            
