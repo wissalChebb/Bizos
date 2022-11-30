@@ -15,7 +15,7 @@ struct CaseView: View {
     var body: some View {
         VStack{
             HStack{
-            TagLineView3()
+                TagLineViewCase()
                 Spacer()
             }
             Spacer()
@@ -65,9 +65,9 @@ struct TagLineViewCase: View {
     var body: some View {
         
         HStack{
-            Text("Chose your  ").font(.custom("PlayfairDisplay-Regular", size: 28))
+            Text("Check your  ").font(.custom("PlayfairDisplay-Regular", size: 28))
                 .foregroundColor(Color("Primary"))
-            + Text("\nPack ! ").font(.custom("PlayfairDisplay-Bold", size: 30))
+            + Text("\nCases ! ").font(.custom("PlayfairDisplay-Bold", size: 30))
                 .foregroundColor(Color("Primary"))
             
         }.padding()
