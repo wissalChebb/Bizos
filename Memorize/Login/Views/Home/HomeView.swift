@@ -13,12 +13,12 @@ struct HomeView: View {
     var user:User
     @ObservedObject  var categorieViewModel = CategorieViewModel()
     @ObservedObject  var userViewModel = UserViewModel()
-    @State var dark = false
-    @State var show = false
-    @State var showSidebar = false
+
+    @State var showMenu = false
     var body: some View {
-        
-     
+        NavigationView{
+            
+            
             ZStack{
                 GeometryReader{_ in
                     Color("Bg").edgesIgnoringSafeArea(.all)
@@ -28,7 +28,8 @@ struct HomeView: View {
                             HStack{
                                 
                                 Button(action:{
-                                    self.showSidebar.toggle()
+                                   
+                                 
                                 }){
                                     Image("men").padding().background(Color(.white)).cornerRadius(10.0)
                                 }
@@ -101,14 +102,11 @@ struct HomeView: View {
                             
                         }.padding(.horizontal)
                     }
-                    if(showSidebar){
-                        MenuView(dark: self.$dark, show:self.$show ).preferredColorScheme(self.dark ? .dark : .light)
-                        
-                    }
+                    
                 }
-            }
-        
-        
+            }.navigationBarBackButtonHidden(true).navigationBarTitleDisplayMode(.inline)
+            
+        }
     }
 }
 struct HomeView_Previews: PreviewProvider {
@@ -118,28 +116,7 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 
-struct AppBar: View {
-    @State var dark = false
-    @State var show = false
-    var body: some View {
-        HStack{
-            
-            Button(action:{
-                MenuView(dark: self.$dark, show:self.$show ).preferredColorScheme(self.dark ? .dark : .light)
-            }){
-                Image("men").padding().background(Color(.white)).cornerRadius(10.0)
-            }
-            
-            Spacer()
-            Button(action:{}) {
-                Image(uiImage: #imageLiteral(resourceName: "Profile") ).resizable()
-                    .frame(width: 42, height: 42)
-                    .cornerRadius(10.0)
-            }
-            
-        }
-    }
-}
+
 
 struct TagLineView: View {
     @State private var isAvocat = false
@@ -227,4 +204,7 @@ struct AvocatView:View{
         }
 }
 }
+
+//extension view to get screen RecT
+
 

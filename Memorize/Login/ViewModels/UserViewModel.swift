@@ -32,7 +32,40 @@ class UserViewModel: ObservableObject {
     
  
     let url = "172.17.11.147:5000"
-     
+    func addSignature(user: User,image: UIImage ) {
+           print(user)
+           let parametres: [String: Any] = [
+              
+               "signature" : user.signature
+               
+           ]
+           
+           
+           
+           let imgData = image.jpegData(compressionQuality: 0.2)!
+           
+           
+           
+           AF.upload(multipartFormData: { multipartFormData in
+               multipartFormData.append(imgData, withName: "signature",fileName: "file.jpg", mimeType: "image/jpg")
+               for ( key,value) in parametres {
+                   
+                   multipartFormData.append(  (value as! String).data(using: .utf8)!, withName: key)
+               } //Optional for extra parameters
+           },
+                     to:"http://\(url)/user/addSignature/\(user.id ?? "")").responseData(completionHandler: { response in
+               switch response.result {
+               case .success:
+                   
+                   print("success image")
+                   
+               case .failure(let encodingError):
+                   print(encodingError)
+               }
+           })
+           
+       }
+
     func LogIn(email: String,password: String, complited: @escaping(User?)-> Void )
     
     {

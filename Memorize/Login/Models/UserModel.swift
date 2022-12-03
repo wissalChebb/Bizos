@@ -18,6 +18,7 @@ struct User {
     var role : String = ""
     var specialite  : String = ""
     var experience : Int = 0
+    var  signature : String = ""
     
     init(firstname: String, password: String, email: String, lastName: String , specialite: String, image:String , experience:Int, role:String) {
         self.firstName = firstname

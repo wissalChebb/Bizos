@@ -21,12 +21,12 @@ struct BarHomePageAvocat: View {
                 ProfileView()
                     
                     .tabItem {
-                        Label("Messagerie", systemImage: "tray.and.arrow.down.fill").foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))
+                        Label("Messagerie", systemImage: "message").foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))
                     }
                 CaseView()
               
                     .tabItem {
-                        Label("Sent", systemImage: "folder.badge.person.crop")
+                        Label("Sent", systemImage: "bell.badge.fill")
                     }
                 EditProfileUView()
                    

@@ -18,7 +18,7 @@ struct ControlLogin: View {
         if UserViewModel.currentUser?.role == "User" {
             ContentView()
         } else if UserViewModel.currentUser?.role == "Avocat" {
-            BarHomePageAvocat()
+            baseView()
         }
          
             
