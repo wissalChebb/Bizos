@@ -34,7 +34,7 @@ struct HomeAvocatView: View {
                                     Button(action:{
                                         
                                     }) {
-                                        AsyncImage(url: URL(string: "http://172.17.11.147:5000/img/"+user.image),
+                                        AsyncImage(url: URL(string: "http://172.17.2.217:5000/img/"+user.image),
                                                                   content:{ image in
                                                            image  .resizable()
                                                 .aspectRatio( contentMode: .fill)

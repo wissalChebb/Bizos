@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ChosePackView: View {
+    @ObservedObject  var packViewModel = PackViewModel()
     var body: some View {
         VStack{
             HStack{
@@ -17,10 +18,10 @@ struct ChosePackView: View {
             Spacer()
             ZStack{
                 ScrollView{
-                    PackItem()
-                    PackItem()
-                    PackItem()
-                   
+               
+                    ForEach(0..<packViewModel.packs.count , id: \.self ) { item in
+                       PackItem(pack: packViewModel.packs[item])
+                    }.padding(.trailing)
                     
                 }.frame(maxWidth: .infinity,maxHeight: .infinity)
             }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
@@ -43,21 +44,23 @@ struct TagLineView3: View {
     }
 }
 struct PackItem:View{
+    var pack: Pack
+    
     var body: some View {
         ZStack{
             Image("card").frame(width: 340,height: 190).cornerRadius(30)
             HStack{
                 VStack(alignment: .leading){
-                    Text("Pack Gold")
+                    Text(pack.name)
                     
                     VStack{
-                        Text("dfhjghkjljklk").bold()
-                        Text("ghjh")
+                        Text(String(pack.prix)).bold()
+                      
                     }.padding()
                 }.padding()
                 VStack(alignment: .leading){
-                    Text("About").bold()
-                    Text("hxcgkhcvgclkgkhgckhgckhckhcghgchghclhgclclyc")
+                    Text(pack.title).bold()
+                    Text(pack.description)
                     
                 }.padding()
                 

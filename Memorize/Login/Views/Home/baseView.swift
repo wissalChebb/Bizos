@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct baseView: View {
-    @State var showMenu = true
+    @State var showMenu = false
     @State var offset : CGFloat = 0
     @State var lastStoredoffset : CGFloat = 0
+    @GestureState var gestureOffset : CGFloat = 0
     init(){
-        UITabBar.appearance().isHidden = true
+        UITabBar.appearance().isHidden = false
     }
     var body: some View {
         let sideBarWidth = getRect().width - 90
         NavigationView{
             HStack(spacing: 0){
-                SideBar(showMenu: $showMenu)
+                SideBarAvocat(showMenu: $showMenu, user: User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
                 VStack{
                     TabView {
                         
@@ -65,9 +66,14 @@ struct baseView: View {
                     
                     
                 }.frame(width: getRect().width)
-            }.frame(width: getRect().width+sideBarWidth)
+            }
+            .frame(width: getRect().width+sideBarWidth)
                 .offset(x:-sideBarWidth/2)
-                .offset(x:offset)
+                .offset(x:offset > 0 ? offset : 0)
+                .gesture(DragGesture().updating($gestureOffset, body: {value , out , _ in
+                    out = value.translation.width
+                }).onEnded(onEnd(value:))
+                )
             .navigationBarTitleDisplayMode(.inline).navigationBarBackButtonHidden(true)
         }.animation(.easeOut, value: offset == 0)
         .onChange(of: showMenu){newValue in
@@ -80,6 +86,47 @@ struct baseView: View {
                 
             }
         }
+        .onChange(of: gestureOffset){
+            newValue in onChange()
+        }
+    }
+    func onChange(){
+        let sideBarWidth = getRect().width - 90
+        offset = (gestureOffset != 0) ?(gestureOffset + lastStoredoffset < sideBarWidth ? gestureOffset + lastStoredoffset : offset): offset
+    }
+    func onEnd(value : DragGesture.Value){
+        let sideBarWidth = getRect().width - 90
+        let translation = value.translation.width
+        withAnimation{
+            
+            if translation > 0 {
+                if translation > (sideBarWidth/2){
+                    offset = sideBarWidth
+                    showMenu = true
+                }else{
+                    if offset == sideBarWidth{
+                        return
+                        
+                    }
+                    offset = 0
+                    showMenu = false
+                }
+                
+            }else{
+                if -translation > (sideBarWidth / 2){
+                    offset = 0
+                    showMenu = false
+                }else{
+                    if offset == 0 || !showMenu{
+                        return
+                    }
+                    offset = sideBarWidth
+                    showMenu = true
+                }
+            }
+            
+        }
+lastStoredoffset = offset
     }
 }
 

@@ -24,7 +24,7 @@ struct CaseView: View {
                
                     VStack(spacing:20.0){
                         ForEach(0..<caseViewModel.cases.count , id: \.self ) { item in
-                            PackItemCase(casee: caseViewModel.cases[item])
+                           ItemCase(casee: caseViewModel.cases[item])
                         }.padding(.trailing)
                         
                     }
@@ -74,7 +74,7 @@ struct TagLineViewCase: View {
         
     }
 }
-struct PackItemCase:View{
+struct ItemCase:View{
    
     var casee : Case
     var body: some View {

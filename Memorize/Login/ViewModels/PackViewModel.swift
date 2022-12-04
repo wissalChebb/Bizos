@@ -1,4 +1,11 @@
 //
+//  PackViewModel.swift
+//  Memorize
+//
+//  Created by Apple Esprit on 4/12/2022.
+//
+
+//
 //  CaseViewModel.swift
 //  Memorize
 //
@@ -13,18 +20,17 @@ import SDWebImageSwiftUI
 import Alamofire
 import SwiftyJSON
 
-class CasesViewModel: ObservableObject{
-    @Published   var cases : [Case] = []
-    var name : String = ""
-    var image : String = ""
+class PackViewModel: ObservableObject{
+    @Published   var packs : [Pack] = []
+ 
     
     let url = "172.17.2.217:5000"
     
     init() {
-        getCases(complited: {(success , respnse)in
+        getPacks(complited: {(success , respnse)in
             if success{
-                let cases = respnse!
-                print("ahyaaaaa",cases)
+                let packs = respnse!
+                print("hethouma",packs)
             }else {
                 print("error cant connect ")
             }
@@ -32,10 +38,10 @@ class CasesViewModel: ObservableObject{
         })
     }
     
-    func getCases(complited: @escaping(Bool, [Case]?) -> Void) {
+    func getPacks(complited: @escaping(Bool, [Pack]?) -> Void) {
       
         
-        AF.request("http://\(url)/case" , method: .get ,encoding: JSONEncoding.default)
+        AF.request("http://\(url)/pack" , method: .get ,encoding: JSONEncoding.default)
             .validate(statusCode: 200..<500)
             .validate(contentType: ["application/json"])
             .responseData {
@@ -46,10 +52,10 @@ class CasesViewModel: ObservableObject{
                
                     for singleJsonItem in JSON(response.data!){
                       
-                        self.cases.append(self.makeItem(jsonItem:singleJsonItem.1))
+                        self.packs.append(self.makeItem(jsonItem:singleJsonItem.1))
                     }
                     
-                    complited(true,self.cases)
+                    complited(true,self.packs)
                 case let .failure(error):
                     debugPrint(error)
                 complited(false,nil)
@@ -58,12 +64,11 @@ class CasesViewModel: ObservableObject{
         
     }
     
-    func makeItem(jsonItem : JSON) -> Case {
-        return Case(traite: jsonItem["traite"].boolValue,
-                    description: jsonItem["description"].stringValue,
-                    title: jsonItem["title"].stringValue,
-                    name: jsonItem["nameUser"].stringValue,
-                    prenom: jsonItem["LastnameUser"].stringValue)
+    func makeItem(jsonItem : JSON) -> Pack {
+        return Pack(title: jsonItem["title"].stringValue,
+                    name: jsonItem["name"].stringValue,
+                    prix: jsonItem["prix"].floatValue,
+                    description: jsonItem["description"].stringValue)
 
     }
     
@@ -94,3 +99,4 @@ class CasesViewModel: ObservableObject{
      
    
 }
+

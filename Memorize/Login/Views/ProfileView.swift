@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct ProfileView: View {
-    
+    @State var showPopup = false
+    @ObservedObject  var packViewModel = PackViewModel()
     var body: some View {
         ZStack{
+            
             ZStack{
                 VStack{
                     VStack{}.frame(maxWidth: .infinity,maxHeight: 230).background(Color(uiColor: UIColor(red: 0.97, green: 0.95, blue: 0.89, alpha: 1)))
@@ -49,17 +51,48 @@ struct ProfileView: View {
                         Button{/*action*/}label: {
                             Text("Message").frame(width: 150,height:50).foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1))).background(.white).cornerRadius(5).shadow(radius: 6).padding()
                         }
-                        Button{/*action*/}label:{Text("Apple").frame(width: 150,height: 50).foregroundColor(.white).background(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1))).cornerRadius(5).shadow(radius: 3).padding()}
+                        Button{
+                            withAnimation{
+                                self.showPopup.toggle()
+                            }
+                            
+                        }label:{Text("Book an Appoinment").frame(width: 150,height: 50).foregroundColor(.white).background(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1))).cornerRadius(5).shadow(radius: 3).padding()}
                         
                     }
                     VStack(alignment: .leading){
-                        Text("About").bold().padding(.vertical)
-                        Text("hgfdwrwxdfcgvhbjn,k,knbvjgcfkghcghlsdhbc vlbd vlbd fvlh lfjahvjmahrbfamj jfcigfcigcicycoytcycfckhckhfjae v")
+                        Text("Availble Packs").bold().padding(.vertical)
+                        ScrollView{
+                       
+                            ForEach(0..<packViewModel.packs.count , id: \.self ) { item in
+                               PackItem(pack: packViewModel.packs[item])
+                            }.padding(.trailing)
+                            
+                        }.frame(maxWidth: .infinity,maxHeight: .infinity)
+                     
                     }.padding()
                     Spacer()
                 }
+            if self.showPopup{
+                GeometryReader{_ in
+                    PopupView()
+                    
+                }.background(Color.black.opacity(0.65)
+                    .edgesIgnoringSafeArea(.all)
+                    .onTapGesture {
+                        withAnimation{
+                            self.showPopup.toggle()
+                        }
+                    })
+                
+                
+                
+            }
             
         }
+        
+       
+        
+      
     }
     
     

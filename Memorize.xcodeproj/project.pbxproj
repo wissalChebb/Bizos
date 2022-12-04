@@ -13,7 +13,6 @@
 		72E6DEDC29199F0200B2B644 /* ForgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E6DEDB29199F0200B2B644 /* ForgetView.swift */; };
 		72E6DEDE2919A88C00B2B644 /* ResetCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E6DEDD2919A88C00B2B644 /* ResetCodeView.swift */; };
 		8809CBE92916A28B0052B31E /* MemorizeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809CBE82916A28B0052B31E /* MemorizeApp.swift */; };
-		8809CBEB2916A28B0052B31E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809CBEA2916A28B0052B31E /* ContentView.swift */; };
 		8809CBED2916A28D0052B31E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8809CBEC2916A28D0052B31E /* Assets.xcassets */; };
 		8809CBF02916A28D0052B31E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8809CBEF2916A28D0052B31E /* Preview Assets.xcassets */; };
 		8809CBF22916A28D0052B31E /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8809CBF12916A28D0052B31E /* Persistence.swift */; };
@@ -45,6 +44,10 @@
 		B0AB6148293290E00051A892 /* EditPackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB6147293290E00051A892 /* EditPackView.swift */; };
 		B0AB614B2932B4290051A892 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = B0AB614A2932B4290051A892 /* AlamofireImage */; };
 		B0ACC297292D6BD200EEE7A1 /* ControlLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0ACC296292D6BD200EEE7A1 /* ControlLogin.swift */; };
+		B0B10D92293CF22900CCF476 /* BaseViewClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B10D91293CF22900CCF476 /* BaseViewClient.swift */; };
+		B0B10D94293CF6E500CCF476 /* PackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B10D93293CF6E500CCF476 /* PackViewModel.swift */; };
+		B0B10D99293CF78F00CCF476 /* PackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B10D98293CF78F00CCF476 /* PackModel.swift */; };
+		B0B10D9B293D28A200CCF476 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B10D9A293D28A200CCF476 /* PopupView.swift */; };
 		B0C56D7D2922C3DE008CD804 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +59,6 @@
 		72E6DEDD2919A88C00B2B644 /* ResetCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetCodeView.swift; sourceTree = "<group>"; };
 		8809CBE52916A28B0052B31E /* Memorize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Memorize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8809CBE82916A28B0052B31E /* MemorizeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemorizeApp.swift; sourceTree = "<group>"; };
-		8809CBEA2916A28B0052B31E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8809CBEC2916A28D0052B31E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8809CBEF2916A28D0052B31E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8809CBF12916A28D0052B31E /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -83,6 +85,10 @@
 		B0AB614529327A390051A892 /* CaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseViewModel.swift; sourceTree = "<group>"; };
 		B0AB6147293290E00051A892 /* EditPackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPackView.swift; sourceTree = "<group>"; };
 		B0ACC296292D6BD200EEE7A1 /* ControlLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlLogin.swift; sourceTree = "<group>"; };
+		B0B10D91293CF22900CCF476 /* BaseViewClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewClient.swift; sourceTree = "<group>"; };
+		B0B10D93293CF6E500CCF476 /* PackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackViewModel.swift; sourceTree = "<group>"; };
+		B0B10D98293CF78F00CCF476 /* PackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackModel.swift; sourceTree = "<group>"; };
+		B0B10D9A293D28A200CCF476 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -149,7 +155,6 @@
 				06BA7F9F2916F94700DDBDFF /* Login */,
 				8809CBE82916A28B0052B31E /* MemorizeApp.swift */,
 				72E6DEDD2919A88C00B2B644 /* ResetCodeView.swift */,
-				8809CBEA2916A28B0052B31E /* ContentView.swift */,
 				8809CBEC2916A28D0052B31E /* Assets.xcassets */,
 				B063F1F4292BD4A70088B3CD /* Fonts */,
 				8809CBF12916A28D0052B31E /* Persistence.swift */,
@@ -173,7 +178,7 @@
 				B0ACC296292D6BD200EEE7A1 /* ControlLogin.swift */,
 				B07970EB291EBD3300E35121 /* ImagePicker.swift */,
 				B0AB6147293290E00051A892 /* EditPackView.swift */,
-				B0A8E145293B9E0700E05632 /* baseView.swift */,
+				B0B10D9A293D28A200CCF476 /* PopupView.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -185,6 +190,7 @@
 				B0A131782931662200DC690F /* CategorieViewModel.swift */,
 				B0AB614529327A390051A892 /* CaseViewModel.swift */,
 				B028634B2935467C0065E12F /* NewsViewModel.swift */,
+				B0B10D93293CF6E500CCF476 /* PackViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -201,6 +207,8 @@
 		B0A1316A29310BA000DC690F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B0A8E145293B9E0700E05632 /* baseView.swift */,
+				B0B10D91293CF22900CCF476 /* BaseViewClient.swift */,
 				B0A1316829310B4100DC690F /* HomeAvocatView.swift */,
 				B063F1F2292BC0020088B3CD /* HomeView.swift */,
 				B0A8E140293B92CC00E05632 /* SideBar.swift */,
@@ -227,6 +235,7 @@
 				B0A13176293163EF00DC690F /* CategorieModel.swift */,
 				B0AB6140293279D30051A892 /* Casemodel.swift */,
 				B02863462935439D0065E12F /* NewsModel.swift */,
+				B0B10D98293CF78F00CCF476 /* PackModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -321,14 +330,15 @@
 				B0A1316929310B4100DC690F /* HomeAvocatView.swift in Sources */,
 				B0A8E141293B92CC00E05632 /* SideBar.swift in Sources */,
 				B09D4C1F2936B7D4007F662C /* AddCaseView.swift in Sources */,
+				B0B10D92293CF22900CCF476 /* BaseViewClient.swift in Sources */,
 				B0A1D996291D695B0032C19D /* ProfileView.swift in Sources */,
+				B0B10D99293CF78F00CCF476 /* PackModel.swift in Sources */,
 				72E6DEDC29199F0200B2B644 /* ForgetView.swift in Sources */,
 				72E6DEDA29198C4200B2B644 /* RegisterCView.swift in Sources */,
 				72E6DED62919733700B2B644 /* LoginView.swift in Sources */,
 				B0A8E146293B9E0700E05632 /* baseView.swift in Sources */,
 				8809CBF52916A28D0052B31E /* Memorize.xcdatamodeld in Sources */,
 				B0AB6148293290E00051A892 /* EditPackView.swift in Sources */,
-				8809CBEB2916A28B0052B31E /* ContentView.swift in Sources */,
 				B028634C2935467C0065E12F /* NewsViewModel.swift in Sources */,
 				B0ACC297292D6BD200EEE7A1 /* ControlLogin.swift in Sources */,
 				B0A89D00292000C200BB6BEF /* UserViewModel.swift in Sources */,
@@ -342,6 +352,8 @@
 				B063F1F3292BC0020088B3CD /* HomeView.swift in Sources */,
 				B07970EC291EBD3300E35121 /* ImagePicker.swift in Sources */,
 				B0A131792931662200DC690F /* CategorieViewModel.swift in Sources */,
+				B0B10D94293CF6E500CCF476 /* PackViewModel.swift in Sources */,
+				B0B10D9B293D28A200CCF476 /* PopupView.swift in Sources */,
 				B02863472935439D0065E12F /* NewsModel.swift in Sources */,
 				B0A13177293163EF00DC690F /* CategorieModel.swift in Sources */,
 				B0A56B6C2926F07E00A6B137 /* RegisterAvocatView.swift in Sources */,

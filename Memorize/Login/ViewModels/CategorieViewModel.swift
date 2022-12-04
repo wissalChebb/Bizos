@@ -15,7 +15,7 @@ class CategorieViewModel: ObservableObject{
     var name : String = ""
     var image : String = ""
     
-    let url = "172.17.11.147:5000"
+    let url = "172.17.2.217:5000"
     
     init() {
         getCategorie(complited: {(success , respnse)in

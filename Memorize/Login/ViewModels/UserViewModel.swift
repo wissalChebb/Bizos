@@ -31,7 +31,7 @@ class UserViewModel: ObservableObject {
     static var currentUser: User?
     
  
-    let url = "172.17.11.147:5000"
+    let url = "172.17.2.217:5000"
     func addSignature(user: User,image: UIImage ) {
            print(user)
            let parametres: [String: Any] = [
@@ -303,7 +303,8 @@ class UserViewModel: ObservableObject {
         
     }
     func makeItem(jsonItem : JSON) -> User {
-        return User (firstname: jsonItem["first_name"].stringValue,
+        return User (id: jsonItem["_id"].stringValue,
+                     firstname: jsonItem["first_name"].stringValue,
                      lastName:jsonItem["last_name"].stringValue,
                      specialite:  jsonItem["specialite"].stringValue,
                      experience:  jsonItem["experience"].intValue,

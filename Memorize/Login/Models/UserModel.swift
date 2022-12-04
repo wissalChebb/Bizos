@@ -49,6 +49,7 @@ struct User {
    
     }
     init(firstname:  String, lastName: String, specialite: String, image:String , experience:Int) {
+        
         self.firstName = firstname
         self.lastName = lastName
         self.specialite = specialite
@@ -58,7 +59,8 @@ struct User {
         
    
     }
-    init(firstname:  String, lastName: String, specialite: String, experience:Int ,image:String ) {
+    init(id: String ,firstname:  String, lastName: String, specialite: String, experience:Int ,image:String ) {
+        self.id = id
         self.firstName = firstname
         self.lastName = lastName
         self.specialite = specialite

@@ -16,7 +16,7 @@ struct ControlLogin: View {
     var body: some View {
        
         if UserViewModel.currentUser?.role == "User" {
-            ContentView()
+            BaseViewClient()
         } else if UserViewModel.currentUser?.role == "Avocat" {
             baseView()
         }

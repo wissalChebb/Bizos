@@ -10,11 +10,12 @@ import SDWebImageSwiftUI
 import Alamofire
 import SwiftyJSON
 struct HomeView: View {
+    @Binding  var showMenu :Bool
     var user:User
     @ObservedObject  var categorieViewModel = CategorieViewModel()
     @ObservedObject  var userViewModel = UserViewModel()
 
-    @State var showMenu = false
+   
     var body: some View {
         NavigationView{
             
@@ -27,10 +28,9 @@ struct HomeView: View {
                         VStack(alignment:.leading){
                             HStack{
                                 
-                                Button(action:{
-                                   
-                                 
-                                }){
+                                Button{
+                                    withAnimation{showMenu.toggle()}
+                                }label: {
                                     Image("men").padding().background(Color(.white)).cornerRadius(10.0)
                                 }
                                 
@@ -39,7 +39,7 @@ struct HomeView: View {
                                 Button(action:{
                                     
                                 }) {
-                                    AsyncImage(url: URL(string: "http://172.17.11.147:5000/img/"+user.image),
+                                    AsyncImage(url: URL(string: "http://172.17.2.217:5000/img/"+user.image),
                                                content:{ image in
                                         image  .resizable()
                                             .aspectRatio( contentMode: .fill)
@@ -111,7 +111,7 @@ struct HomeView: View {
 }
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(user: User(firstname: "", lastName: "", specialite: "", image: "", experience: 0))
+       BaseViewClient()
     }
 }
 
@@ -154,7 +154,7 @@ struct CategorieView: View {
     var body: some View {
         
         VStack {
-            AsyncImage(url: URL(string: "http://172.17.11.147:5000/img/"+categorie.image),
+            AsyncImage(url: URL(string: "http://172.17.2.217:5000/img/"+categorie.image),
                                       content:{ image in
                                image.resizable()
                     .aspectRatio( contentMode: .fill)
@@ -191,7 +191,7 @@ struct AvocatView:View{
                 }.padding()
                 VStack(alignment: .leading){
                   
-                    AsyncImage(url: URL(string: "http://172.17.11.147:5000/img/"+user.image),
+                    AsyncImage(url: URL(string: "http://172.17.2.217:5000/img/"+user.image),
                                               content:{ image in
                                        image  .resizable()
                             .aspectRatio( contentMode: .fill)
