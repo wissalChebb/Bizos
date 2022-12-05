@@ -47,7 +47,7 @@ struct LoginView: View {
                         
                     )
                 //ContentView()
-                HStack{
+                VStack{
                     NavigationLink(destination:ControlLogin() .navigationBarBackButtonHidden(true), isActive: $isLogin){
                         Button("Login", action: {
                             
@@ -66,22 +66,20 @@ struct LoginView: View {
                         )
                         
                     }
-                        .foregroundColor(.black)
-                        .frame(width: 100, height: 40)
-                        .border(.black,width: 2.0)
-                        .padding(20)
-                        
+                    .frame(width:100, height: 50).foregroundColor(Color(uiColor: UIColor(red: 0.235, green: 0.247, blue: 0.306, alpha: 1))).background(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1))).cornerRadius(15).shadow(radius: 3)
                  
                     
                     Spacer()
                     NavigationLink(destination: ForgetView()){
                         Text("forget ")
-                            .foregroundColor(.blue)
-                            .frame(width: 100, height: 40)
-                            .padding(20)
+                            .foregroundColor(Color(uiColor: UIColor(red: 0.235, green: 0.247, blue: 0.306, alpha: 1)))
+                                                        .frame(width: 100, height: 40)
+                                                       
                         
                         
-                    }}
+                    }
+                    
+                }.position(x:180,y:30).padding(20)
                 
                 // Bottom View
                 Image("bottomLogin")
@@ -95,9 +93,7 @@ struct LoginView: View {
                                     
                                     isShowingRegisterView = true
                                 })
-                                .foregroundColor(.black)
-                                .frame(width: 100, height: 40)
-                                .border(.black,width: 2.0)
+                                .frame(width:100, height: 50).foregroundColor(Color(uiColor: UIColor(red: 0.235, green: 0.247, blue: 0.306, alpha: 1))).background(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1))).cornerRadius(15).shadow(radius: 3).padding().position(x:250,y:35)
                                 
                                 
                             }

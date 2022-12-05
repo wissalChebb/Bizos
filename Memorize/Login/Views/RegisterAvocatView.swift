@@ -53,6 +53,12 @@ struct RegisterAvocatView: View {
                                 }.pickerStyle(.inline)
                                 
                             }
+                            Button{} label: {
+                                HStack{
+                                    Image(systemName: "tray.and.arrow.down.fill").resizable().frame(width: 60,height: 60).position(x:200,y: 100)
+                                }
+                                
+                            }
                                 
                             
                         }.padding([.leading,.trailing],27.5)

@@ -33,7 +33,7 @@ struct BaseViewClient: View {
                             .tabItem {
                                 Label("Home", systemImage: "house")
                             }
-                        ProfileView()
+                        ProfileView( avocat: User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
                             .badge(2)
                             .tabItem {
                                 Label("Received", systemImage: "tray.and.arrow.down.fill").foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))

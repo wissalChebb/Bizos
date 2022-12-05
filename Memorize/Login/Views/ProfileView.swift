@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ProfileView: View {
     @State var showPopup = false
+    
     @ObservedObject  var packViewModel = PackViewModel()
+    @State var avocat : User
     var body: some View {
         ZStack{
             
@@ -37,8 +39,11 @@ struct ProfileView: View {
                         //   .cornerRadius(20)
                         VStack{
                             Image("wissal").resizable().frame(width: 100,height: 100).border(Color.white,width: 3.0).cornerRadius(50).padding(.top,5)
-                            
-                            Text("Maitre Manai Houceme").bold().padding()
+                            HStack{
+                                Text(avocat.firstName).bold().padding()
+                                Text(avocat.lastName).bold().padding()
+                            }
+                         
                             HStack{
                                 Image(systemName: "location")
                                 Text("Tunisia")
@@ -101,7 +106,7 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+        ProfileView(avocat: User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
     }
 }
 

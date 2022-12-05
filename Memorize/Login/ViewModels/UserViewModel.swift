@@ -15,11 +15,21 @@ class UserViewModel: ObservableObject {
     var newPassword : String = ""
     var confirmpass : String = ""
     @Published   var avocats : [User] = []
+    @Published   var packs : [Pack] = []
     init() {
         getAllAvoat(complited: {(success , respnse)in
             if success{
                 let avocats = respnse!
                 print("ahyaaaaa", avocats)
+            }else {
+                print("error cant connect ")
+            }
+            
+        })
+        getPacks(complited: {(success , respnse)in
+            if success{
+                let packs = respnse!
+                print("hethouma",packs)
             }else {
                 print("error cant connect ")
             }
@@ -31,12 +41,12 @@ class UserViewModel: ObservableObject {
     static var currentUser: User?
     
  
-    let url = "172.17.2.217:5000"
+    let url = "172.17.4.206:5000"
     func addSignature(user: User,image: UIImage ) {
            print(user)
            let parametres: [String: Any] = [
               
-               "signature" : user.signature
+               "image" : user.signature
                
            ]
            
@@ -47,7 +57,7 @@ class UserViewModel: ObservableObject {
            
            
            AF.upload(multipartFormData: { multipartFormData in
-               multipartFormData.append(imgData, withName: "signature",fileName: "file.jpg", mimeType: "image/jpg")
+               multipartFormData.append(imgData, withName: "image",fileName: "file.jpeg", mimeType: "image/jpeg")
                for ( key,value) in parametres {
                    
                    multipartFormData.append(  (value as! String).data(using: .utf8)!, withName: key)
@@ -323,7 +333,7 @@ class UserViewModel: ObservableObject {
             
         ]
         
-        AF.request("http://172.17.11.147:5000/user/UpdateAvocat/"+id , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
+        AF.request("http://172.17.4.206:5000/user/UpdateAvocat/"+id , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
             .validate(statusCode: 200..<500)
             .validate(contentType: ["application/json"])
             .responseJSON {
@@ -335,18 +345,41 @@ class UserViewModel: ObservableObject {
                     print(error)
                 }
             }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    
         
         
     }
     
+    func getPacks(complited: @escaping(Bool, [Pack]?) -> Void) {
+      
+        
+        AF.request("http://\(url)/pack"  , method: .get ,encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<500)
+            .validate(contentType: ["application/json"])
+            .responseData {
+                response in
+                switch response.result {
+                case .success:
+                    
+               
+                    for singleJsonItem in JSON(response.data!){
+                      
+                        self.packs.append(self.makeItem(jsonItem:singleJsonItem.1))
+                    }
+                    
+                    complited(true,self.packs)
+                case let .failure(error):
+                    debugPrint(error)
+                complited(false,nil)
+                }
+            }
+        
+    }
+    func makeItem(jsonItem : JSON) -> Pack {
+        return Pack(title: jsonItem["title"].stringValue,
+                    name: jsonItem["name"].stringValue,
+                    prix: jsonItem["prix"].floatValue,
+                    description: jsonItem["description"].stringValue)
+
+    }
 }

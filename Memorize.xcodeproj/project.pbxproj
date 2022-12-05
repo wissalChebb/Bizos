@@ -19,9 +19,11 @@
 		8809CBF52916A28D0052B31E /* Memorize.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8809CBF32916A28D0052B31E /* Memorize.xcdatamodeld */; };
 		B02863472935439D0065E12F /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02863462935439D0065E12F /* NewsModel.swift */; };
 		B028634C2935467C0065E12F /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028634B2935467C0065E12F /* NewsViewModel.swift */; };
+		B05F5AFF293E64AC00A86FB8 /* SigniatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05F5AFE293E64AC00A86FB8 /* SigniatureView.swift */; };
+		B05F5B01293EA02300A86FB8 /* RendezVousViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05F5B00293EA02300A86FB8 /* RendezVousViewModel.swift */; };
+		B05F5B03293EA06700A86FB8 /* RendezVousModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B05F5B02293EA06700A86FB8 /* RendezVousModel.swift */; };
 		B063F1F3292BC0020088B3CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063F1F2292BC0020088B3CD /* HomeView.swift */; };
 		B063F1F5292BD4A70088B3CD /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = B063F1F4292BD4A70088B3CD /* Fonts */; };
-		B063F1F7292C4B770088B3CD /* CategorieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B063F1F6292C4B770088B3CD /* CategorieView.swift */; };
 		B07970EA291EAEB700E35121 /* EditProfileUView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07970E9291EAEB700E35121 /* EditProfileUView.swift */; };
 		B07970EC291EBD3300E35121 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07970EB291EBD3300E35121 /* ImagePicker.swift */; };
 		B09D4C1D29360FCE007F662C /* CaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D4C1C29360FCE007F662C /* CaseView.swift */; };
@@ -65,9 +67,11 @@
 		8809CBF42916A28D0052B31E /* Memorize.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Memorize.xcdatamodel; sourceTree = "<group>"; };
 		B02863462935439D0065E12F /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		B028634B2935467C0065E12F /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
+		B05F5AFE293E64AC00A86FB8 /* SigniatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigniatureView.swift; sourceTree = "<group>"; };
+		B05F5B00293EA02300A86FB8 /* RendezVousViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendezVousViewModel.swift; sourceTree = "<group>"; };
+		B05F5B02293EA06700A86FB8 /* RendezVousModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RendezVousModel.swift; sourceTree = "<group>"; };
 		B063F1F2292BC0020088B3CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B063F1F4292BD4A70088B3CD /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../../../Downloads/Furniture-Shop-App-UI-SwiftUI-main/Furniture_app/Fonts"; sourceTree = "<group>"; };
-		B063F1F6292C4B770088B3CD /* CategorieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorieView.swift; sourceTree = "<group>"; };
 		B07970E9291EAEB700E35121 /* EditProfileUView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileUView.swift; sourceTree = "<group>"; };
 		B07970EB291EBD3300E35121 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		B09D4C1C29360FCE007F662C /* CaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseView.swift; sourceTree = "<group>"; };
@@ -128,7 +132,6 @@
 				B0A56B6B2926F07E00A6B137 /* RegisterAvocatView.swift */,
 				B0A1D995291D695B0032C19D /* ProfileView.swift */,
 				14D05B48291DE0FF004D5448 /* ChosePackView.swift */,
-				B063F1F6292C4B770088B3CD /* CategorieView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				B07970EB291EBD3300E35121 /* ImagePicker.swift */,
 				B0AB6147293290E00051A892 /* EditPackView.swift */,
 				B0B10D9A293D28A200CCF476 /* PopupView.swift */,
+				B05F5AFE293E64AC00A86FB8 /* SigniatureView.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -191,6 +195,7 @@
 				B0AB614529327A390051A892 /* CaseViewModel.swift */,
 				B028634B2935467C0065E12F /* NewsViewModel.swift */,
 				B0B10D93293CF6E500CCF476 /* PackViewModel.swift */,
+				B05F5B00293EA02300A86FB8 /* RendezVousViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				B0AB6140293279D30051A892 /* Casemodel.swift */,
 				B02863462935439D0065E12F /* NewsModel.swift */,
 				B0B10D98293CF78F00CCF476 /* PackModel.swift */,
+				B05F5B02293EA06700A86FB8 /* RendezVousModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -332,8 +338,10 @@
 				B09D4C1F2936B7D4007F662C /* AddCaseView.swift in Sources */,
 				B0B10D92293CF22900CCF476 /* BaseViewClient.swift in Sources */,
 				B0A1D996291D695B0032C19D /* ProfileView.swift in Sources */,
+				B05F5B03293EA06700A86FB8 /* RendezVousModel.swift in Sources */,
 				B0B10D99293CF78F00CCF476 /* PackModel.swift in Sources */,
 				72E6DEDC29199F0200B2B644 /* ForgetView.swift in Sources */,
+				B05F5AFF293E64AC00A86FB8 /* SigniatureView.swift in Sources */,
 				72E6DEDA29198C4200B2B644 /* RegisterCView.swift in Sources */,
 				72E6DED62919733700B2B644 /* LoginView.swift in Sources */,
 				B0A8E146293B9E0700E05632 /* baseView.swift in Sources */,
@@ -342,6 +350,7 @@
 				B028634C2935467C0065E12F /* NewsViewModel.swift in Sources */,
 				B0ACC297292D6BD200EEE7A1 /* ControlLogin.swift in Sources */,
 				B0A89D00292000C200BB6BEF /* UserViewModel.swift in Sources */,
+				B05F5B01293EA02300A86FB8 /* RendezVousViewModel.swift in Sources */,
 				B09D4C1D29360FCE007F662C /* CaseView.swift in Sources */,
 				B07970EA291EAEB700E35121 /* EditProfileUView.swift in Sources */,
 				8809CBE92916A28B0052B31E /* MemorizeApp.swift in Sources */,
@@ -359,7 +368,6 @@
 				B0A56B6C2926F07E00A6B137 /* RegisterAvocatView.swift in Sources */,
 				B0AB614629327A390051A892 /* CaseViewModel.swift in Sources */,
 				B0C56D7D2922C3DE008CD804 /* ChangePasswordView.swift in Sources */,
-				B063F1F7292C4B770088B3CD /* CategorieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +502,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -526,6 +535,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

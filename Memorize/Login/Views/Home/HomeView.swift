@@ -93,7 +93,12 @@ struct HomeView: View {
                             ScrollView(.horizontal,showsIndicators: false) {
                                 HStack{
                                     ForEach(0..<userViewModel.avocats.count,id: \.self ) { item in
-                                        AvocatView(user: userViewModel.avocats[item])
+                                      NavigationLink(
+                                        destination: ProfileView(avocat: userViewModel.avocats[item]),
+                                        label: {
+                                            AvocatView(user: userViewModel.avocats[item])
+                                            
+                                        })
                                     }.padding(.trailing)
                                     
                                 }
@@ -154,7 +159,7 @@ struct CategorieView: View {
     var body: some View {
         
         VStack {
-            AsyncImage(url: URL(string: "http://172.17.2.217:5000/img/"+categorie.image),
+            AsyncImage(url: URL(string: "http://172.17.4.206:5000/img/"+categorie.image),
                                       content:{ image in
                                image.resizable()
                     .aspectRatio( contentMode: .fill)
@@ -191,7 +196,7 @@ struct AvocatView:View{
                 }.padding()
                 VStack(alignment: .leading){
                   
-                    AsyncImage(url: URL(string: "http://172.17.2.217:5000/img/"+user.image),
+                    AsyncImage(url: URL(string: "http://172.17.4.206:5000/img/"+user.image),
                                               content:{ image in
                                        image  .resizable()
                             .aspectRatio( contentMode: .fill)

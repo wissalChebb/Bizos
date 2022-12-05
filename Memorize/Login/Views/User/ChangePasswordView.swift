@@ -65,10 +65,9 @@ struct ChangePasswordView: View {
                         })
                         
                         
-                            .foregroundColor(.black)
-                            .frame(width: 100, height: 40)
-                            .border(.black,width: 2.0)
-                            .padding(20)
+                        .frame(width:100, height: 50).foregroundColor(Color(uiColor: UIColor(red: 0.235, green: 0.247, blue: 0.306, alpha: 1))).background(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1))).cornerRadius(15).shadow(radius: 3)
+                                            .position(x:180,y: 10)
+                                            .padding(20)
                         
                         
                         

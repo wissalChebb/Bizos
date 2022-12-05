@@ -104,7 +104,8 @@ struct SideBarClient: View {
                 CaseView()
             case "Packs":
                 ChosePackView()
-       
+            case "Signiature":
+                SigniatureView()
             default:
                 Text("daadadz")
             }
@@ -123,7 +124,7 @@ struct SideBarClient: View {
 
 struct SideBar_Previews: PreviewProvider {
     static var previews: some View {
-        baseView() }
+        BaseViewClient() }
 }
 struct SideBarAvocat: View {
     @State var logout : Bool = false

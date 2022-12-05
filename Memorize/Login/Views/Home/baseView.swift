@@ -29,7 +29,7 @@ struct baseView: View {
                             }
                        
                    
-                        ProfileView()
+                        ProfileView(showPopup: true, avocat: User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
                             
                             .tabItem {
                                 Label("Messagerie", systemImage: "message").foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))
@@ -47,7 +47,7 @@ struct baseView: View {
                         
                         
                         
-                    }.frame(width: getRect().width)
+                    }.frame(width: getRect().width).tint(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1)))
                         .overlay(
                         Rectangle()
                             .fill(Color.primary.opacity(Double((offset/sideBarWidth)/5))

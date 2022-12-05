@@ -19,7 +19,7 @@ class NewsViewModel: ObservableObject{
     var search : String = ""
     var image : String = ""
     
-    let url = "172.17.2.217:5000"
+    let url = "172.17.4.206:5000"
     
     init() {
         getNews(complited: {(success , respnse)in
@@ -46,7 +46,7 @@ class NewsViewModel: ObservableObject{
                  
                 case .success:
                     
-             
+                    self.news = [ ]
                     for singleJsonItem in JSON(response.data!){
                       
                         self.news.append(self.makeItem(jsonItem:singleJsonItem.1))

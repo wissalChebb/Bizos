@@ -18,7 +18,7 @@ class CasesViewModel: ObservableObject{
     var name : String = ""
     var image : String = ""
     
-    let url = "172.17.2.217:5000"
+    let url = "172.17.4.206:5000"
     
     init() {
         getCases(complited: {(success , respnse)in
