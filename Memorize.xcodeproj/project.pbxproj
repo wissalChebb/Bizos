@@ -51,6 +51,9 @@
 		B0B10D99293CF78F00CCF476 /* PackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B10D98293CF78F00CCF476 /* PackModel.swift */; };
 		B0B10D9B293D28A200CCF476 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B10D9A293D28A200CCF476 /* PopupView.swift */; };
 		B0C45215293F8CF10045B43E /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C45214293F8CF10045B43E /* Url.swift */; };
+		B0C45219293FBBBC0045B43E /* UserAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C45218293FBBBC0045B43E /* UserAuthModel.swift */; };
+		B0C4521B293FBCE20045B43E /* ViewSingIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C4521A293FBCE20045B43E /* ViewSingIn.swift */; };
+		B0C4521E293FCE050045B43E /* TitleRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C4521D293FCE050045B43E /* TitleRow.swift */; };
 		B0C56D7D2922C3DE008CD804 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +98,10 @@
 		B0B10D98293CF78F00CCF476 /* PackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackModel.swift; sourceTree = "<group>"; };
 		B0B10D9A293D28A200CCF476 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		B0C45214293F8CF10045B43E /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
+		B0C45217293FB87C0045B43E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B0C45218293FBBBC0045B43E /* UserAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthModel.swift; sourceTree = "<group>"; };
+		B0C4521A293FBCE20045B43E /* ViewSingIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSingIn.swift; sourceTree = "<group>"; };
+		B0C4521D293FCE050045B43E /* TitleRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleRow.swift; sourceTree = "<group>"; };
 		B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +134,7 @@
 		72E6DEE02919B12300B2B644 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B0C4521C293FCDCB0045B43E /* CHAT */,
 				B09D4C1B29360EC6007F662C /* Case */,
 				B0A1316F29310EDE00DC690F /* User */,
 				B0A1316A29310BA000DC690F /* Home */,
@@ -157,6 +165,7 @@
 		8809CBE72916A28B0052B31E /* Memorize */ = {
 			isa = PBXGroup;
 			children = (
+				B0C45217293FB87C0045B43E /* Info.plist */,
 				06BA7F9F2916F94700DDBDFF /* Login */,
 				8809CBE82916A28B0052B31E /* MemorizeApp.swift */,
 				72E6DEDD2919A88C00B2B644 /* ResetCodeView.swift */,
@@ -185,6 +194,7 @@
 				B0AB6147293290E00051A892 /* EditPackView.swift */,
 				B0B10D9A293D28A200CCF476 /* PopupView.swift */,
 				B05F5AFE293E64AC00A86FB8 /* SigniatureView.swift */,
+				B0C4521A293FBCE20045B43E /* ViewSingIn.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -192,6 +202,7 @@
 		B07970F4291EDFA700E35121 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				B0C45218293FBBBC0045B43E /* UserAuthModel.swift */,
 				B0A89CFF292000C200BB6BEF /* UserViewModel.swift */,
 				B0A131782931662200DC690F /* CategorieViewModel.swift */,
 				B0AB614529327A390051A892 /* CaseViewModel.swift */,
@@ -247,6 +258,14 @@
 				B0C45214293F8CF10045B43E /* Url.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B0C4521C293FCDCB0045B43E /* CHAT */ = {
+			isa = PBXGroup;
+			children = (
+				B0C4521D293FCE050045B43E /* TitleRow.swift */,
+			);
+			path = CHAT;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +326,7 @@
 				B0A131702931609F00DC690F /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				B0A13173293161BC00DC690F /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				B0AB61492932B4290051A892 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+				B0C45216293FB4A30045B43E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 8809CBE62916A28B0052B31E /* Products */;
 			projectDirPath = "";
@@ -338,10 +358,12 @@
 				8809CBF22916A28D0052B31E /* Persistence.swift in Sources */,
 				B0A1316929310B4100DC690F /* HomeAvocatView.swift in Sources */,
 				B0C45215293F8CF10045B43E /* Url.swift in Sources */,
+				B0C4521E293FCE050045B43E /* TitleRow.swift in Sources */,
 				B0A8E141293B92CC00E05632 /* SideBar.swift in Sources */,
 				B09D4C1F2936B7D4007F662C /* AddCaseView.swift in Sources */,
 				B0B10D92293CF22900CCF476 /* BaseViewClient.swift in Sources */,
 				B0A1D996291D695B0032C19D /* ProfileView.swift in Sources */,
+				B0C4521B293FBCE20045B43E /* ViewSingIn.swift in Sources */,
 				B05F5B03293EA06700A86FB8 /* RendezVousModel.swift in Sources */,
 				B0B10D99293CF78F00CCF476 /* PackModel.swift in Sources */,
 				72E6DEDC29199F0200B2B644 /* ForgetView.swift in Sources */,
@@ -351,6 +373,7 @@
 				B0A8E146293B9E0700E05632 /* baseView.swift in Sources */,
 				8809CBF52916A28D0052B31E /* Memorize.xcdatamodeld in Sources */,
 				B0AB6148293290E00051A892 /* EditPackView.swift in Sources */,
+				B0C45219293FBBBC0045B43E /* UserAuthModel.swift in Sources */,
 				B028634C2935467C0065E12F /* NewsViewModel.swift in Sources */,
 				B0ACC297292D6BD200EEE7A1 /* ControlLogin.swift in Sources */,
 				B0A89D00292000C200BB6BEF /* UserViewModel.swift in Sources */,
@@ -505,6 +528,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Memorize/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Memorize/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -538,6 +562,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Memorize/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Memorize/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -621,6 +646,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 4.0.0;
+			};
+		};
+		B0C45216293FB4A30045B43E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

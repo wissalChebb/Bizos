@@ -118,6 +118,48 @@ class UserViewModel: ObservableObject {
   
     }
    
+    func LogInGoogle(complited: @escaping(User?)-> Void )
+      
+      {
+          
+          AF.request("http://\(url)/auth/google" , method: .get ,encoding: JSONEncoding.default)
+              .validate(statusCode: 200..<300)
+              .validate(contentType: ["application/json"])
+              .responseJSON {
+                  (response) in
+                  switch response.result {
+                      
+                  case .success(let JSON):
+                      let response = JSON as! NSDictionary
+                      let userResponse = response.object(forKey: "user") as! NSDictionary
+                      let email = userResponse.object(forKey: "email") as? String ?? ""
+                      let lastName = userResponse.object(forKey: "given_name") as? String ?? ""
+                  
+                      let firstName = userResponse.object(forKey: "family_name") as? String ?? ""
+                      let image = userResponse.object(forKey: "picture") as? String ?? ""
+                
+                      print("success  \(email )")
+                      print("success  \(lastName )")
+                     
+                      print("success  \(image )")
+                    
+                      var currentUser = User(firstname: firstName, lastName: lastName, email: email, image: image)
+                      currentUser.firstName = firstName
+                      currentUser.lastName = lastName
+                      currentUser.image = image
+                      currentUser.role = "User"
+                      Self.currentUser = currentUser
+                    
+                      print("success \(JSON )")
+                     
+                      complited(currentUser)
+                  case .failure(let error):
+                      print("request failed \(error)")
+                      complited(nil)
+                  }
+              }
+    
+      }
     
     func SignUp(user: User) {
         print(user)
@@ -149,7 +191,6 @@ class UserViewModel: ObservableObject {
             "first_name": user.firstName,
             "last_name": user.lastName,
             "email": user.email,
-            "password": user.password,
             "image" : user.image
             
         ]

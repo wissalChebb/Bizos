@@ -75,7 +75,7 @@ class NewsViewModel: ObservableObject{
                 switch response.result {
                  
                 case .success:
-                    
+                    self.news = [ ]
              
                     for singleJsonItem in JSON(response.data!){
                       

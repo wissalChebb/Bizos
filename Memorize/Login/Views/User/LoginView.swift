@@ -86,14 +86,38 @@ struct LoginView: View {
                     .overlay (
                         
                         HStack {
+                            Button{
+                                    
+                                
+                                    
+                                    viewModel.LogInGoogle(complited: {(user ) in
+                                        if let  _ = user {
+                                           
+                                            print("logged in ")
+                                            isLogin=true
+                                        }else{
+                                            print("not loged in ")
+                                            isLogin=false
+                                        }
+                                    })
+                                    
+                                        }label: {
+                                            Image("google")
+                                                .resizable()
+                                                .frame(width: 40,height: 40)
+                                                .padding()
+                                        }
+                                        .clipShape(Circle())
+                                        .padding()
+                                        .position(x:20)
                             
-                            Spacer()
+                        
                             NavigationLink(destination: RegisterCView(),isActive: $isShowingRegisterView){
                                 Button("Register", action: {
                                     
                                     isShowingRegisterView = true
                                 })
-                                .frame(width:100, height: 50).foregroundColor(Color(uiColor: UIColor(red: 0.235, green: 0.247, blue: 0.306, alpha: 1))).background(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1))).cornerRadius(15).shadow(radius: 3).padding().position(x:250,y:35)
+                                .frame(width:100, height: 50).foregroundColor(Color(uiColor: UIColor(red: 0.235, green: 0.247, blue: 0.306, alpha: 1))).background(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1))).cornerRadius(15).shadow(radius: 3).padding().position(x:100,y:35)
                                 
                                 
                             }

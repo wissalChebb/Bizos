@@ -9,8 +9,9 @@ import SwiftUI
 
 struct HomeAvocatView: View {
     @ObservedObject  var newsViewModel = NewsViewModel()
-
+    @State var news : [News] = []
     @Binding var showMenu: Bool
+    @State  var isSearch = false
     var user:User
     var body: some View {
         
@@ -52,8 +53,10 @@ struct HomeAvocatView: View {
                                         Button(action: {
                                             newsViewModel.getNewsRecherche(search: newsViewModel.search, complited: {(success , respnse)in
                                                 if success{
-                                                    let news = respnse!
-                                                    newsViewModel.news = news
+                                                    
+                                                    let new = respnse!
+                                                    self.news = new
+                                                    isSearch.toggle()
                                                 }else {
                                                     print("error cant connect ")
                                                 }
@@ -76,9 +79,12 @@ struct HomeAvocatView: View {
                                 }.padding(.vertical)
                                 ScrollView(.vertical,showsIndicators: false) {
                                     VStack(spacing:20.0){
-                                        ForEach(0..<newsViewModel.news.count , id: \.self ) { item in
-                                            CategorieView1(news: newsViewModel.news[item])
-                                        }.padding(.trailing)
+                                       
+                                            NewView1(news: news , isS: isSearch)
+                                            
+                                       
+                                        
+                                       
                                     }
                                 }
                                 
@@ -151,31 +157,64 @@ struct TagLineView1: View {
 }
 
 
-struct CategorieView1: View {
-    var news : News
+struct NewView1: View {
     
-  
+    var news : [News]
+    @ObservedObject  var newsViewModel = NewsViewModel()
+    var isS : Bool
     var body: some View {
-       
-            HStack(alignment: .top){
-                AsyncImage(url: URL(string: news.thumbnail),
-                                          content:{ image in
-                                   image  .resizable()
-                        .aspectRatio( contentMode: .fill)
-                        .clipped()
-                        .clipShape(Rectangle())
-                        .frame( width:100, height: 100).cornerRadius(20.0)
-                               },placeholder: { })
-                
-               
-                VStack{
+        
+        if(isS)
+        {
+            ForEach(0..<news.count , id: \.self ) { item in
+                HStack(alignment: .top){
+                    AsyncImage(url: URL(string: news[item].thumbnail),
+                                              content:{ image in
+                                       image  .resizable()
+                            .aspectRatio( contentMode: .fill)
+                            .clipped()
+                            .clipShape(Rectangle())
+                            .frame( width:100, height: 100).cornerRadius(20.0)
+                                   },placeholder: { })
                     
-                    Text(news.title).font(.title3).frame( alignment: .leading)
-                 
-                }
-               
-                
-            }.frame(width:300,height: 150).padding().background(Color.white).cornerRadius(20.0)
+                   
+                    VStack{
+                        
+                        Text(news[item].title).font(.title3).frame( alignment: .leading)
+                     
+                    }
+                   
+                    
+                }.frame(width:300,height: 150).padding().background(Color.white).cornerRadius(20.0)
+            }.padding(.trailing)
+        }
+        else
+        {
+            
+            ForEach(0..<newsViewModel.news.count , id: \.self ) { item in
+                HStack(alignment: .top){
+                    AsyncImage(url: URL(string: newsViewModel.news[item].thumbnail),
+                                              content:{ image in
+                                       image  .resizable()
+                            .aspectRatio( contentMode: .fill)
+                            .clipped()
+                            .clipShape(Rectangle())
+                            .frame( width:100, height: 100).cornerRadius(20.0)
+                                   },placeholder: { })
+                    
+                   
+                    VStack{
+                        
+                        Text(newsViewModel.news[item].title).font(.title3).frame( alignment: .leading)
+                     
+                    }
+                   
+                    
+                }.frame(width:300,height: 150).padding().background(Color.white).cornerRadius(20.0)
+            }.padding(.trailing)
+        }
+        
+            
           
             
            
@@ -183,4 +222,3 @@ struct CategorieView1: View {
            
     }
 }
-

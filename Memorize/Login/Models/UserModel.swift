@@ -31,6 +31,14 @@ struct User {
   
         self.experience = experience
     }
+    init(firstname: String ,lastName: String, email: String, image:String) {
+            self.firstName = firstname
+            self.lastName = lastName
+            self.email = email
+            self.image = image
+            
+       
+        }
     
     init(firstname: String, password: String, email: String, lastName: String , image:String, role:String) {
         self.firstName = firstname

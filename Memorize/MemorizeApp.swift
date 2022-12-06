@@ -13,7 +13,8 @@ struct MemorizeApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            
+           LoginView()
            // ProfileView(avocat: User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
