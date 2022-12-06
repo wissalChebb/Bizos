@@ -41,7 +41,7 @@ class UserViewModel: ObservableObject {
     static var currentUser: User?
     
  
-    let url = "172.17.4.206:5000"
+    let url = path().url
     func addSignature(user: User,image: UIImage ) {
            print(user)
            let parametres: [String: Any] = [
@@ -333,7 +333,7 @@ class UserViewModel: ObservableObject {
             
         ]
         
-        AF.request("http://172.17.4.206:5000/user/UpdateAvocat/"+id , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
+        AF.request("http://\(url)/user/UpdateAvocat/"+id , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
             .validate(statusCode: 200..<500)
             .validate(contentType: ["application/json"])
             .responseJSON {

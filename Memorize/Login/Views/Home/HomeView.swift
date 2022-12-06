@@ -39,7 +39,7 @@ struct HomeView: View {
                                 Button(action:{
                                     
                                 }) {
-                                    AsyncImage(url: URL(string: "http://172.17.2.217:5000/img/"+user.image),
+                                    AsyncImage(url: URL(string: "http://172.17.1.18:5000/img/"+user.image),
                                                content:{ image in
                                         image  .resizable()
                                             .aspectRatio( contentMode: .fill)
@@ -159,7 +159,7 @@ struct CategorieView: View {
     var body: some View {
         
         VStack {
-            AsyncImage(url: URL(string: "http://172.17.4.206:5000/img/"+categorie.image),
+            AsyncImage(url: URL(string: "http://172.17.1.18:5000/img/"+categorie.image),
                                       content:{ image in
                                image.resizable()
                     .aspectRatio( contentMode: .fill)
@@ -196,7 +196,7 @@ struct AvocatView:View{
                 }.padding()
                 VStack(alignment: .leading){
                   
-                    AsyncImage(url: URL(string: "http://172.17.4.206:5000/img/"+user.image),
+                    AsyncImage(url: URL(string: "http://172.17.1.18:5000/img/"+user.image),
                                               content:{ image in
                                        image  .resizable()
                             .aspectRatio( contentMode: .fill)

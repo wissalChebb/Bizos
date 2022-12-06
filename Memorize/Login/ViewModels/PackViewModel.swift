@@ -24,7 +24,7 @@ class PackViewModel: ObservableObject{
     @Published   var packs : [Pack] = []
  
     
-    let url = "172.17.4.206:5000"
+    let url = path().url
     
     init() {
         getPacks(complited: {(success , respnse)in

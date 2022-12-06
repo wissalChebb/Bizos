@@ -50,6 +50,7 @@
 		B0B10D94293CF6E500CCF476 /* PackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B10D93293CF6E500CCF476 /* PackViewModel.swift */; };
 		B0B10D99293CF78F00CCF476 /* PackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B10D98293CF78F00CCF476 /* PackModel.swift */; };
 		B0B10D9B293D28A200CCF476 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B10D9A293D28A200CCF476 /* PopupView.swift */; };
+		B0C45215293F8CF10045B43E /* Url.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C45214293F8CF10045B43E /* Url.swift */; };
 		B0C56D7D2922C3DE008CD804 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +94,7 @@
 		B0B10D93293CF6E500CCF476 /* PackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackViewModel.swift; sourceTree = "<group>"; };
 		B0B10D98293CF78F00CCF476 /* PackModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackModel.swift; sourceTree = "<group>"; };
 		B0B10D9A293D28A200CCF476 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		B0C45214293F8CF10045B43E /* Url.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Url.swift; sourceTree = "<group>"; };
 		B0C56D7C2922C3DE008CD804 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -242,6 +244,7 @@
 				B02863462935439D0065E12F /* NewsModel.swift */,
 				B0B10D98293CF78F00CCF476 /* PackModel.swift */,
 				B05F5B02293EA06700A86FB8 /* RendezVousModel.swift */,
+				B0C45214293F8CF10045B43E /* Url.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			files = (
 				8809CBF22916A28D0052B31E /* Persistence.swift in Sources */,
 				B0A1316929310B4100DC690F /* HomeAvocatView.swift in Sources */,
+				B0C45215293F8CF10045B43E /* Url.swift in Sources */,
 				B0A8E141293B92CC00E05632 /* SideBar.swift in Sources */,
 				B09D4C1F2936B7D4007F662C /* AddCaseView.swift in Sources */,
 				B0B10D92293CF22900CCF476 /* BaseViewClient.swift in Sources */,
