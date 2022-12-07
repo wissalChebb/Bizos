@@ -34,7 +34,7 @@ struct PopupView: View {
         }.padding()
             .multilineTextAlignment(.center)
             .background(Color(uiColor: UIColor(red: 0.969, green: 0.949, blue: 0.886, alpha: 1))).cornerRadius(30)
-            .position(x: 200 , y: 400)
+            .position(x: 190 , y: 350)
           
     }
         

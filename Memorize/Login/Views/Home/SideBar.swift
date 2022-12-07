@@ -8,14 +8,25 @@
 import SwiftUI
 
 struct SideBarClient: View {
+    @State var firstName:String = UserViewModel.currentUser?.firstName ?? ""
+    
+    @ObservedObject var viewModel = UserViewModel()
+  
+    @State var   lastname:String = UserViewModel.currentUser?.lastName ?? ""
     @Binding var showMenu : Bool
     @State var logout : Bool = false
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
             VStack(alignment: .leading, spacing: 14){
-                Image("maitre").resizable().aspectRatio(contentMode: .fill).frame(width: 65,height: 65).clipShape(Circle())
-                Text("iJestine").font(.title2.bold())
-                Text("@ijustina").font(.callout)
+                AsyncImage(url: URL(string: "http://172.17.1.18:5000/img/"+(UserViewModel.currentUser?.image ?? "image1.jpg")),
+                    content:{ image in
+                                   image
+                        .resizable().aspectRatio(contentMode: .fill).frame(width: 65,height: 65).clipShape(Circle())
+
+                               },placeholder: { })
+               
+                Text(firstName).font(.title2.bold())
+                Text(lastname).font(.callout)
             }
             .padding(.horizontal)
             .padding(.leading)
@@ -23,38 +34,31 @@ struct SideBarClient: View {
             ScrollView(.vertical,showsIndicators: false){
                 VStack{
                     VStack(alignment: .leading, spacing: 45){
-                        TabButton(title: "Signiature", image: "maitre")
-                        TabButton(title: "My case", image: "maitre")
+                        TabButton(title: "Signature", image: "signature")
+                        TabButton(title: "My case", image: "suitcase")
                         
-                        TabButton(title: "P", image: "maitre")
-                        TabButton(title: "profile", image: "maitre")
+                      
                         
                         
                     }.padding()
                     .padding(.leading)
                     .padding(.top , 45)
-                    Divider()
-                    TabButton(title: "profile", image: "maitre")
+                    
+                    TabButton(title: "My documents", image: "doc.on.doc")
                         .padding()
                         .padding(.leading)
-                    Divider()
+                    
                    
-                        TabButton(title: "LOG OUT", image: "maitre")
-                            .padding()
+                        
+                          
+                    Divider()
+                    TabButton(title: "change Password", image: " ")
+                        .padding()
                         .padding(.leading)
-                    Divider()
-                   
+                    
                     VStack(alignment: .leading, spacing: 30) {
-                        Button("Settings")  {
-                            
-                        }
-                        NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true),isActive: $logout ){
-                                Button("logout")  {
-                                    UserViewModel.currentUser = nil
-                                    logout=true
-                                }
-                                
-                            }
+                       
+                       
               
                        
                     }.frame(maxWidth: .infinity, alignment: .leading)
@@ -69,15 +73,20 @@ struct SideBarClient: View {
                 
                 Divider()
                 HStack{
-
-      
-                    Button{}label: {
-                        Image("maitre").resizable().renderingMode(.template).aspectRatio(contentMode: .fill).frame(width: 22, height: 22)
+                    
+                      
+                NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true),isActive: $logout ){
+                    Button{
+                        UserViewModel.currentUser = nil
+                        logout=true
+                    }label: {
+                        Image(systemName: "rectangle.portrait.and.arrow.forward")
                        
                     }
+                }
                     Spacer()
                     Button{}label: {
-                        Image("maitre").resizable().renderingMode(.template).aspectRatio(contentMode: .fill).frame(width: 22, height: 22)
+                        Image(systemName: "gearshape")
                         
                     }
                 }.padding([.horizontal,.top],15)
@@ -100,11 +109,11 @@ struct SideBarClient: View {
             
             switch title
             {
-            case "Cases":
+            case "My case":
                 CaseView()
-            case "Packs":
+            case "My documents":
                 ChosePackView()
-            case "Signiature":
+            case "Signature":
                 SigniatureView()
             default:
                 Text("daadadz")
@@ -112,7 +121,7 @@ struct SideBarClient: View {
             
         }label:{
             HStack(spacing: 14){
-                Image(image).resizable().renderingMode(.template).aspectRatio(contentMode: .fill).frame(width: 22, height: 22)
+                Image(systemName: image)
                 Text(title)
             }
             .foregroundColor(.primary)
@@ -128,15 +137,25 @@ struct SideBar_Previews: PreviewProvider {
 }
 struct SideBarAvocat: View {
     @State var logout : Bool = false
+    @State var firstName:String = UserViewModel.currentUser?.firstName ?? ""
+    
     @ObservedObject var viewModel = UserViewModel()
+  
+    @State var   lastname:String = UserViewModel.currentUser?.lastName ?? ""
     @Binding var showMenu : Bool
     var user : User
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
             VStack(alignment: .leading, spacing: 14){
-                Image("maitre").resizable().aspectRatio(contentMode: .fill).frame(width: 65,height: 65).clipShape(Circle())
-                Text(user.firstName).font(.title2.bold())
-                Text(user.email).font(.callout)
+                AsyncImage(url: URL(string: "http://172.17.1.18:5000/img/"+(UserViewModel.currentUser?.image ?? "image1.jpg")),
+                    content:{ image in
+                                   image
+                        .resizable().aspectRatio(contentMode: .fill).frame(width: 65,height: 65).clipShape(Circle())
+
+                               },placeholder: { })
+               
+                Text("Maitre").font(.title2.bold())
+                Text(lastname+"  "+firstName).font(.callout)
             }
             .padding(.horizontal)
             .padding(.leading)
@@ -144,38 +163,22 @@ struct SideBarAvocat: View {
             ScrollView(.vertical,showsIndicators: false){
                 VStack{
                     VStack(alignment: .leading, spacing: 45){
-                        TabButton(title: "Packs", image: "maitre")
-                        TabButton(title: "Cases", image: "maitre")
+                        TabButton(title: "My Packs", image: "tray.full")
+                        TabButton(title: "My Cases", image: "briefcase")
                         
-                        TabButton(title: "profile", image: "maitre")
-                        TabButton(title: "profile", image: "maitre")
+                     
+                        TabButton(title: "Agenda", image: "calendar")
                         
                         
                     }.padding()
                     .padding(.leading)
                     .padding(.top , 45)
-                    Divider()
-                    TabButton(title: "profile", image: "maitre")
-                        .padding()
-                        .padding(.leading)
-                    Divider()
-                   
-                        TabButton(title: "LOG OUT", image: "maitre")
-                            .padding()
-                        .padding(.leading)
-                    Divider()
+                    
+                    
                    
                     VStack(alignment: .leading, spacing: 30) {
-                        Button("Settings")  {
-                            
-                        }
-                        NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true),isActive: $logout ){
-                                Button("logout")  {
-                                    UserViewModel.currentUser = nil
-                                    logout=true
-                                }
-                                
-                            }
+                       
+                       
                     }.frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.primary)  .padding()
                         .padding(.leading).padding(.bottom)
@@ -189,16 +192,21 @@ struct SideBarAvocat: View {
                 Divider()
                 HStack{
 
-      
-                    Button{}label: {
-                        Image("maitre").resizable().renderingMode(.template).aspectRatio(contentMode: .fill).frame(width: 22, height: 22)
-                       
-                    }
-                    Spacer()
-                    Button{}label: {
-                        Image("maitre").resizable().renderingMode(.template).aspectRatio(contentMode: .fill).frame(width: 22, height: 22)
-                        
-                    }
+                    
+              NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true),isActive: $logout ){
+                  Button{
+                      UserViewModel.currentUser = nil
+                      logout=true
+                  }label: {
+                      Image(systemName: "rectangle.portrait.and.arrow.forward")
+                     
+                  }
+              }
+                  Spacer()
+                  Button{}label: {
+                      Image(systemName: "gearshape")
+                      
+                  }
                 }.padding([.horizontal,.top],15)
                     .foregroundColor(.primary)
              }
@@ -220,18 +228,20 @@ struct SideBarAvocat: View {
             
             switch title
             {
-            case "Cases":
+            case "My Cases":
                 CaseView()
-            case "Packs":
+            case "My Packs":
                 ChosePackView()
        
+            case "Agenda":
+                ChosePackView()
             default:
                 Text("daadadz")
             }
             
         }label:{
             HStack(spacing: 14){
-                Image(image).resizable().renderingMode(.template).aspectRatio(contentMode: .fill).frame(width: 22, height: 22)
+                Image(systemName: image)
                 Text(title)
             }
             .foregroundColor(.primary)

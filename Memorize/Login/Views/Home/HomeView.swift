@@ -188,10 +188,13 @@ struct AvocatView:View{
                             .foregroundColor(Color("Primary"))
                         
                             }
-                    Text(user.specialite)
-                    Text("Experioence:")
+                    Text(user.specialite).font(.custom("PlayfairDisplay-Bold", size: 18))
+                        .foregroundColor(Color(.gray)).bold()
+                    Text("experience:").font(.custom("PlayfairDisplay-Bold", size: 17))
+                        .foregroundColor(Color(.gray)).bold()
                     
-                    Text(String(user.experience)+" Years")
+                    Text(String(user.experience)+" Years").font(.custom("PlayfairDisplay-Bold", size: 16))
+                        .foregroundColor(Color(.gray)).bold().position(x:40)
                     
                 }.padding()
                 VStack(alignment: .leading){

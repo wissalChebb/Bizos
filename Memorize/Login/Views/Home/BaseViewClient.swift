@@ -50,7 +50,7 @@ struct BaseViewClient: View {
                             }
                        
                         
-                    }.frame(width: getRect().width)
+                    }.frame(width: getRect().width).tint(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1)))
                         .overlay(
                         Rectangle()
                             .fill(Color.primary.opacity(Double((offset/sideBarWidth)/5))
