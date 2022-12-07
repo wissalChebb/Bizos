@@ -29,12 +29,12 @@ struct baseView: View {
                             }
                        
                    
-                        ProfileView(showPopup: true, avocat: User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
+                       Text("message")
                             
                             .tabItem {
                                 Label("Messagerie", systemImage: "message").foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))
                             }
-                        CaseView()
+                        Text("Notification")
                       
                             .tabItem {
                                 Label("Sent", systemImage: "bell.badge.fill")

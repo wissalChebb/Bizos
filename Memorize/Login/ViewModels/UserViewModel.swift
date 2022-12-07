@@ -365,31 +365,30 @@ class UserViewModel: ObservableObject {
         )
 
     }
-    
     func updateAvocat(id: String ,specialite:String, experience:Int) {
-       
-        let parametres: [String: Any] = [
-            "categorie": specialite,
-            "experience": experience,
-            
-        ]
         
-        AF.request("http://\(url)/user/UpdateAvocat/"+id , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
-            .validate(statusCode: 200..<500)
-            .validate(contentType: ["application/json"])
-            .responseJSON {
-                response in
-                switch response.result {
-                case .success:
-                    print("success")
-                case let .failure(error):
-                    print(error)
-                }
-            }
-    
-        
-        
-    }
+         let parametres: [String: Any] = [
+             "categorie": specialite,
+             "experience": experience,
+             
+         ]
+         
+         AF.request("http://\(url)/user/UpdateAvocat/"+id , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
+             .validate(statusCode: 200..<500)
+             .validate(contentType: ["application/json"])
+             .responseJSON {
+                 response in
+                 switch response.result {
+                 case .success:
+                     print("success")
+                 case let .failure(error):
+                     print(error)
+                 }
+             }
+     
+         
+         
+     }
     
     func getPacks(complited: @escaping(Bool, [Pack]?) -> Void) {
       

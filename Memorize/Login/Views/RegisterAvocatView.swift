@@ -52,7 +52,7 @@ struct RegisterAvocatView: View {
                                     .bold()
                                 Picker("Pick a language", selection: $selectedItem) { // 3
                                     ForEach(0..<categorieViewModel.categories.count,id: \.self ) { item in
-                                        CategorieView0(categorie: categorieViewModel.categories[item])
+                                        Text(categorieViewModel.categories[item].name)
                                     }.padding(.trailing)
                                 }.pickerStyle(.inline)
                                 
@@ -98,7 +98,7 @@ struct RegisterAvocatView: View {
                                 Button("Register", action: {
                                     UserViewModel.currentUser?.specialite = selectedItem
                                     UserViewModel.currentUser?.experience = Int(SelectedItem) ?? 0
-                                    viewModel.updateAvocat(id: UserViewModel.currentUser?.id ?? "" , specialite: UserViewModel.currentUser?.specialite ?? "", experience: UserViewModel.currentUser?.experience ?? 0)
+                                    viewModel.updateAvocat(id: UserViewModel.currentUser?.id ?? "" , specialite: selectedItem, experience: UserViewModel.currentUser?.experience ?? 0)
                                     UserViewModel.currentUser = nil
 
                                     logout = true

@@ -29,26 +29,28 @@ struct BaseViewClient: View {
                     TabView {
                         
                         HomeView(showMenu: $showMenu,user: UserViewModel.currentUser ?? User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
-                      
                             .tabItem {
                                 Label("Home", systemImage: "house")
                             }
-                        ProfileView( avocat: User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
-                            .badge(2)
+                       
+                   
+                      Text("interface Message ")
+                            
                             .tabItem {
-                                Label("Received", systemImage: "tray.and.arrow.down.fill").foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))
+                                Label("Messagerie", systemImage: "message").foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))
                             }
-                        ChosePackView()
+                        Text("Notification ")
                       
                             .tabItem {
-                                Label("Sent", systemImage: "folder.badge.person.crop")
+                                Label("Sent", systemImage: "bell.badge.fill")
                             }
                         EditProfileUView()
                            
                             .tabItem {
                                 Label("Profile", systemImage: "person.crop.circle.fill")
                             }
-                       
+                        
+                        
                         
                     }.frame(width: getRect().width).tint(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1)))
                         .overlay(

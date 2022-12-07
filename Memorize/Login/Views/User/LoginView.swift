@@ -131,7 +131,7 @@ struct LoginView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea()
             
-        }
+        }.navigationBarBackButtonHidden(true)
         
     }
     

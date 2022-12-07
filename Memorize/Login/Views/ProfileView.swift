@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @State var showPopup = false
-    
+    @State var showDis = false
     @ObservedObject  var packViewModel = PackViewModel()
     @State var avocat : User
     var body: some View {
@@ -54,9 +54,9 @@ struct ProfileView: View {
                     }
                     
                     HStack{
-                        NavigationLink(destination: DiscussionView()){
+                        NavigationLink(destination: DiscussionView().navigationBarBackButtonHidden(true),isActive: $showDis){
                             Button{
-                                
+                                showDis = true
                             }label: {
                                 Text("Message").frame(width: 150,height:50).foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1))).background(.white).cornerRadius(5).shadow(radius: 6).padding()
                             }
