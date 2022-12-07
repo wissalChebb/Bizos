@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Firebase
-
+import FirebaseFirestoreSwift
 @main
 struct MemorizeApp: App {
     init(){
@@ -19,7 +19,7 @@ struct MemorizeApp: App {
       
         WindowGroup {
             
-           LoginView()
+           DiscussionView()
            // ProfileView(avocat: User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

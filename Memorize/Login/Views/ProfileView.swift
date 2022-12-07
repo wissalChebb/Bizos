@@ -13,25 +13,26 @@ struct ProfileView: View {
     @ObservedObject  var packViewModel = PackViewModel()
     @State var avocat : User
     var body: some View {
-        ZStack{
-            
+        NavigationView{
             ZStack{
-                VStack{
-                    VStack{}.frame(maxWidth: .infinity,maxHeight: 230).background(Color(uiColor: UIColor(red: 0.97, green: 0.95, blue: 0.89, alpha: 1)))
-                    Spacer()
-                }
-                VStack(){
-                    HStack() {
-                        Image("cercle").resizable().scaledToFill().frame(width: 180,height: 180).overlay(
-                            VStack(){
-                            }
-                        )
+                
+                ZStack{
+                    VStack{
+                        VStack{}.frame(maxWidth: .infinity,maxHeight: 230).background(Color(uiColor: UIColor(red: 0.97, green: 0.95, blue: 0.89, alpha: 1)))
                         Spacer()
                     }
-                    Spacer()
-                    
-                }.ignoresSafeArea()
-            }
+                    VStack(){
+                        HStack() {
+                            Image("cercle").resizable().scaledToFill().frame(width: 180,height: 180).overlay(
+                                VStack(){
+                                }
+                            )
+                            Spacer()
+                        }
+                        Spacer()
+                        
+                    }.ignoresSafeArea()
+                }
                 
                 VStack{
                     ZStack{
@@ -43,7 +44,7 @@ struct ProfileView: View {
                                 Text(avocat.firstName).bold().padding()
                                 Text(avocat.lastName).bold().padding()
                             }
-                         
+                            
                             HStack{
                                 Image(systemName: "location")
                                 Text("Tunisia")
@@ -53,9 +54,14 @@ struct ProfileView: View {
                     }
                     
                     HStack{
-                        Button{/*action*/}label: {
-                            Text("Message").frame(width: 150,height:50).foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1))).background(.white).cornerRadius(5).shadow(radius: 6).padding()
+                        NavigationLink(destination: DiscussionView()){
+                            Button{
+                                
+                            }label: {
+                                Text("Message").frame(width: 150,height:50).foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1))).background(.white).cornerRadius(5).shadow(radius: 6).padding()
+                            }
                         }
+                        
                         Button{
                             withAnimation{
                                 self.showPopup.toggle()
@@ -67,39 +73,39 @@ struct ProfileView: View {
                     VStack(alignment: .leading){
                         Text("Availble Packs").bold().padding(.vertical)
                         ScrollView{
-                       
+                            
                             ForEach(0..<packViewModel.packs.count , id: \.self ) { item in
-                               PackItem(pack: packViewModel.packs[item])
+                                PackItem(pack: packViewModel.packs[item])
                             }.padding(.trailing)
                             
                         }.frame(maxWidth: .infinity,maxHeight: .infinity)
-                     
+                        
                     }.padding()
                     Spacer()
                 }
-            if self.showPopup{
-                GeometryReader{_ in
-                    PopupView()
+                if self.showPopup{
+                    GeometryReader{_ in
+                        PopupView()
+                        
+                    }.background(Color.black.opacity(0.65)
+                        .edgesIgnoringSafeArea(.all)
+                        .onTapGesture {
+                            withAnimation{
+                                self.showPopup.toggle()
+                            }
+                        })
                     
-                }.background(Color.black.opacity(0.65)
-                    .edgesIgnoringSafeArea(.all)
-                    .onTapGesture {
-                        withAnimation{
-                            self.showPopup.toggle()
-                        }
-                    })
-                
-                
+                    
+                    
+                }
                 
             }
             
+            
+            
+            
         }
-        
-       
-        
-      
     }
-    
     
 }
     
