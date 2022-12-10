@@ -6,13 +6,10 @@
 //
 
 import SwiftUI
-import Firebase
-import FirebaseFirestoreSwift
+
 @main
 struct MemorizeApp: App {
-    init(){
-        FirebaseApp.configure()
-    }
+ 
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {

@@ -64,7 +64,7 @@ struct EditProfileUView: View {
                                                 
                                             }else{
                                               
-                                                AsyncImage(url: URL(string: "http://172.17.5.29:5000/img/"+(UserViewModel.currentUser?.image ?? "image1.jpg")),
+                                                AsyncImage(url: URL(string: "http://172.17.1.190:5000/img/"+(UserViewModel.currentUser?.image ?? "image1.jpg")),
                                                     content:{ image in
                                                                    image
                                                         .resizable()
