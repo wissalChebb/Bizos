@@ -96,6 +96,7 @@ struct EditProfileUView: View {
                                                 }
                                             }
                                         }.foregroundColor(Color(uiColor: UIColor(red: 1, green: 0.85, blue: 0.77, alpha: 1)))
+                                            .padding([.leading,.trailing],27.5)
                                     }
                                     .onChange(of: self.selectedImage)
                                     { newVal in

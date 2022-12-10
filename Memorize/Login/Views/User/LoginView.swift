@@ -125,7 +125,7 @@ struct LoginView: View {
                             
                         }.padding(50)
                     )
-            }
+            }.padding([.leading,.trailing],200)
             
             .background(Color(uiColor: UIColor(red: 0.929, green: 0.929, blue: 0.929, alpha: 1)))
             .frame(maxWidth: .infinity, maxHeight: .infinity)

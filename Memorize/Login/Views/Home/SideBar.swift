@@ -112,7 +112,7 @@ struct SideBarClient: View {
             case "My case":
                 CaseView()
             case "My documents":
-                ChosePackView()
+                ScannerView()
             case "Signature":
                 SigniatureView()
             default:
@@ -234,7 +234,7 @@ struct SideBarAvocat: View {
                 ChosePackView()
        
             case "Agenda":
-                ChosePackView()
+                agenda()
             default:
                 Text("daadadz")
             }

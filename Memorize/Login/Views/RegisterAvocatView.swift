@@ -20,6 +20,7 @@ struct RegisterAvocatView: View {
     @State var experience = ""
     var currentUser: User?
     @State var logout : Bool = false
+    @State var map : Bool = false
     @ObservedObject  var categorieViewModel = CategorieViewModel()
     var body: some View {
         NavigationView{
@@ -57,7 +58,16 @@ struct RegisterAvocatView: View {
                                 }.pickerStyle(.inline)
                                 
                             }
-                           
+                            HStack{
+                                NavigationLink(destination:   Map(), isActive: $map)
+                                {
+                                Button {
+                                  map = true
+                                } label: {
+                                    Text("localisation :")
+                                }   }
+                            }
+                            
                            
                             Button{
                                 
