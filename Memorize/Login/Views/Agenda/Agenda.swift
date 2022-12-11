@@ -9,6 +9,7 @@ import SwiftUI
 
 struct agenda: View {
     @State var currentData : Date = Date()
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false){
             VStack(spacing: 20)
@@ -20,7 +21,8 @@ struct agenda: View {
         .safeAreaInset(edge: .bottom){
             HStack{
                 Button {
-                    
+                    tasks.append(TaskMetaData(task: [
+                        Task(title: "new task")],taskDate: currentData,idUser: "", idAvocat: ""))
                 } label: {
                     Text("Add Task")
                         .fontWeight(.bold)

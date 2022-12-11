@@ -2,12 +2,14 @@
 import Foundation
 import SwiftUI
 struct PopupView: View {
+    @Binding var IDAvocat: String
+    @Binding var IDUser: String
     @State var showPopup = false
     @State private var date = Date()
         let dateRange: ClosedRange<Date> = {
             let calendar = Calendar.current
-            let startComponents = DateComponents(year: 2021, month: 12, day: 15)
-            let endComponents = DateComponents(year: 2021, month: 12, day: 30, hour: 23, minute: 59, second: 59)
+            let startComponents = DateComponents(year: 2022, month: 12, day: 15)
+            let endComponents = DateComponents(year: 2023, month: 12, day: 30, hour: 23, minute: 59, second: 59)
             return calendar.date(from:startComponents)!
             ...
             calendar.date(from:endComponents)!
@@ -26,7 +28,8 @@ struct PopupView: View {
                         .padding()
                         .accentColor(.orange)
             Button("save") {
-                
+                tasks.append(TaskMetaData(task: [
+                    Task(title: "Rendez-Vous")],taskDate: date,idUser: IDUser,idAvocat: IDAvocat))
             }.accentColor(.black)
                 .padding(40)
                         
@@ -40,11 +43,7 @@ struct PopupView: View {
         
 }
 
-struct PopupView_Previews: PreviewProvider {
-    static var previews: some View {
-        PopupView()
-    }
-}
+
 
 private extension PopupView {
     var icon: some View {

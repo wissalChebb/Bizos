@@ -13,6 +13,7 @@ struct SideBarClient: View {
     @ObservedObject var viewModel = UserViewModel()
   
     @State var   lastname:String = UserViewModel.currentUser?.lastName ?? ""
+    
     @Binding var showMenu : Bool
     @State var logout : Bool = false
     var body: some View {

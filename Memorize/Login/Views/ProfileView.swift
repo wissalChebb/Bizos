@@ -12,6 +12,7 @@ struct ProfileView: View {
     @State var showDis = false
     @ObservedObject  var packViewModel = PackViewModel()
     @State var avocat : User
+    @State var user = UserViewModel.currentUser?.id ?? ""
     var body: some View {
         NavigationView{
             ZStack{
@@ -54,7 +55,7 @@ struct ProfileView: View {
                     }
                     
                     HStack{
-                        NavigationLink(destination: DiscussionView().navigationBarBackButtonHidden(true),isActive: $showDis){
+                        NavigationLink(destination: LoginView(),isActive: $showDis){
                             Button{
                                 showDis = true
                             }label: {
@@ -85,7 +86,7 @@ struct ProfileView: View {
                 }
                 if self.showPopup{
                     GeometryReader{_ in
-                        PopupView()
+                        PopupView(IDAvocat: $avocat.id, IDUser: $user)
                         
                     }.background(Color.black.opacity(0.65)
                         .edgesIgnoringSafeArea(.all)

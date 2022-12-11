@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CustomDatePicker: View {
     @Binding var currentDate: Date
+    @State var   IdUser:String = UserViewModel.currentUser?.id ?? ""
     @State var currentMonth : Int = 0
     var body: some View {
         VStack(spacing: 35){
@@ -80,19 +81,22 @@ struct CustomDatePicker: View {
                     .frame(maxWidth: .infinity , alignment: .leading)
                     .padding(.vertical,20)
                 if let task = tasks.first(where:{ task in
-                    return isSameDay(date1: task.taskDate, date2: currentDate)
+                    return isSameDay(date1: task.taskDate, date2: currentDate) && task.idAvocat == IdUser
                 } ){
+                    
                     ForEach(task.task){task in
-                        VStack(alignment: .leading, spacing: 10){
-                            Text(task.time.addingTimeInterval(CGFloat.random(in: 0...5000)),style: .time)
-                            Text(task.title).font(.title2.bold())
-                        }
-                        .padding(.vertical,10)
-                        .padding(.horizontal)
-                        .frame(maxWidth:.infinity,alignment: .leading)
-                        .background(
-                            Color("Rose").opacity(0.5).cornerRadius(10)
-                        )
+                        
+                            VStack(alignment: .leading, spacing: 10){
+                                Text(task.time.addingTimeInterval(CGFloat.random(in: 0...5000)),style: .time)
+                                Text(task.title).font(.title2.bold())
+                            }
+                            .padding(.vertical,10)
+                            .padding(.horizontal)
+                            .frame(maxWidth:.infinity,alignment: .leading)
+                            .background(
+                                Color("Rose").opacity(0.5).cornerRadius(10)
+                            )
+                        
                     }
                     
                 }else

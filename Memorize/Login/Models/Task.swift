@@ -18,6 +18,8 @@ struct TaskMetaData:Identifiable{
     var id = UUID().uuidString
     var task : [Task]
     var taskDate : Date
+    var idUser : String
+    var idAvocat : String
 }
 //sample date For tasting
 func getSampleDate(offset: Int)->Date{
@@ -31,10 +33,10 @@ TaskMetaData(task: [
     Task(title: "iPhne 13 great Design change"),
     Task(title: "Nothing much workout!!"),
 
-], taskDate: getSampleDate(offset: -3)),
+], taskDate: getSampleDate(offset: 3),idUser: "",idAvocat: ""),
 
 
 TaskMetaData(task: [
     Task(title: "talk to ijuston")],
-         taskDate: getSampleDate(offset: -8))
+         taskDate: getSampleDate(offset: -8),idUser: "",idAvocat: "")
 ]

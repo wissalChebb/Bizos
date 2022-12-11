@@ -9,7 +9,7 @@ import Foundation
 
 
 class MessageManger : ObservableObject{
-    @Published private (set) var message:[Message] = []
+
  
   
    
