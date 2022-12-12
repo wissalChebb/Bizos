@@ -21,6 +21,7 @@ struct RegisterAvocatView: View {
     var currentUser: User?
     @State var logout : Bool = false
     @State var map : Bool = false
+    @Binding var Location : String
     @ObservedObject  var categorieViewModel = CategorieViewModel()
     var body: some View {
         NavigationView{
@@ -59,7 +60,7 @@ struct RegisterAvocatView: View {
                                 
                             }
                             HStack{
-                                NavigationLink(destination:   Map(), isActive: $map)
+                                NavigationLink(destination:   Home().navigationBarBackButtonHidden(true), isActive: $map)
                                 {
                                 Button {
                                   map = true
@@ -108,7 +109,7 @@ struct RegisterAvocatView: View {
                                 Button("Register", action: {
                                     UserViewModel.currentUser?.specialite = selectedItem
                                     UserViewModel.currentUser?.experience = Int(SelectedItem) ?? 0
-                                    viewModel.updateAvocat(id: UserViewModel.currentUser?.id ?? "" , specialite: selectedItem, experience: UserViewModel.currentUser?.experience ?? 0)
+                                    viewModel.updateAvocat(id: UserViewModel.currentUser?.id ?? "" , specialite: selectedItem, experience: UserViewModel.currentUser?.experience ?? 0,location: Location)
                                     UserViewModel.currentUser = nil
 
                                     logout = true
@@ -143,8 +144,3 @@ struct CategorieView0: View {
             Text(categorie.name)
         }
     }}
-struct RegisterAvocatView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterAvocatView()
-    }
-}

@@ -11,6 +11,7 @@ struct ProfileView: View {
     @State var showPopup = false
     @State var showDis = false
     @ObservedObject  var packViewModel = PackViewModel()
+    @ObservedObject  var userViewModel = UserViewModel()
     @State var avocat : User
     @State var user = UserViewModel.currentUser?.id ?? ""
     var body: some View {
@@ -75,13 +76,24 @@ struct ProfileView: View {
                         Text("Availble Packs").bold().padding(.vertical)
                         ScrollView{
                             
-                            ForEach(0..<packViewModel.packs.count , id: \.self ) { item in
-                                PackItem(pack: packViewModel.packs[item])
-                            }.padding(.trailing)
-                            
+                                ForEach(0..<userViewModel.avocatPack.count , id: \.self ) { item in
+                                    PackItem(pack: userViewModel.avocatPack[item])
+                                }.padding(.trailing)
                         }.frame(maxWidth: .infinity,maxHeight: .infinity)
                         
                     }.padding()
+                        .onAppear{
+                            
+                            userViewModel.getPackByAvocat(id: avocat.id, complited: {(success , respnse)in
+                                if success{
+                                    userViewModel.avocatPack = respnse!
+                                    print("ahyaaaaa",  userViewModel.avocatPack )
+                                }else {
+                                    print("error cant connect ")
+                                }
+                                
+                            })
+                        }
                     Spacer()
                 }
                 if self.showPopup{

@@ -7,6 +7,6 @@
 
 import Foundation
 public class path : ObservableObject {
-    var url:String = "172.17.1.190:5000"
+    var url:String = "172.17.1.229:5000"
   
 }

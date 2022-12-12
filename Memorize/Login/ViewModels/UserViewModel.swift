@@ -7,6 +7,7 @@ import Alamofire
 import SwiftyJSON
 class UserViewModel: ObservableObject {
      var firstName : String = ""
+    var specialite : String = ""
     var lastName : String  = ""
     var password : String  = "123"
     var email : String  = "wissal.chebbi@esprit.tn"
@@ -15,7 +16,9 @@ class UserViewModel: ObservableObject {
     var newPassword : String = ""
     var confirmpass : String = ""
     @Published   var avocats : [User] = []
+    @Published   var avocatsCat : [User] = []
     @Published   var packs : [Pack] = []
+    @Published   var avocatPack : [Pack] = []
     init() {
         getAllAvoat(complited: {(success , respnse)in
             if success{
@@ -353,6 +356,62 @@ class UserViewModel: ObservableObject {
             }
         
     }
+    func getAllAvoatCat(complited: @escaping(Bool, [User]?) -> Void) {
+      
+        
+        AF.request("http://\(url)/user/getbycategorie/\(specialite.replacingOccurrences(of: " ", with: ""))" , method: .get ,encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<500)
+            .validate(contentType: ["application/json"])
+            .responseData {
+                response in
+                switch response.result {
+                case .success:
+             
+                    
+               
+                    for singleJsonItem in JSON(response.data!){
+                      
+                        self.avocatsCat.append(self.makeItem(jsonItem:singleJsonItem.1))
+                    }
+                    print(self.avocatsCat)
+                    
+                    
+                    complited(true,self.avocatsCat)
+                case let .failure(error):
+                    debugPrint(error)
+                complited(false,nil)
+                }
+            }
+        
+    }
+    func getPackByAvocat(id : String, complited: @escaping(Bool, [Pack]?) -> Void) {
+      
+        
+        AF.request("http://\(url)/user/getpack/"+id , method: .get ,encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<500)
+            .validate(contentType: ["application/json"])
+            .responseData {
+                response in
+                switch response.result {
+                case .success:
+             
+                    
+               
+                    for singleJsonItem in JSON(response.data!){
+                      
+                        self.avocatPack.append(self.makeItem(jsonItem:singleJsonItem.1))
+                    }
+                    print(self.avocatPack)
+                    
+                    
+                    complited(true,self.avocatPack)
+                case let .failure(error):
+                    debugPrint(error)
+                complited(false,nil)
+                }
+            }
+        
+    }
     func makeItem(jsonItem : JSON) -> User {
         return User (id: jsonItem["_id"].stringValue,
                      firstname: jsonItem["first_name"].stringValue,
@@ -365,11 +424,12 @@ class UserViewModel: ObservableObject {
         )
 
     }
-    func updateAvocat(id: String ,specialite:String, experience:Int) {
+    func updateAvocat(id: String ,specialite:String, experience:Int,location: String) {
         
          let parametres: [String: Any] = [
              "categorie": specialite,
              "experience": experience,
+             "location": location
              
          ]
          

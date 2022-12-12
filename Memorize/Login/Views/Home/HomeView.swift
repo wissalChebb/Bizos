@@ -75,7 +75,13 @@ struct HomeView: View {
                                     
                                     
                                     ForEach(0..<categorieViewModel.categories.count,id: \.self ) { item in
-                                        CategorieView(categorie: categorieViewModel.categories[item],size: 100)
+                                        NavigationLink(
+                                            destination: GetByCategorieView(categorie:categorieViewModel.categories[item].name),
+                                          label: {
+                                              CategorieView(categorie: categorieViewModel.categories[item],size: 100)
+                                              
+                                          })
+                                        
                                     }.padding(.trailing)
                                 }
                             }

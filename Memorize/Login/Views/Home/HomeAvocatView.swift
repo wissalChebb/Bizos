@@ -12,6 +12,7 @@ struct HomeAvocatView: View {
     @State var news : [News] = []
     @Binding var showMenu: Bool
     @State  var isSearch = false
+
     var user:User
     var body: some View {
         
@@ -138,7 +139,7 @@ struct HomeAvocatView_Previews: PreviewProvider {
 
 struct TagLineView1: View {
     @State private var isAvocat = false
-
+    @State  var location :String = ""
     var body: some View {
         
         HStack{
@@ -147,7 +148,7 @@ struct TagLineView1: View {
             + Text("\nSpecialist ! ").font(.custom("PlayfairDisplay-Bold", size: 30))
                 .foregroundColor(Color("Primary"))
             Spacer()
-            NavigationLink(destination: RegisterAvocatView(),isActive: $isAvocat){
+            NavigationLink(destination: RegisterAvocatView(Location: $location),isActive: $isAvocat){
                 Button(action: {
                     isAvocat = true
                     
