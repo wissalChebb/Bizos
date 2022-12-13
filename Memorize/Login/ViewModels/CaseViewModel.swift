@@ -15,6 +15,8 @@ import SwiftyJSON
 
 class CasesViewModel: ObservableObject{
     @Published   var cases : [Case] = []
+    @Published   var casesAvocat : [Case] = []
+    @Published   var casesUser : [Case] = []
     var name : String = ""
     var image : String = ""
     
@@ -50,6 +52,70 @@ class CasesViewModel: ObservableObject{
                     }
                     
                     complited(true,self.cases)
+                case let .failure(error):
+                    debugPrint(error)
+                complited(false,nil)
+                }
+            }
+        
+    }
+    func getCaseByAvocat(id : String, complited: @escaping(Bool, [Case]?) -> Void) {
+      
+        
+        AF.request("http://\(url)/Case/getCaseByAvocat/"+id , method: .get ,encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<500)
+            .validate(contentType: ["application/json"])
+            .responseData {
+                response in
+                switch response.result {
+                case .success:
+             
+                    
+                    self.casesAvocat=[]
+                    
+                    for singleJsonItem in JSON(response.data!){
+                      
+                        self.casesAvocat.append(self.makeItem(jsonItem:singleJsonItem.1))
+                    }
+                    print(self.casesAvocat)
+                    
+                    
+                    complited(true,self.casesAvocat)
+                case let .failure(error):
+                    debugPrint(error)
+                complited(false,nil)
+                }
+            }
+        
+    }
+    
+    func getCaseByNameUser(nameUser: String,lastName: String, complited: @escaping(Bool, [Case]?) -> Void) {
+        
+         let parametres: [String: Any] = [
+             "nameUser": nameUser,
+             "LastnameUser": lastName
+           
+         ]
+        
+        AF.request("http://\(url)/Case/getCaseByUser/" , method: .post ,parameters: parametres,encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<500)
+            .validate(contentType: ["application/json"])
+            .responseData {
+                response in
+                switch response.result {
+                case .success:
+             
+                    
+                    self.casesUser=[]
+                    
+                    for singleJsonItem in JSON(response.data!){
+                      
+                        self.casesUser.append(self.makeItem(jsonItem:singleJsonItem.1))
+                    }
+                    print(self.casesUser)
+                    
+                    
+                    complited(true,self.casesUser)
                 case let .failure(error):
                     debugPrint(error)
                 complited(false,nil)

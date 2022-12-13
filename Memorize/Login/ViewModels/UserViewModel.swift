@@ -5,6 +5,7 @@ import AlamofireImage
 import SDWebImageSwiftUI
 import Alamofire
 import SwiftyJSON
+import LocalAuthentication
 class UserViewModel: ObservableObject {
      var firstName : String = ""
     var specialite : String = ""
@@ -78,6 +79,8 @@ class UserViewModel: ObservableObject {
            })
            
        }
+    
+  
 
     func LogIn(email: String,password: String, complited: @escaping(User?)-> Void )
     
@@ -384,6 +387,9 @@ class UserViewModel: ObservableObject {
             }
         
     }
+    
+    
+    
     func getPackByAvocat(id : String, complited: @escaping(Bool, [Pack]?) -> Void) {
       
         
@@ -412,6 +418,8 @@ class UserViewModel: ObservableObject {
             }
         
     }
+    
+    
     func makeItem(jsonItem : JSON) -> User {
         return User (id: jsonItem["_id"].stringValue,
                      firstname: jsonItem["first_name"].stringValue,

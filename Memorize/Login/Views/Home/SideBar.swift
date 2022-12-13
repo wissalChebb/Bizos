@@ -13,7 +13,7 @@ struct SideBarClient: View {
     @ObservedObject var viewModel = UserViewModel()
   
     @State var   lastname:String = UserViewModel.currentUser?.lastName ?? ""
-    
+    @State var   email:String = UserViewModel.currentUser?.email ?? ""
     @Binding var showMenu : Bool
     @State var logout : Bool = false
     var body: some View {
@@ -111,11 +111,13 @@ struct SideBarClient: View {
             switch title
             {
             case "My case":
-                CaseView()
+                CaseUserView()
             case "My documents":
                 ScannerView()
             case "Signature":
                 SigniatureView()
+            case "change Password":
+                ChangePasswordView(email: $email)
             default:
                 Text("daadadz")
             }
@@ -141,7 +143,7 @@ struct SideBarAvocat: View {
     @State var firstName:String = UserViewModel.currentUser?.firstName ?? ""
     
     @ObservedObject var viewModel = UserViewModel()
-  
+    @State var   email:String = UserViewModel.currentUser?.email ?? ""
     @State var   lastname:String = UserViewModel.currentUser?.lastName ?? ""
     @Binding var showMenu : Bool
     var user : User
@@ -175,7 +177,10 @@ struct SideBarAvocat: View {
                     .padding(.leading)
                     .padding(.top , 45)
                     
-                    
+                    Divider()
+                    TabButton(title: "change Password", image: " ")
+                        .padding()
+                        .padding(.leading)
                    
                     VStack(alignment: .leading, spacing: 30) {
                        
@@ -194,15 +199,7 @@ struct SideBarAvocat: View {
                 HStack{
 
                     
-              NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true),isActive: $logout ){
-                  Button{
-                      UserViewModel.currentUser = nil
-                      logout=true
-                  }label: {
-                      Image(systemName: "rectangle.portrait.and.arrow.forward")
-                     
-                  }
-              }
+              
                   Spacer()
                   Button{}label: {
                       Image(systemName: "gearshape")
@@ -236,6 +233,9 @@ struct SideBarAvocat: View {
        
             case "Agenda":
                 agenda()
+                
+            case "change Password":
+                ChangePasswordView(email: $email)
             default:
                 Text("daadadz")
             }

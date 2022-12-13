@@ -1,4 +1,9 @@
 //
+//  CaseUserView.swift
+//  Memorize
+//
+//  Created by Apple Esprit on 13/12/2022.
+//
 //  CaseView.swift
 //  Memorize
 //
@@ -8,14 +13,14 @@
 
 import SwiftUI
 
-struct CaseView: View {
+struct CaseUserView: View {
     @State private var showNewPostView = false
     
     @ObservedObject  var caseViewModel = CasesViewModel()
     var body: some View {
         VStack{
             HStack{
-                TagLineViewCase()
+                TagLineViewCase0()
                 Spacer()
             }
             Spacer()
@@ -23,8 +28,8 @@ struct CaseView: View {
                 ScrollView{
                
                     VStack(spacing:20.0){
-                        ForEach(0..<caseViewModel.casesAvocat.count , id: \.self ) { item in
-                           ItemCase(casee: caseViewModel.casesAvocat[item])
+                        ForEach(0..<caseViewModel.casesUser.count , id: \.self ) { item in
+                           ItemCase0(casee: caseViewModel.casesUser[item])
                         }.padding(.trailing)
                         
                     }
@@ -32,7 +37,7 @@ struct CaseView: View {
                 }.frame(maxWidth: .infinity,maxHeight: .infinity)
                     .onAppear{
                         
-                        caseViewModel.getCaseByAvocat(id: (UserViewModel.currentUser?.id)!, complited: {(success , respnse)in
+                        caseViewModel.getCaseByNameUser(nameUser: UserViewModel.currentUser?.lastName ?? "", lastName:  UserViewModel.currentUser?.firstName ?? "", complited: {(success , respnse)in
                             if success{
                                 caseViewModel.casesAvocat = respnse!
                                 print("ahyaaaaa", caseViewModel.casesAvocat)
@@ -44,34 +49,13 @@ struct CaseView: View {
                     }
                 
             }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
-            ZStack {
-                Button{
-                                showNewPostView.toggle()
-                            }label: {
-                                Image("t")
-                                    .resizable()
-                                    .renderingMode(.template)
-                                    .frame(width: 40,height: 40)
-                                    .padding()
-                            }
-                            .background(Color(.gray))
-                            .foregroundColor(.white)
-                            .clipShape(Circle())
-                            .padding()
-                
-                           
-                
-                            
-                            .fullScreenCover(isPresented: $showNewPostView){
-                                AddCaseView()
-                        }
-            }
+       
             
         }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
     }
 }
 
-struct TagLineViewCase: View {
+struct TagLineViewCase0: View {
     @State private var isAvocat = false
     var body: some View {
         
@@ -85,7 +69,7 @@ struct TagLineViewCase: View {
         
     }
 }
-struct ItemCase:View{
+struct ItemCase0:View{
    
     var casee : Case
     var body: some View {
@@ -110,9 +94,9 @@ struct ItemCase:View{
         }
 }
 }
-struct CaseView_Previews: PreviewProvider {
+struct CaseUserView_Previews: PreviewProvider {
     var casee : Case
     static var previews: some View {
-        CaseView()
+        CaseUserView()
     }
 }

@@ -68,6 +68,8 @@
 		B0E519642947C8FD000EC275 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E5195F2947C8FD000EC275 /* Home.swift */; };
 		B0E519652947C8FD000EC275 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E519602947C8FD000EC275 /* SearchView.swift */; };
 		B0E519662947C8FD000EC275 /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E519612947C8FD000EC275 /* Loader.swift */; };
+		B0FE06A82948D538001B97F7 /* AddPackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FE06A72948D538001B97F7 /* AddPackView.swift */; };
+		B0FE06AA2948E19B001B97F7 /* CaseUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FE06A92948E19B001B97F7 /* CaseUserView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +131,8 @@
 		B0E5195F2947C8FD000EC275 /* Home.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		B0E519602947C8FD000EC275 /* SearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		B0E519612947C8FD000EC275 /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
+		B0FE06A72948D538001B97F7 /* AddPackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPackView.swift; sourceTree = "<group>"; };
+		B0FE06A92948E19B001B97F7 /* CaseUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaseUserView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 		72E6DEE02919B12300B2B644 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B0FE06A62948D51B001B97F7 /* Pack */,
 				B0B1413D2945176500A6B636 /* Map */,
 				B0B141382945123D00A6B636 /* Agenda */,
 				B0517A642944BFC7002E7911 /* scanner */,
@@ -169,7 +174,6 @@
 				B07970ED291EBD5C00E35121 /* utils */,
 				B0A56B6B2926F07E00A6B137 /* RegisterAvocatView.swift */,
 				B0A1D995291D695B0032C19D /* ProfileView.swift */,
-				14D05B48291DE0FF004D5448 /* ChosePackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -256,6 +260,7 @@
 			children = (
 				B09D4C1C29360FCE007F662C /* CaseView.swift */,
 				B09D4C1E2936B7D4007F662C /* AddCaseView.swift */,
+				B0FE06A92948E19B001B97F7 /* CaseUserView.swift */,
 			);
 			path = Case;
 			sourceTree = "<group>";
@@ -321,6 +326,15 @@
 				B0E519602947C8FD000EC275 /* SearchView.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		B0FE06A62948D51B001B97F7 /* Pack */ = {
+			isa = PBXGroup;
+			children = (
+				14D05B48291DE0FF004D5448 /* ChosePackView.swift */,
+				B0FE06A72948D538001B97F7 /* AddPackView.swift */,
+			);
+			path = Pack;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -418,6 +432,7 @@
 				B0B10D92293CF22900CCF476 /* BaseViewClient.swift in Sources */,
 				B0B1413A2945125100A6B636 /* Agenda.swift in Sources */,
 				B0E519652947C8FD000EC275 /* SearchView.swift in Sources */,
+				B0FE06A82948D538001B97F7 /* AddPackView.swift in Sources */,
 				B0A1D996291D695B0032C19D /* ProfileView.swift in Sources */,
 				B0B141372945120100A6B636 /* Task.swift in Sources */,
 				B0C4521B293FBCE20045B43E /* ViewSingIn.swift in Sources */,
@@ -459,6 +474,7 @@
 				B0A13177293163EF00DC690F /* CategorieModel.swift in Sources */,
 				B0A56B6C2926F07E00A6B137 /* RegisterAvocatView.swift in Sources */,
 				B0AB614629327A390051A892 /* CaseViewModel.swift in Sources */,
+				B0FE06AA2948E19B001B97F7 /* CaseUserView.swift in Sources */,
 				B029D7902947DBDC00391B1C /* GetByCategorieView.swift in Sources */,
 				B0B14135294511F000A6B636 /* DateValue.swift in Sources */,
 				B0C56D7D2922C3DE008CD804 /* ChangePasswordView.swift in Sources */,

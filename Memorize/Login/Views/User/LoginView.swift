@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import LocalAuthentication
 struct LoginView: View {
     
     @ObservedObject var viewModel = UserViewModel()
@@ -68,7 +68,43 @@ struct LoginView: View {
                     }
                     .frame(width:100, height: 50).foregroundColor(Color(uiColor: UIColor(red: 0.235, green: 0.247, blue: 0.306, alpha: 1))).background(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1))).cornerRadius(15).shadow(radius: 3)
                  
-                    
+                    NavigationLink(destination:ControlLogin() .navigationBarBackButtonHidden(true), isActive: $isLogin){
+                        Button("FaceId", action: {
+                            
+                           
+                                let context = LAContext()
+                                var error: NSError? = nil
+                              if        context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+                               let reason = "Identify yourself!"
+                               context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
+                                                      localizedReason: reason) {
+                                  success, authenticationError in
+                                   DispatchQueue.main.async {
+                                      guard success, error == nil else{
+                                      //Authentication failed, prompt an error message to the
+                                      //user
+                                     return
+                                   }
+                               //Authentication successful! Proceed to next app screen.
+                             isLogin = true
+                              }
+                             }
+                            } else {
+                                LoginView().alert(isPresented: $isLogin){
+                                    Alert(title: Text("Unvailable"),message: Text("face Id") ,dismissButton: nil)
+                                }
+                            //No biometrics available
+                            let alert = UIAlertController(title: "Unavailable", message: "FaceID Auth not available", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                            
+                            }
+                            
+                           
+                        }
+                        )
+                        
+                    }
+                   
                     Spacer()
                     NavigationLink(destination: ForgetView()){
                         Text("forget ")
@@ -133,7 +169,9 @@ struct LoginView: View {
             
         }.navigationBarBackButtonHidden(true)
         
+        
     }
+    
     
 }
 

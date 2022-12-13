@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ChosePackView: View {
     @ObservedObject  var packViewModel = PackViewModel()
+    @ObservedObject  var userViewModel = UserViewModel()
+    @State private var showNewPostView = false
     var body: some View {
         VStack{
             HStack{
@@ -19,12 +21,42 @@ struct ChosePackView: View {
             ZStack{
                 ScrollView{
                
-                    ForEach(0..<packViewModel.packs.count , id: \.self ) { item in
-                       PackItem(pack: packViewModel.packs[item])
+                    ForEach(0..<userViewModel.avocatPack.count , id: \.self ) { item in
+                        PackItem(pack: userViewModel.avocatPack[item])
                     }.padding(.trailing)
                     
                 }.frame(maxWidth: .infinity,maxHeight: .infinity)
+                Button{
+                                showNewPostView.toggle()
+                            }label: {
+                                Image("t")
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .frame(width: 40,height: 40)
+                                    .padding()
+                            }
+                            .background(Color("Rose"))
+                            .foregroundColor(.white)
+                            .clipShape(Circle())
+                            .padding()
+                          
+                            .fullScreenCover(isPresented: $showNewPostView){
+                                AddPackView()
+                        }
+                
             }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
+                .onAppear{
+                    
+                    userViewModel.getPackByAvocat(id: (UserViewModel.currentUser?.id)!, complited: {(success , respnse)in
+                        if success{
+                            userViewModel.avocatPack = respnse!
+                            print("ahyaaaaa",  userViewModel.avocatPack )
+                        }else {
+                            print("error cant connect ")
+                        }
+                        
+                    })
+                }
         }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
     }
 }
