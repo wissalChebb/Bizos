@@ -16,6 +16,8 @@ struct SideBarClient: View {
     @State var   email:String = UserViewModel.currentUser?.email ?? ""
     @Binding var showMenu : Bool
     @State var logout : Bool = false
+    @State var showingsetting : Bool = false
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
             VStack(alignment: .leading, spacing: 14){
@@ -86,10 +88,15 @@ struct SideBarClient: View {
                     }
                 }
                     Spacer()
-                    Button{}label: {
-                        Image(systemName: "gearshape")
-                        
-                    }
+                    Button{
+                                           self.showingsetting.toggle()
+                                       }label: {
+                                           Image(systemName: "gearshape")
+                                           
+                                       }.sheet(isPresented: $showingsetting)
+                                       {
+                                           SettingView()
+                                       }
                 }.padding([.horizontal,.top],15)
                     .foregroundColor(.primary)
              }
@@ -145,6 +152,7 @@ struct SideBarAvocat: View {
     @ObservedObject var viewModel = UserViewModel()
     @State var   email:String = UserViewModel.currentUser?.email ?? ""
     @State var   lastname:String = UserViewModel.currentUser?.lastName ?? ""
+    @State var showingsetting : Bool = false
     @Binding var showMenu : Bool
     var user : User
     var body: some View {
@@ -201,10 +209,15 @@ struct SideBarAvocat: View {
                     
               
                   Spacer()
-                  Button{}label: {
-                      Image(systemName: "gearshape")
-                      
-                  }
+                    Button{
+                                           self.showingsetting.toggle()
+                                       }label: {
+                                           Image(systemName: "gearshape")
+                                           
+                                       }.sheet(isPresented: $showingsetting)
+                                       {
+                                           SettingView()
+                                       }
                 }.padding([.horizontal,.top],15)
                     .foregroundColor(.primary)
              }

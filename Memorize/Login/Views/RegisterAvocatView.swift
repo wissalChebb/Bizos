@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RiveRuntime
 
 struct RegisterAvocatView: View {
     
@@ -28,12 +29,6 @@ struct RegisterAvocatView: View {
             
         
             VStack(alignment: .leading ,spacing: 40){
-          
-             
-                // Top View
-                Image("headerLogin")
-                    .overlay(
-                        
                         VStack {
                             Spacer()
                             Text("Became a Loyer").font(.title)
@@ -95,12 +90,11 @@ struct RegisterAvocatView: View {
                         }.padding([.leading,.trailing],27)
                         
                         
-                    )
+                    
               
                 
                 // Bottom View
-                Image("bottomLogin")
-                    .overlay (
+              
                         
                         HStack {
                             
@@ -121,12 +115,17 @@ struct RegisterAvocatView: View {
                             
                             
                         }.padding(50)
-                    )
+                    
             }
-            
-            .background(Color(uiColor: UIColor(red: 0.929, green: 0.929, blue: 0.929, alpha: 1)))
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .ignoresSafeArea()
+            .padding(40)
+            .padding(.top, 40)
+            .background(
+                RiveViewModel(fileName: "new_file").view()
+                    
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .ignoresSafeArea()
+                    .blur(radius: 30)
+            )
             
         }
     }

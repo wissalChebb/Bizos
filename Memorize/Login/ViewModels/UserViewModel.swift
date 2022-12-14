@@ -359,6 +359,7 @@ class UserViewModel: ObservableObject {
             }
         
     }
+
     func getAllAvoatCat(complited: @escaping(Bool, [User]?) -> Void) {
       
         
@@ -426,7 +427,8 @@ class UserViewModel: ObservableObject {
                      lastName:jsonItem["last_name"].stringValue,
                      specialite:  jsonItem["specialite"].stringValue,
                      experience:  jsonItem["experience"].intValue,
-                     image:    jsonItem["image"].stringValue
+                     image:    jsonItem["image"].stringValue,
+                     location: jsonItem["location"].stringValue
                     
                      
         )

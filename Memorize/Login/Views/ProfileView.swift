@@ -41,7 +41,11 @@ struct ProfileView: View {
                         VStack{}.frame(width: 350, height: 200,alignment:.center).background(.white).padding(.top,100).shadow(radius: 6)
                         //   .cornerRadius(20)
                         VStack{
-                            Image("wissal").resizable().frame(width: 100,height: 100).border(Color.white,width: 3.0).cornerRadius(50).padding(.top,5)
+                            AsyncImage(url: URL(string: "http://172.17.1.165:5000/img/"+avocat.image),
+                                       content:{ image in
+                                image  .resizable().frame(width: 100,height: 100).border(Color.white,width: 3.0).cornerRadius(50).padding(.top,5)
+                            },placeholder: { })
+                        
                             HStack{
                                 Text(avocat.firstName).bold().padding()
                                 Text(avocat.lastName).bold().padding()
@@ -49,14 +53,14 @@ struct ProfileView: View {
                             
                             HStack{
                                 Image(systemName: "location")
-                                Text("Tunisia")
+                                Text(avocat.localisation)
                             }
                         }.padding().frame(height: 300)
                         
                     }
                     
                     HStack{
-                        NavigationLink(destination: LoginView(),isActive: $showDis){
+                        NavigationLink(destination: ChatsSwiftUIView(),isActive: $showDis){
                             Button{
                                 showDis = true
                             }label: {
