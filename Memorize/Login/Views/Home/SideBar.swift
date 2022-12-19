@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SideBarClient: View {
     @State var firstName:String = UserViewModel.currentUser?.firstName ?? ""
-    
+    let url = path().url
     @ObservedObject var viewModel = UserViewModel()
   
     @State var   lastname:String = UserViewModel.currentUser?.lastName ?? ""
@@ -21,7 +21,7 @@ struct SideBarClient: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
             VStack(alignment: .leading, spacing: 14){
-                AsyncImage(url: URL(string: "http://172.17.1.18:5000/img/"+(UserViewModel.currentUser?.image ?? "image1.jpg")),
+                AsyncImage(url: URL(string: "http://\(url)/img/"+(UserViewModel.currentUser?.image ?? "image1.jpg")),
                     content:{ image in
                                    image
                         .resizable().aspectRatio(contentMode: .fill).frame(width: 65,height: 65).clipShape(Circle())
@@ -124,7 +124,7 @@ struct SideBarClient: View {
             case "Signature":
                 SigniatureView()
             case "change Password":
-                ChangePasswordView(email: $email)
+                ChangePasswordView1(email: $email)
             default:
                 Text("daadadz")
             }

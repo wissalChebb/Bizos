@@ -58,13 +58,14 @@ struct CaseView: View {
                             .foregroundColor(.white)
                             .clipShape(Circle())
                             .padding()
-                
+                            .sheet(isPresented: $showNewPostView)
+                            {
+                                AddCaseView()
+                            }
                            
                 
                             
-                            .fullScreenCover(isPresented: $showNewPostView){
-                                AddCaseView()
-                        }
+                           
             }
             
         }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))

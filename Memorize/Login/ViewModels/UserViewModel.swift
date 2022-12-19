@@ -371,7 +371,7 @@ class UserViewModel: ObservableObject {
                 switch response.result {
                 case .success:
              
-                    
+                    self.avocatsCat = []
                
                     for singleJsonItem in JSON(response.data!){
                       
@@ -402,7 +402,7 @@ class UserViewModel: ObservableObject {
                 switch response.result {
                 case .success:
              
-                    
+                    self.avocatPack = []
                
                     for singleJsonItem in JSON(response.data!){
                       

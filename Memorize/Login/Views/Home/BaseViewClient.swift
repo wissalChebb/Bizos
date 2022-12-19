@@ -34,7 +34,7 @@ struct BaseViewClient: View {
                             }
                        
                    
-                      Text("interface Message ")
+                    ChatsSwiftUIView()
                             
                             .tabItem {
                                 Label("Messagerie", systemImage: "message").foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import RiveRuntime
 struct AddCaseView: View {
     
     @State var   titre:String = ""
@@ -18,60 +18,74 @@ struct AddCaseView: View {
     @State private var r = false
     var body: some View {
         NavigationView{
-            ZStack{
-                Image("pac").resizable().ignoresSafeArea()
-                VStack{
-                    VStack{
-                        HStack{
-                            Text("Title :")
-                                .font(.callout)
-                                .bold()
-                                .padding()
-                            TextField("Enter Title...",text:$titre)
-                                .frame(width: 200)
-                                .padding()
-                                .background()
-                                .cornerRadius(20.0)
-                            
-                        }
-                        HStack{
-                            Text("Name User")
-                                .font(.callout)
-                                .bold()
-                                .padding()
-                            TextField("Enter user name...",text:$name)
-                                .frame(width: 200)
-                                .padding()
-                                .background()
-                                .cornerRadius(20.0)
-                            
-                        }
-                        HStack{
-                            Text("Last Name User :")
-                                .font(.callout)
-                                .bold()
-                                .padding()
-                            TextField("Enter user Last name...",text:$lastname)
-                                .frame(width: 200)
-                                .padding()
-                                .background()
-                                .cornerRadius(20.0)
-                            
-                        }
+                    VStack(alignment: .center, spacing: 10){
                         Spacer()
-                        HStack{
-                            Text("Description")
-                                .font(.callout)
-                                .bold()
-                                .padding()
+                        
                             
+                            Section(header: Text(""))
+                            {
+                                HStack{
+                                    ZStack{
+                                        
+                                        RoundedRectangle(cornerRadius: 8,style: .continuous).fill(Color.gray)
+                                        Image(systemName: "list.bullet.clipboard.fill").foregroundColor(Color.white)
+                                    }
+                                    .frame(width: 36,height: 36,alignment: .center)
+                                    Text("Title :").foregroundColor(Color.black)
+                                    Spacer()
+                                    Spacer()
+                                    TextField("Enter Title...",text:$titre)
+                                }.padding(.horizontal,10)
+                                HStack{
+                                    ZStack{
+                                        
+                                        RoundedRectangle(cornerRadius: 8,style: .continuous).fill(Color.gray)
+                                        Image(systemName: "person.fill").foregroundColor(Color.white)
+                                    }
+                                    .frame(width: 36,height: 36,alignment: .center)
+                                    Text("User Name :").foregroundColor(Color.black)
+                                    Spacer()
+                                    Spacer()
+                                    TextField("Enter user name...",text:$name)
+                                }.padding(.horizontal,10)
+                                HStack{
+                                    ZStack{
+                                        
+                                        RoundedRectangle(cornerRadius: 8,style: .continuous).fill(Color.gray)
+                                        Image(systemName: "shared.with.you").foregroundColor(Color.white)
+                                    }
+                                    .frame(width: 36,height: 36,alignment: .center)
+                                    Text("Last Name User :").foregroundColor(Color.black)
+                                    Spacer()
+                                    Spacer()
+                                    TextField("Enter user Last name...",text:$lastname)
+                                }.padding(.horizontal,10)
+                                HStack{
+                                    ZStack{
+                                        
+                                        RoundedRectangle(cornerRadius: 8,style: .continuous).fill(Color.gray)
+                                        Image(systemName: "paragraphsign").foregroundColor(Color.white)
+                                    }
+                                    .frame(width: 36,height: 36,alignment: .center)
+                                    Text("Description :").foregroundColor(Color.black)
+                                    Spacer()
+                                    
+                                    TextEditor(text:$description)
+                                        .frame(width: 190,height: 100).opacity(description.isEmpty ? 0.25 : 0.75)
+                                        
+                                }.padding(.horizontal,10)
+                               
+                            }.padding(.horizontal,10)
                             
-                            
-                            TextEditor(text:$description).frame(width: 200,height: 75)
-                        }
+                        
+                      
+                        
+                        
+                        
+                        Spacer()
                         
                         NavigationLink(destination: CaseView(), isActive: $r ){
-                            Button("Register", action: {
+                            Button("Add", action: {
                                 viewModel.addCase(casee: Case(traite: false, description: description, title: titre, name: name, prenom: lastname))
                                 r = true
                                 
@@ -79,22 +93,24 @@ struct AddCaseView: View {
                                 
                                 
                             })
-                            .foregroundColor(.black)
-                            .frame(width: 100, height: 40)
-                            .border(.black,width: 2.0)
-                            .padding(20)
-                            
+                            .frame(width:100, height: 50).foregroundColor(Color(uiColor: UIColor(red: 0.235, green: 0.247, blue: 0.306, alpha: 1))).background(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1))).cornerRadius(15).shadow(radius: 3)
                         }
+                        Spacer()
                         
                         
                         
                         
                         
-                        
-                    }.frame(width: 400,height: 450).cornerRadius(40).ignoresSafeArea()
+                    }.background(
+                        RiveViewModel(fileName: "new_file").view()
+                            
+                            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                            .ignoresSafeArea()
+                            .blur(radius: 30)
+                    )
                     
-                }
-            }
+                
+            
         }
     }
     

@@ -8,10 +8,12 @@ import SwiftUI
 
 struct SettingView: View {
     var body: some View {
+        
         NavigationView{
+            
             VStack(alignment: .center, spacing: 0)
             {
-                
+             
                 
                 Form{
                     
@@ -28,7 +30,7 @@ struct SettingView: View {
                 }
                 
                 
-                Text("Copyright All rights reserved. ").multilineTextAlignment(.center)
+                Text("Copyright © All rights reserved. ").multilineTextAlignment(.center)
                     .font(.footnote)
                     .padding(.top,6)
                     .padding(.bottom,8)
@@ -36,6 +38,7 @@ struct SettingView: View {
             }
             .navigationBarTitle("Setting",displayMode: .inline)
             .background(Color("Bg").ignoresSafeArea(.all))
+            
         }
     }
 }

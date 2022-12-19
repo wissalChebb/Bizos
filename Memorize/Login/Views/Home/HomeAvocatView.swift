@@ -12,7 +12,7 @@ struct HomeAvocatView: View {
     @State var news : [News] = []
     @Binding var showMenu: Bool
     @State  var isSearch = false
-
+    let url = path().url
     var user:User
     var body: some View {
         
@@ -36,7 +36,7 @@ struct HomeAvocatView: View {
                                     Button(action:{
                                         
                                     }) {
-                                        AsyncImage(url: URL(string: "http://172.17.2.217:5000/img/"+user.image),
+                                        AsyncImage(url: URL(string: "http://\(url)/img/"+user.image),
                                                                   content:{ image in
                                                            image  .resizable()
                                                 .aspectRatio( contentMode: .fill)
