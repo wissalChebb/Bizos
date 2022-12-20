@@ -133,13 +133,14 @@ class CasesViewModel: ObservableObject{
 
     }
     
-    func addCase(casee: Case) {
+    func addCase(casee: Case,idavocat: String) {
  
         let parametres: [String: Any] = [
             "nameUser": casee.name,
             "LastNameUser": casee.prenom,
             "description": casee.description,
-            "title": casee.title
+            "title": casee.title,
+            "idAvocat": idavocat
             
         ]
         AF.request("http://\(url)/Case/add" , method: .post,parameters:parametres ,encoding: JSONEncoding.default)

@@ -16,6 +16,7 @@ struct RegisterAvocatView: View {
     @State var selectedImage: UIImage?
     @State var showImagePicker : Bool = false
     @State var selectedItem = "" // 2
+    @State var categorie = ["Civil Right","Criminal Law & Criminal Procedure", "Commercial And Business Law", "Social Right"]
     @State var annee = ["0","1", "2", "3", "5"] // 1
     @State var SelectedItem = "0" // 2
     @State var experience = ""
@@ -32,7 +33,15 @@ struct RegisterAvocatView: View {
                         VStack {
                             Spacer()
                             Text("Became a Loyer").font(.title)
-                            
+                            HStack{
+                                NavigationLink(destination:   Home().navigationBarBackButtonHidden(true), isActive: $map)
+                                {
+                                Button {
+                                  map = true
+                                } label: {
+                                    Text("localisation :")
+                                }   }
+                            }
                             HStack{
                             Text("Experience:")
                                     .font(.title3)
@@ -48,21 +57,13 @@ struct RegisterAvocatView: View {
                                     .font(.title3)
                                     .bold()
                                 Picker("Pick a language", selection: $selectedItem) { // 3
-                                    ForEach(0..<categorieViewModel.categories.count,id: \.self ) { item in
-                                        Text(categorieViewModel.categories[item].name)
-                                    }.padding(.trailing)
+                                    ForEach(categorie, id: \.self) { item in // 4
+                                        Text(item) // 5
+                                    }
                                 }.pickerStyle(.inline)
                                 
                             }
-                            HStack{
-                                NavigationLink(destination:   Home().navigationBarBackButtonHidden(true), isActive: $map)
-                                {
-                                Button {
-                                  map = true
-                                } label: {
-                                    Text("localisation :")
-                                }   }
-                            }
+                           
                             
                            
                             Button{
@@ -101,12 +102,12 @@ struct RegisterAvocatView: View {
                             Spacer()
                             NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true),isActive: $logout ){
                                 Button("Register", action: {
-                                    UserViewModel.currentUser?.specialite = selectedItem
+                                    
                                     UserViewModel.currentUser?.experience = Int(SelectedItem) ?? 0
-                                    viewModel.updateAvocat(id: UserViewModel.currentUser?.id ?? "" , specialite: selectedItem, experience: UserViewModel.currentUser?.experience ?? 0,location: Location)
+                                  
+                                    viewModel.updateAvocat(id: UserViewModel.currentUser?.id ?? "" , specialite:  selectedItem, experience: UserViewModel.currentUser?.experience ?? 0,location: Location)
                                     UserViewModel.currentUser = nil
-
-                                    logout = true
+                                    logout=true
                                 })
                                 .frame(width:100, height: 50).foregroundColor(Color(uiColor: UIColor(red: 0.235, green: 0.247, blue: 0.306, alpha: 1))).background(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1))).cornerRadius(15).shadow(radius: 3).padding()
                                 

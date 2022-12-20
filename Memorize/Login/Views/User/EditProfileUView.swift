@@ -44,7 +44,7 @@ struct EditProfileUView: View {
                             ZStack{
                                 ZStack
                                 {
-                                    //RoundedRectangle(cornerRadius:15).stroke(.gray).background(.green.opacity(0.06)).cornerRadius(15)
+                                    
                                     
                                     ZStack{
                                         
@@ -65,7 +65,7 @@ struct EditProfileUView: View {
                                             
                                         }else{
                                             
-                                            AsyncImage(url: URL(string: "http://172.17.1.190:5000/img/"+(UserViewModel.currentUser?.image ?? "image1.jpg")),
+                                            AsyncImage(url: URL(string: "http://172.17.1.246:5000/img/"+(UserViewModel.currentUser?.image ?? "image1.jpg")),
                                                        content:{ image in
                                                 image
                                                     .resizable()
@@ -87,7 +87,7 @@ struct EditProfileUView: View {
                                         }
                                         
                                         VStack {
-                                            Spacer()
+                                            
                                             HStack {
                                                 
                                                 Image(systemName: "camera").font(.system(size: 40, weight:.medium)).foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1))).onTapGesture {
@@ -97,7 +97,7 @@ struct EditProfileUView: View {
                                             }
                                         }
                                     }.foregroundColor(Color(uiColor: UIColor(red: 1, green: 0.85, blue: 0.77, alpha: 1)))
-                                        .padding([.leading,.trailing],27.5)
+                                       
                                 }
                                 .onChange(of: self.selectedImage)
                                 { newVal in
@@ -149,13 +149,14 @@ struct EditProfileUView: View {
                                     .tint(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1)))
                                 
                                 
-                            } .position(x:350,y: -50)
+                            }.position(x:350,y: -50)
                         }
                         
                     }.padding(.top,55)
+                   
+
                     
-                    
-                    ScrollView{
+                    VStack{
                         ZStack{
                             RoundedRectangle(cornerRadius:15).stroke(Color.gray).background(Color.black.opacity(0.1)).cornerRadius(15)
                             ZStack(alignment: .leading){
@@ -187,23 +188,31 @@ struct EditProfileUView: View {
                             }
                             
                         }.frame(width:350, height: 50)
-                        NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true),isActive: $logout ){
-                            Button{
-                                UserViewModel.currentUser = nil
-                                logout=true
-                            }label: {
-                                Image(systemName: "rectangle.portrait.and.arrow.forward").resizable().frame(width: 50, height: 50).offset(x:0,y: 100)
+                        
+                        
+                        
+                        
+                        NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true),isActive: $logout)
+                        {
+                        Button{
+                            UserViewModel.currentUser = nil
+                            logout=true
+                        }label: {
+                            Image(systemName: "rectangle.portrait.and.arrow.forward")
                                 
-                            }
+                                .font(.title)
+                                .tint(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1)))
+                            
+                            
+                            
                         }
+                    }.offset(x:100,y: 100)
                         
                         
                         
                         
-                        
-                        
-                        
-                    }
+                    }.offset(y:-170)
+                    Spacer()
                     
                 }
                 
@@ -218,18 +227,12 @@ struct EditProfileUView: View {
             
             
             
-        }}
-        
-        
-        func isChangedPwd(currentPwd:String,pwd:String)  {
-            if !(currentPwd == pwd){
-                activateSecurePwd = true
-                
-            }else{
-                activateSecurePwd = false
-                
-            }
         }
+        
+    }
+        
+        
+        
     }
     
 

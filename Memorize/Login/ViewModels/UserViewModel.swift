@@ -434,7 +434,7 @@ class UserViewModel: ObservableObject {
         )
 
     }
-    func updateAvocat(id: String ,specialite:String, experience:Int,location: String) {
+    func updateAvocat(id: String ,specialite: String, experience: Int,location: String) {
         
          let parametres: [String: Any] = [
              "categorie": specialite,

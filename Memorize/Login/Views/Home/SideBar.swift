@@ -17,7 +17,7 @@ struct SideBarClient: View {
     @Binding var showMenu : Bool
     @State var logout : Bool = false
     @State var showingsetting : Bool = false
-    
+    @State var show : Bool = false
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
             VStack(alignment: .leading, spacing: 14){
@@ -55,10 +55,19 @@ struct SideBarClient: View {
                         
                           
                     Divider()
-                    TabButton(title: "change Password", image: " ")
-                        .padding()
-                        .padding(.leading)
-                    
+                    Button{
+                                           self.show.toggle()
+                                       }label: {
+                                           Text("change Password")
+                                               .foregroundColor(.primary)
+                                               
+                                              
+                                           
+                                       }.sheet(isPresented: $show)
+                                       {
+                                           ChangePasswordView(email: $email)
+                                       }
+                 
                     VStack(alignment: .leading, spacing: 30) {
                        
                        
@@ -123,8 +132,9 @@ struct SideBarClient: View {
                 ScannerView()
             case "Signature":
                 SigniatureView()
-            case "change Password":
-                ChangePasswordView1(email: $email)
+            
+               
+            
             default:
                 Text("daadadz")
             }
@@ -247,8 +257,7 @@ struct SideBarAvocat: View {
             case "Agenda":
                 agenda()
                 
-            case "change Password":
-                ChangePasswordView(email: $email)
+          
             default:
                 Text("daadadz")
             }

@@ -26,27 +26,7 @@ struct ChosePackView: View {
                     }.padding(.trailing)
                     
                 }.frame(maxWidth: .infinity,maxHeight: .infinity)
-                Button{
-                                showNewPostView.toggle()
-                            }label: {
-                                Image("t")
-                                    .resizable()
-                                    .renderingMode(.template)
-                                    .frame(width: 40,height: 40)
-                                    .padding()
-                            }
-                            .background(Color(.gray))
-                            .foregroundColor(.white)
-                            .clipShape(Circle())
-                            .padding()
-                            .sheet(isPresented: $showNewPostView)
-                            {
-                                AddPackView()
-                            }
-                           
-                          
-                          
-                
+               
             }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
                 .onAppear{
                     
@@ -61,6 +41,26 @@ struct ChosePackView: View {
                     })
                 }
         }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
+        ZStack{
+            Button{
+                showNewPostView.toggle()
+            }label: {
+                Image("t")
+                    .resizable()
+                    .renderingMode(.template)
+                    .frame(width: 40,height: 40)
+                    .padding()
+            }
+            .background(Color(.gray))
+            .foregroundColor(.white)
+            .clipShape(Circle())
+            .padding()
+            .sheet(isPresented: $showNewPostView)
+            {
+                AddPackView()
+            }
+            
+        }
     }
 }
 

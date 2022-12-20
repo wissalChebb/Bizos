@@ -44,7 +44,6 @@ struct CaseView: View {
                     }
                 
             }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
-            ZStack {
                 Button{
                                 showNewPostView.toggle()
                             }label: {
@@ -66,7 +65,7 @@ struct CaseView: View {
                 
                             
                            
-            }
+           
             
         }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
     }
