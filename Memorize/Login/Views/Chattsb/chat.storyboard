@@ -37,7 +37,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ZNO-uJ-l7f"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o7i-dx-qq0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o7i-dx-qq0" userLabel="First Responder" customClass="UIResponder" colorLabel="IBBuiltInLabel-Purple" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7051" y="-3560"/>
         </scene>

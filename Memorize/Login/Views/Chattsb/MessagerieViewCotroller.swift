@@ -68,7 +68,8 @@ class MessagerieView: UITableViewController,ModalTransitionListener {
 //        }), for: .touchUpInside)
         
     //    imageProfile.roundedGrayPhoto()
-        
+        imageProfile.load(url:    URL(string: "http://172.17.1.186:5000/img/"+receiver.image )!)
+       
 //        if (recepteur.idPhoto! != ""){
 //            ImageLoader.shared.loadImage(
 //                identifier: recepteur.idPhoto!,

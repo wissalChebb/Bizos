@@ -1,9 +1,3 @@
-//
-//  CUserTableViewController.swift
-//  Eduapp
-//
-//  Created by Hamza-Arij on 12/12/2022.
-//
 
 import UIKit
 
@@ -30,19 +24,13 @@ class CUserTableViewController: UITableViewController {
       //  labelName.text = utilisateur.lastName
         labelUsername.text = "@" + utilisateur.lastName+utilisateur.firstName
         
-        
-//        ImageLoader.shared.loadImage(
-//            identifier: utilisateur.idPhoto!,
-//            url: Consts.URL_IMAGE + utilisateur.idPhoto!,
-//            completion: { [] image in
-//                imageProfile.image = image
-//            })
-        
+    
+        imageProfile.load(url:	URL(string: "http://172.17.1.186:5000/img/"+utilisateur.image )!)
         return cell!
     }
-//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        200
-//    }
+  override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        200
+    }
    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return utilisateurs.count
     }
@@ -75,6 +63,7 @@ class CUserTableViewController: UITableViewController {
     func initialize() {
         UserViewModel().getAllAvoat() { success, utilisateursfromRep in
             if success {
+                self.utilisateurs = []
                 self.utilisateurs = utilisateursfromRep!
                 print(self.utilisateurs)
                 self.tableView.reloadData()
@@ -83,3 +72,16 @@ class CUserTableViewController: UITableViewController {
             }
         }
     }}
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+}

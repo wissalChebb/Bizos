@@ -58,14 +58,18 @@ struct SideBarClient: View {
                     Button{
                                            self.show.toggle()
                                        }label: {
-                                           Text("change Password")
-                                               .foregroundColor(.primary)
-                                               
+                                           HStack(spacing: 14){
+                                               Image(systemName: "wallet.pass")
+                                               Text("Change Password")
+                                           }
+                                           .foregroundColor(.primary)
+                                           .frame(maxWidth: .infinity,alignment: .leading).padding()
+                                           .padding(.leading)
                                               
                                            
                                        }.sheet(isPresented: $show)
                                        {
-                                           ChangePasswordView(email: $email)
+                                           ChangePasswordView1(email: $email)
                                        }
                  
                     VStack(alignment: .leading, spacing: 30) {
@@ -164,6 +168,7 @@ struct SideBarAvocat: View {
     @State var   lastname:String = UserViewModel.currentUser?.lastName ?? ""
     @State var showingsetting : Bool = false
     @Binding var showMenu : Bool
+    @State var show : Bool = false
     var user : User
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
@@ -196,9 +201,22 @@ struct SideBarAvocat: View {
                     .padding(.top , 45)
                     
                     Divider()
-                    TabButton(title: "change Password", image: " ")
-                        .padding()
-                        .padding(.leading)
+                    Button{
+                                           self.show.toggle()
+                                       }label: {
+                                           HStack(spacing: 14){
+                                               Image(systemName: "wallet.pass")
+                                               Text("Change Password")
+                                           }
+                                           .foregroundColor(.primary)
+                                           .frame(maxWidth: .infinity,alignment: .leading).padding()
+                                           .padding(.leading)
+                                              
+                                           
+                                       }.sheet(isPresented: $show)
+                                       {
+                                           ChangePasswordView1(email: $email)
+                                       }
                    
                     VStack(alignment: .leading, spacing: 30) {
                        

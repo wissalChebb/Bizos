@@ -34,13 +34,22 @@ struct RegisterAvocatView: View {
                             Spacer()
                             Text("Became a Loyer").font(.title)
                             HStack{
+                                
                                 NavigationLink(destination:   Home().navigationBarBackButtonHidden(true), isActive: $map)
                                 {
                                 Button {
                                   map = true
                                 } label: {
-                                    Text("localisation :")
-                                }   }
+                                    
+                                    HStack{
+                                        Text("localisation :") .font(.title3)
+                                            .bold()
+                                        Text(Location)
+                                    }
+                                   
+                                }
+                                    
+                                }
                             }
                             HStack{
                             Text("Experience:")

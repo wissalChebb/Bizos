@@ -54,12 +54,11 @@ struct ChangePasswordView1: View {
           
                     )
                 HStack{
-                    NavigationLink(destination: LoginView(), isActive: $isShowingLoginR){
+                  
                         Button("confirm", action: {
-                           
                                 print(email);
                             viewModel.changePassword(email: email , newPassword: viewModel.newPassword)
-                                isShowingLoginR = true
+                                
                             
                             
                         })
@@ -71,8 +70,8 @@ struct ChangePasswordView1: View {
                         
                         
                         
-                        Spacer()
-                    }
+                   
+                  
                 }
                 // Bottom View
                 Image("bottomLogin")
