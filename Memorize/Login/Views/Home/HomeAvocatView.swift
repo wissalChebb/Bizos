@@ -93,7 +93,7 @@ struct HomeAvocatView: View {
                                 
                                 
                             }.padding(.horizontal)
-                        }.onAppear()
+                        }
                        
                        
                     }

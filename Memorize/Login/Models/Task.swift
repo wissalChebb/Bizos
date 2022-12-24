@@ -27,16 +27,4 @@ func getSampleDate(offset: Int)->Date{
     let date = calender.date(byAdding: .day, value: offset, to: Date())
     return date ?? Date()
 }
-var tasks:[TaskMetaData] = [
-TaskMetaData(task: [
-    Task(title: "talk to ijuston"),
-    Task(title: "iPhne 13 great Design change"),
-    Task(title: "Nothing much workout!!"),
 
-], taskDate: getSampleDate(offset: 3),idUser: "",idAvocat: ""),
-
-
-TaskMetaData(task: [
-    Task(title: "talk to ijuston")],
-         taskDate: getSampleDate(offset: -8),idUser: "",idAvocat: "")
-]
