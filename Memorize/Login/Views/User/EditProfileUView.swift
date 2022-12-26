@@ -195,8 +195,10 @@ struct EditProfileUView: View {
                         NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true),isActive: $logout)
                         {
                         Button{
+                            UITabBar.appearance().isHidden = true
                             UserViewModel.currentUser = nil
                             logout=true
+                            
                         }label: {
                             Image(systemName: "rectangle.portrait.and.arrow.forward")
                                 

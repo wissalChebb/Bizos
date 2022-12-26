@@ -110,6 +110,16 @@ struct CustomDatePicker: View {
             newvalue in
             // update
             currentDate = getCurrentMonth()
+        }.onAppear{
+            rd.getRendezVousByAvocat(idAvocat: IdUser,complited: {(success , respnse)in
+                if success{
+                    let rd = respnse!
+                    print("hethouma",rd)
+                }else {
+                    print("error cant connect ")
+                }
+                
+            })
         }
      
         

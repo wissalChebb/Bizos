@@ -12,23 +12,13 @@ class RendezVousViewModel: ObservableObject{
     let url = path().url
     @Published   var rd : [TaskMetaData] = []
     init() {
-        getRendezVousByAvocat(idAvocat: (UserViewModel.currentUser?.id)!,complited: {(success , respnse)in
-            if success{
-                let rd = respnse!
-                print("hethouma",rd)
-            }else {
-                print("error cant connect ")
-            }
-            
-        })
+       
     }
     
     func getRendezVousByAvocat(idAvocat : String,complited: @escaping(Bool, [TaskMetaData]?) -> Void) {
       
-        let parametres = [
-            "idAvocat": idAvocat
-        ] as [String : Any]
-        AF.request("http://\(url)/getbyAvocat" , method: .post, parameters: parametres ,encoding: JSONEncoding.default)
+        
+        AF.request("http://\(url)/getbyAvocat/\(idAvocat)" , method: .post ,encoding: JSONEncoding.default)
             .validate(statusCode: 200..<500)
             .validate(contentType: ["application/json"])
             .responseData {
@@ -53,7 +43,7 @@ class RendezVousViewModel: ObservableObject{
        
         return TaskMetaData(task: [
             Task(title: "RendezVous !!")],
-                 taskDate: DateUtils.formatFromString(string: jsonItem["Date"].stringValue),idUser: jsonItem["idUser"].stringValue,idAvocat: jsonItem["idAvocat"].stringValue)
+                 taskDate: DateUtils.formatFromString(string: jsonItem["date"].stringValue),idUser: jsonItem["idUser"].stringValue,idAvocat: jsonItem["idAvocat"].stringValue)
         
         
         

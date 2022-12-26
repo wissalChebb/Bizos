@@ -7,7 +7,7 @@
 
 
 import Foundation
-struct RendezVous {
+struct RendezVous : Decodable{
     var idUser: String
     var idAvocat: String
     var date : Date

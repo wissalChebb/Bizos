@@ -15,7 +15,9 @@ struct LoginView: View {
     
     var currentUser: User?
     @State private var isShowingRegisterView = false
+   
     var body: some View {
+        
         NavigationView{
             VStack(alignment: .leading ,spacing: 40){
                 // Top View

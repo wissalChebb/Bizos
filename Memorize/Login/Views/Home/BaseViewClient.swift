@@ -22,7 +22,7 @@ struct BaseViewClient: View {
     }
     var body: some View {
         let sideBarWidth = getRect().width - 90
-        NavigationView{
+        VStack{
             HStack(spacing: 0){
                 SideBarClient(showMenu: $showMenu)
                 VStack{

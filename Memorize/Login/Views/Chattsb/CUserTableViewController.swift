@@ -25,7 +25,7 @@ class CUserTableViewController: UITableViewController {
         labelUsername.text = "@" + utilisateur.lastName+utilisateur.firstName
         
     
-        imageProfile.load(url:	URL(string: "http://172.17.0.177/img/"+utilisateur.image )!)
+        imageProfile.load(url:	URL(string: "http://172.17.0.146/img/"+utilisateur.image )!)
         return cell!
     }
   override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
