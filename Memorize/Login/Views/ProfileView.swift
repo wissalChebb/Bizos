@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct ProfileView: View {
     @State var showPopup = false
     @State var showDis = false
+    @State var showWeb = false
     @ObservedObject  var packViewModel = PackViewModel()
     @ObservedObject  var userViewModel = UserViewModel()
     @State var avocat : User
@@ -82,7 +84,23 @@ struct ProfileView: View {
                         ScrollView{
                             
                                 ForEach(0..<userViewModel.avocatPack.count , id: \.self ) { item in
-                                    PackItem(pack: userViewModel.avocatPack[item])
+                                    Button {
+                                        userViewModel.pay(user: UserViewModel.currentUser!, prix: userViewModel.avocatPack[item].prix)
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                                            showWeb.toggle()
+                                        }
+                                            
+                                        
+                                        
+                                    } label: {
+                                        PackItem(pack: userViewModel.avocatPack[item])
+                                    }.sheet(isPresented: $showWeb)
+                                    {
+                                        WebView(url: URL(string: userViewModel.payUrl)!)
+                                    }
+                                    
+
+                                    
                                 }.padding(.trailing)
                         }.frame(maxWidth: .infinity,maxHeight: .infinity)
                         

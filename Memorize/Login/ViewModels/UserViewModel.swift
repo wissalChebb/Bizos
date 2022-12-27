@@ -16,6 +16,8 @@ class UserViewModel: ObservableObject {
     var validateCode : String = ""
     var newPassword : String = ""
     var confirmpass : String = ""
+    @Published   var payUrl : String = ""
+    @Published   var payementRef : String = ""
     @Published   var avocats : [User] = []
     @Published   var avocatsCat : [User] = []
     @Published   var packs : [Pack] = []
@@ -166,7 +168,37 @@ class UserViewModel: ObservableObject {
               }
     
       }
-    
+    func pay(user: User,prix: Float) {
+        print(user)
+        let parametres: [String: Any] = [
+            "first_name": user.firstName,
+            "last_name": user.lastName,
+            "email": user.email,
+            "prix": prix,
+            
+        ]
+        AF.request("http://\(url)/user/pay" , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<500)
+            .validate(contentType: ["application/json"])
+            .responseJSON {
+                response in
+                switch response.result {
+                case .success(let JSON):
+                    let response = JSON as! NSDictionary
+                    let userResponse = response.object(forKey: "data") as! NSDictionary
+                    let payUrl = userResponse.object(forKey: "payUrl") as? String ?? ""
+                    let payementRef = userResponse.object(forKey: "payementRef") as? String ?? ""
+                    print("success  \(payUrl)")
+                    self.payUrl = payUrl
+                    self.payementRef = payementRef
+                    print("success")
+                case let .failure(error):
+                    print(error)
+                }
+                
+            }
+        
+    }
     func SignUp(user: User) {
         print(user)
         let parametres: [String: Any] = [
