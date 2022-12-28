@@ -18,7 +18,7 @@ class RendezVousViewModel: ObservableObject{
     func getRendezVousByAvocat(idAvocat : String,complited: @escaping(Bool, [TaskMetaData]?) -> Void) {
       
         
-        AF.request("http://\(url)/getbyAvocat/\(idAvocat)" , method: .post ,encoding: JSONEncoding.default)
+        AF.request("http://\(url)/RendezVous/getbyAvocat/\(idAvocat)" , method: .post ,encoding: JSONEncoding.default)
             .validate(statusCode: 200..<500)
             .validate(contentType: ["application/json"])
             .responseData {
@@ -43,7 +43,7 @@ class RendezVousViewModel: ObservableObject{
        
         return TaskMetaData(task: [
             Task(title: "RendezVous !!")],
-                 taskDate: DateUtils.formatFromString(string: jsonItem["date"].stringValue),idUser: jsonItem["idUser"].stringValue,idAvocat: jsonItem["idAvocat"].stringValue)
+                 taskDate: DateUtils.formatFromString(string: jsonItem["Date"].stringValue),idUser: jsonItem["idUser"].stringValue,idAvocat: jsonItem["idAvocat"].stringValue)
         
         
         
