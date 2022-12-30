@@ -22,6 +22,12 @@ class UserViewModel: ObservableObject {
     @Published   var avocatsCat : [User] = []
     @Published   var packs : [Pack] = []
     @Published   var avocatPack : [Pack] = []
+    
+    var errorTitleFaceIDPopUp = "Error"
+    var errorMessageFaceIDPopUp = "Face ID/Touch ID may not be configured"
+    var errorOkActionFaceIDPopUp = "ok"
+    @Published var errorPopUpIsDisplayed = false
+    
     init() {
         getAllAvoat(complited: {(success , respnse)in
             if success{
@@ -114,7 +120,7 @@ class UserViewModel: ObservableObject {
                     currentUser.id = id
                     currentUser.image = image
                     Self.currentUser = currentUser
-                  
+                    UserManager.shared.saveUser(user: currentUser)
                     print("success \(JSON )")
                    
                     complited(currentUser)
@@ -132,8 +138,8 @@ class UserViewModel: ObservableObject {
           
           AF.request("http://\(url)/auth/google" , method: .get ,encoding: JSONEncoding.default)
               .validate(statusCode: 200..<300)
-              .validate(contentType: ["application/json"])
-              .responseJSON {
+              .validate(contentType: ["text/html"])
+              .response {
                   (response) in
                   switch response.result {
                       
@@ -163,6 +169,7 @@ class UserViewModel: ObservableObject {
                       complited(currentUser)
                   case .failure(let error):
                       print("request failed \(error)")
+                      print("request failed \(error.errorDescription)")
                       complited(nil)
                   }
               }
@@ -523,5 +530,27 @@ class UserViewModel: ObservableObject {
                     prix: jsonItem["prix"].floatValue,
                     description: jsonItem["description"].stringValue)
 
+    }
+    
+    private let biometricIDAuth = BiometricIDAuth()
+    
+    func faceIDLogin(completionSuccess: @escaping () -> Void, completionError: @escaping () -> Void) {
+        biometricIDAuth.canEvaluate { (canEvaluate, _, _) in
+            guard canEvaluate else {
+                errorPopUpIsDisplayed = true
+                completionError()
+                return
+            }
+            
+            biometricIDAuth.evaluate { [weak self] (success, error) in
+                guard success else {
+                    self?.errorPopUpIsDisplayed = true
+                    completionError()
+                    return
+                }
+                self?.errorPopUpIsDisplayed = false
+                completionSuccess()
+            }
+        }
     }
 }

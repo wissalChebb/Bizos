@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		064FA818295F4ED8002D8C03 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FA817295F4ED8002D8C03 /* UserManager.swift */; };
+		064FA81A295F4EF1002D8C03 /* BiometricIDAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FA819295F4EF1002D8C03 /* BiometricIDAuth.swift */; };
 		14D05B49291DE0FF004D5448 /* ChosePackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D05B48291DE0FF004D5448 /* ChosePackView.swift */; };
 		72E6DED62919733700B2B644 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E6DED52919733700B2B644 /* LoginView.swift */; };
 		72E6DEDA29198C4200B2B644 /* RegisterCView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E6DED929198C4200B2B644 /* RegisterCView.swift */; };
@@ -92,6 +94,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		064FA817295F4ED8002D8C03 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		064FA819295F4EF1002D8C03 /* BiometricIDAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricIDAuth.swift; sourceTree = "<group>"; };
 		14D05B48291DE0FF004D5448 /* ChosePackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChosePackView.swift; sourceTree = "<group>"; };
 		72E6DED52919733700B2B644 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		72E6DED929198C4200B2B644 /* RegisterCView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterCView.swift; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 				B0B10D93293CF6E500CCF476 /* PackViewModel.swift */,
 				B05F5B00293EA02300A86FB8 /* RendezVousViewModel.swift */,
 				B0C4523629401B860045B43E /* MessageMnager.swift */,
+				064FA817295F4ED8002D8C03 /* UserManager.swift */,
+				064FA819295F4EF1002D8C03 /* BiometricIDAuth.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -581,6 +587,7 @@
 				B0B1412F2944CC7000A6B636 /* ScanData.swift in Sources */,
 				B0B10D92293CF22900CCF476 /* BaseViewClient.swift in Sources */,
 				B0B1413A2945125100A6B636 /* Agenda.swift in Sources */,
+				064FA81A295F4EF1002D8C03 /* BiometricIDAuth.swift in Sources */,
 				B0E519652947C8FD000EC275 /* SearchView.swift in Sources */,
 				B0FE06A82948D538001B97F7 /* AddPackView.swift in Sources */,
 				B0A1D996291D695B0032C19D /* ProfileView.swift in Sources */,
@@ -626,6 +633,7 @@
 				B07970EC291EBD3300E35121 /* ImagePicker.swift in Sources */,
 				B0A131792931662200DC690F /* CategorieViewModel.swift in Sources */,
 				B0E519642947C8FD000EC275 /* Home.swift in Sources */,
+				064FA818295F4ED8002D8C03 /* UserManager.swift in Sources */,
 				B0B10D94293CF6E500CCF476 /* PackViewModel.swift in Sources */,
 				B0B10D9B293D28A200CCF476 /* PopupView.swift in Sources */,
 				B0C4523729401B860045B43E /* MessageMnager.swift in Sources */,

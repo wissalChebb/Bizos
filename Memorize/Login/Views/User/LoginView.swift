@@ -44,6 +44,32 @@ struct LoginView: View {
                                 .background()
                                 .cornerRadius(20.0)
                             
+                            Button("FaceID") {
+                                viewModel.faceIDLogin {
+                                    print("Login FaceID success")
+                                    let (email, password) =                      UserManager.shared.getUserData()
+                                    if email != nil && password != nil {
+                                        viewModel.LogIn(email: viewModel.email, password: viewModel.password,complited: {(user ) in
+                                            if let  _ = user {
+                                               
+                                                print("logged in ")
+                                                isLogin=true
+                                            }else{
+                                                print("not loged in ")
+                                                isLogin=false
+                                            }
+                                        })
+                                    }
+
+                                } completionError: {
+                                    print("Login FaceID Error")
+                                }
+
+                            }.alert(isPresented: $viewModel.errorPopUpIsDisplayed) {
+                                Alert(title: Text(viewModel.errorTitleFaceIDPopUp), message: Text(viewModel.errorMessageFaceIDPopUp), dismissButton: .default(Text(viewModel.errorOkActionFaceIDPopUp)))
+                            }
+
+                            
                         }.padding([.leading,.trailing],27.5)
                         
                         
@@ -72,8 +98,8 @@ struct LoginView: View {
                  
 //                    NavigationLink(destination:ControlLogin() .navigationBarBackButtonHidden(true), isActive: $isLogin){
 //                        Button("FaceId", action: {
-//                            
-//                           
+//
+//
 //                                let context = LAContext()
 //                                var error: NSError? = nil
 //                              if        context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
@@ -98,13 +124,13 @@ struct LoginView: View {
 //                            //No biometrics available
 //                            let alert = UIAlertController(title: "Unavailable", message: "FaceID Auth not available", preferredStyle: .alert)
 //                            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-//                            
+//
 //                            }
-//                            
-//                           
+//
+//
 //                        }
 //                        )
-//                        
+//
 //                    }
                    
                     Spacer()
@@ -126,9 +152,9 @@ struct LoginView: View {
                         HStack {
                             Button{
                                     
-                                
+                                UserAuthModel().signIn()
                                     
-                                    viewModel.LogInGoogle(complited: {(user ) in
+                                    /*viewModel.LogInGoogle(complited: {(user ) in
                                         if let  _ = user {
                                            
                                             print("logged in ")
@@ -137,7 +163,7 @@ struct LoginView: View {
                                             print("not loged in ")
                                             isLogin=false
                                         }
-                                    })
+                                    })*/
                                     
                                         }label: {
                                             Image("google")

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct SideBarClient: View {
     @State var firstName:String = UserViewModel.currentUser?.firstName ?? ""
@@ -71,7 +72,21 @@ struct SideBarClient: View {
                                        {
                                            ChangePasswordView1(email: $email)
                                        }
-                 
+                    Divider()
+                    Button{
+                        let twoSecondsFromNow = DispatchTime.now() + 0.2
+                        DispatchQueue.main.asyncAfter(deadline: twoSecondsFromNow) {
+                            SKStoreReviewController.requestReview()
+                        }
+                    }label: {
+                        HStack(spacing: 14){
+                            Image(systemName: "star.fill")
+                            Text("Review The app")
+                        }
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity,alignment: .leading).padding()
+                        .padding(.leading)
+                    }
                     VStack(alignment: .leading, spacing: 30) {
                        
                        
