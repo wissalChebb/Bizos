@@ -23,27 +23,17 @@ struct CaseView: View {
                 ScrollView{
                
                     VStack(spacing:20.0){
-                        ForEach(0..<caseViewModel.casesAvocat.count , id: \.self ) { item in
-                           ItemCase(casee: caseViewModel.casesAvocat[item])
+                        ForEach(0..<caseViewModel.cases.count , id: \.self ) { item in
+                           ItemCase(casee: caseViewModel.cases[item])
                         }.padding(.trailing)
                         
                     }
                     
                 }.frame(maxWidth: .infinity,maxHeight: .infinity)
-                    .onAppear{
-                        
-                        caseViewModel.getCaseByAvocat(id: (UserViewModel.currentUser?.id)!, complited: {(success , respnse)in
-                            if success{
-                                caseViewModel.casesAvocat = respnse!
-                                print("ahyaaaaa", caseViewModel.casesAvocat)
-                            }else {
-                                print("error cant connect ")
-                            }
-                            
-                        })
-                    }
+                
                 
             }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
+            ZStack {
                 Button{
                                 showNewPostView.toggle()
                             }label: {
@@ -57,15 +47,14 @@ struct CaseView: View {
                             .foregroundColor(.white)
                             .clipShape(Circle())
                             .padding()
-                            .sheet(isPresented: $showNewPostView)
-                            {
-                                AddCaseView()
-                            }
+                
                            
                 
                             
-                           
-           
+                            .fullScreenCover(isPresented: $showNewPostView){
+                                AddCaseView()
+                        }
+            }
             
         }.background(Color(uiColor: UIColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1)))
     }

@@ -11,7 +11,6 @@ struct CustomDatePicker: View {
     @Binding var currentDate: Date
     @State var   IdUser:String = UserViewModel.currentUser?.id ?? ""
     @State var currentMonth : Int = 0
-    @ObservedObject  var rd = RendezVousViewModel()
     var body: some View {
         VStack(spacing: 35){
             let days: [String] = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
@@ -81,8 +80,8 @@ struct CustomDatePicker: View {
                 Text("Tasks").font(.title2.bold())
                     .frame(maxWidth: .infinity , alignment: .leading)
                     .padding(.vertical,20)
-                if let task = rd.rd.first(where:{ task in
-                    return isSameDay(date1: task.taskDate, date2: currentDate) 
+                if let task = tasks.first(where:{ task in
+                    return isSameDay(date1: task.taskDate, date2: currentDate) && task.idAvocat == IdUser
                 } ){
                     
                     ForEach(task.task){task in
@@ -110,16 +109,6 @@ struct CustomDatePicker: View {
             newvalue in
             // update
             currentDate = getCurrentMonth()
-        }.onAppear{
-            rd.getRendezVousByAvocat(idAvocat: IdUser,complited: {(success , respnse)in
-                if success{
-                    let rd = respnse!
-                    print("hethouma",rd)
-                }else {
-                    print("error cant connect ")
-                }
-                
-            })
         }
      
         
@@ -129,7 +118,7 @@ struct CustomDatePicker: View {
         VStack
         {
             if value.day != -1 {
-                if let task = rd.rd.first(where: { task in
+                if let task = tasks.first(where: { task in
                     return isSameDay(date1: task.taskDate, date2: value.date )
                 }){
                     Text("\(value.day)").font(.title3.bold())

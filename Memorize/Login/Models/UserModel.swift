@@ -19,7 +19,6 @@ struct User {
     var specialite  : String = ""
     var experience : Int = 0
     var  signature : String = ""
-    var localisation :String = ""
     
     init(firstname: String, password: String, email: String, lastName: String , specialite: String, image:String , experience:Int, role:String) {
         self.firstName = firstname
@@ -68,14 +67,14 @@ struct User {
         
    
     }
-    init(id: String ,firstname:  String, lastName: String, specialite: String, experience:Int ,image:String,location:String ) {
+    init(id: String ,firstname:  String, lastName: String, specialite: String, experience:Int ,image:String ) {
         self.id = id
         self.firstName = firstname
         self.lastName = lastName
         self.specialite = specialite
         self.image = image
         self.experience = experience
-        self.localisation = location
+        
         
    
     }

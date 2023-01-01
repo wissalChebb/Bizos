@@ -1,22 +1,40 @@
 PODS:
-  - InputBarAccessoryView (5.1.0):
-    - InputBarAccessoryView/Core (= 5.1.0)
-  - InputBarAccessoryView/Core (5.1.0)
-  - MessageKit (3.3.0):
-    - InputBarAccessoryView (~> 5.1.0)
+  - AppAuth (1.6.0):
+    - AppAuth/Core (= 1.6.0)
+    - AppAuth/ExternalUserAgent (= 1.6.0)
+  - AppAuth/Core (1.6.0)
+  - AppAuth/ExternalUserAgent (1.6.0):
+    - AppAuth/Core
+  - GoogleSignIn (6.2.4):
+    - AppAuth (~> 1.5)
+    - GTMAppAuth (~> 1.3)
+    - GTMSessionFetcher/Core (< 3.0, >= 1.1)
+  - GoogleSignInSwiftSupport (6.2.4):
+    - GoogleSignIn (~> 6.2)
+  - GTMAppAuth (1.3.1):
+    - AppAuth/Core (~> 1.6)
+    - GTMSessionFetcher/Core (< 3.0, >= 1.5)
+  - GTMSessionFetcher/Core (2.3.0)
 
 DEPENDENCIES:
-  - MessageKit (~> 3.3.0)
+  - GoogleSignIn
+  - GoogleSignInSwiftSupport
 
 SPEC REPOS:
   trunk:
-    - InputBarAccessoryView
-    - MessageKit
+    - AppAuth
+    - GoogleSignIn
+    - GoogleSignInSwiftSupport
+    - GTMAppAuth
+    - GTMSessionFetcher
 
 SPEC CHECKSUMS:
-  InputBarAccessoryView: 19953f486a23e846e9487099f92bbe3456e46ce5
-  MessageKit: 1f07618183be6d92b648ba7a384aafa097362a00
+  AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
+  GoogleSignIn: 5651ce3a61e56ca864160e79b484cd9ed3f49b7a
+  GoogleSignInSwiftSupport: 565fa830a18d4d26d78c7a7c77be096fea7cf22b
+  GTMAppAuth: 0ff230db599948a9ad7470ca667337803b3fc4dd
+  GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
 
-PODFILE CHECKSUM: ccc71915ed6535bfc90d036eb9b6939d1b8150ed
+PODFILE CHECKSUM: 8aa6a62970ea617c71896fc539881ec5400aeb24
 
 COCOAPODS: 1.11.3

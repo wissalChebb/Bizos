@@ -72,17 +72,16 @@ class PackViewModel: ObservableObject{
 
     }
     
-    func addPack(pack: Pack) {
+    func addCase(casee: Case) {
  
-        let parametres = [
-            "name": pack.name,
-            "title": pack.title,
-            "description": pack.description,
-            "prix": pack.prix,
-            "id": pack.idUser
+        let parametres: [String: Any] = [
+            "nameUser": casee.name,
+            "LastNameUser": casee.prenom,
+            "description": casee.description,
+            "title": casee.title
             
-        ] as [String : Any]
-        AF.request("http://\(url)/pack/add" , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
+        ]
+        AF.request("http://\(url)/Case/add" , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
             .validate(statusCode: 200..<500)
             .validate(contentType: ["application/json"])
             .responseData {

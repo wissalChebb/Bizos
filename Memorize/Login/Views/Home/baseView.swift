@@ -17,7 +17,7 @@ struct baseView: View {
     }
     var body: some View {
         let sideBarWidth = getRect().width - 90
-        HStack{
+        NavigationView{
             HStack(spacing: 0){
                 SideBarAvocat(showMenu: $showMenu, user: User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
                 VStack{

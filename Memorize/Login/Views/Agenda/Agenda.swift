@@ -21,7 +21,8 @@ struct agenda: View {
         .safeAreaInset(edge: .bottom){
             HStack{
                 Button {
-                 
+                    tasks.append(TaskMetaData(task: [
+                        Task(title: "new task")],taskDate: currentData,idUser: "", idAvocat: ""))
                 } label: {
                     Text("Add Task")
                         .fontWeight(.bold)

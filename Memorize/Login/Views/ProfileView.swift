@@ -6,16 +6,13 @@
 //
 
 import SwiftUI
-import WebKit
 
 struct ProfileView: View {
     @State var showPopup = false
     @State var showDis = false
-    @State var showWeb = false
     @ObservedObject  var packViewModel = PackViewModel()
     @ObservedObject  var userViewModel = UserViewModel()
     @State var avocat : User
-    let url = path().url
     @State var user = UserViewModel.currentUser?.id ?? ""
     var body: some View {
         NavigationView{
@@ -44,11 +41,7 @@ struct ProfileView: View {
                         VStack{}.frame(width: 350, height: 200,alignment:.center).background(.white).padding(.top,100).shadow(radius: 6)
                         //   .cornerRadius(20)
                         VStack{
-                            AsyncImage(url: URL(string: "http://\(url)/img/"+avocat.image),
-                                       content:{ image in
-                                image  .resizable().frame(width: 100,height: 100).border(Color.white,width: 3.0).cornerRadius(50).padding(.top,5)
-                            },placeholder: { })
-                        
+                            Image("wissal").resizable().frame(width: 100,height: 100).border(Color.white,width: 3.0).cornerRadius(50).padding(.top,5)
                             HStack{
                                 Text(avocat.firstName).bold().padding()
                                 Text(avocat.lastName).bold().padding()
@@ -56,14 +49,14 @@ struct ProfileView: View {
                             
                             HStack{
                                 Image(systemName: "location")
-                                Text(avocat.localisation)
+                                Text("Tunisia")
                             }
                         }.padding().frame(height: 300)
                         
                     }
                     
                     HStack{
-                        NavigationLink(destination: ChatsSwiftUIView(),isActive: $showDis){
+                        NavigationLink(destination: LoginView(),isActive: $showDis){
                             Button{
                                 showDis = true
                             }label: {
@@ -84,23 +77,7 @@ struct ProfileView: View {
                         ScrollView{
                             
                                 ForEach(0..<userViewModel.avocatPack.count , id: \.self ) { item in
-                                    Button {
-                                        userViewModel.pay(user: UserViewModel.currentUser!, prix: userViewModel.avocatPack[item].prix)
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                                            showWeb.toggle()
-                                        }
-                                            
-                                        
-                                        
-                                    } label: {
-                                        PackItem(pack: userViewModel.avocatPack[item])
-                                    }.sheet(isPresented: $showWeb)
-                                    {
-                                        WebView(url: URL(string: userViewModel.payUrl)!)
-                                    }
-                                    
-
-                                    
+                                    PackItem(pack: userViewModel.avocatPack[item])
                                 }.padding(.trailing)
                         }.frame(maxWidth: .infinity,maxHeight: .infinity)
                         

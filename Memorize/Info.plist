@@ -2,26 +2,16 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSFaceIDUsageDescription</key>
-	<string>please allow face</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>this App require  Your location </string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>this App require  Your location </string>
-	<key>NSCameraUsageDescription</key>
-	<string>$(PRODUCT_NAME)  requires permission to scan files</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>488385230841-oqb9oo72kl63d5df082qvt1oa3dhprpj.apps.googleusercontent.com</string>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.488385230841-oqb9oo72kl63d5df082qvt1oa3dhprpj</string>
+				<string>com.googleusercontent.apps.825384301124-e7qnedsdkv2rbqv7jsmfd17ubj1e3uoa</string>
 			</array>
 		</dict>
 		<dict/>

@@ -5,7 +5,6 @@ struct PopupView: View {
     @Binding var IDAvocat: String
     @Binding var IDUser: String
     @State var showPopup = false
-    @ObservedObject  var ViewModel = RendezVousViewModel()
     @State private var date = Date()
         let dateRange: ClosedRange<Date> = {
             let calendar = Calendar.current
@@ -29,8 +28,8 @@ struct PopupView: View {
                         .padding()
                         .accentColor(.orange)
             Button("save") {
-                ViewModel.addRendezVous(rendezVous: RendezVous(idUser: IDUser, idAvocat: IDAvocat, date: date))
-                
+                tasks.append(TaskMetaData(task: [
+                    Task(title: "Rendez-Vous")],taskDate: date,idUser: IDUser,idAvocat: IDAvocat))
             }.accentColor(.black)
                 .padding(40)
                         
