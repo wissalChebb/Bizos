@@ -29,6 +29,7 @@ class UserViewModel: ObservableObject {
     @Published var errorPopUpIsDisplayed = false
     
     init() {
+        let _ = LocalNotification() // Ask permission Push notif
         getAllAvoat(complited: {(success , respnse)in
             if success{
                 let avocats = respnse!
