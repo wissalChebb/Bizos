@@ -81,7 +81,9 @@ public class MessagerieViewModel: ObservableObject{
                     
                     var messages : [Message]? = []
                     for singleJsonItem in jsonData["messages"] {
-                        messages!.append(self.makeMessage(jsonItem: singleJsonItem.1))
+                        if let message = self.getMessage(jsonItem: singleJsonItem.1) {
+                            messages!.append(message)
+                        }
                     }
                     completed(true, messages)
                 case let .failure(error):
@@ -106,7 +108,9 @@ public class MessagerieViewModel: ObservableObject{
             .responseData { response in
                 switch response.result {
                 case .success:
-                    completed(true, self.makeMessage(jsonItem: JSON(response.data!)["newMessage"]))
+                    if let message = self.makeMessage(jsonItem: JSON(response.data!)["newMessage"]) {
+                        completed(true, message)
+                    }
                 case let .failure(error):
                     debugPrint(error)
                     completed(false, nil)
@@ -114,15 +118,38 @@ public class MessagerieViewModel: ObservableObject{
             }
     }
     
-    func makeMessage(jsonItem: JSON) -> Message {
-        return Message(
-            sender: Sender(senderId: jsonItem["senderConversation"]["sender"].stringValue, displayName: "abc"),
-            messageId: jsonItem["_id"].stringValue,
-            //messageId: "blablala",
+    func makeMessage(jsonItem: JSON) -> Message? {
+        if jsonItem["description"].stringValue.isEmpty {
+            return nil
+        } else {
+            return Message(
+                sender: Sender(senderId: jsonItem["senderConversation"]["sender"].stringValue, displayName: "abc"),
+                messageId: jsonItem["_id"].stringValue,
+                //messageId: "blablala",
 
-            sentDate: Date(),
-            kind: .text(jsonItem["description"].stringValue)
-        )
+                sentDate: Date(),
+                kind: .text(jsonItem["description"].stringValue)
+            )
+        }
+    }
+    
+    func getMessage(jsonItem: JSON) -> Message? {
+        if jsonItem["description"].stringValue.isEmpty {
+            return nil
+        } else {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HH:mm"
+            let date = formatter.date(from: jsonItem["senderConversation"].stringValue) ?? Date()
+            
+            return Message(
+                sender: Sender(senderId: jsonItem["senderConversation"]["sender"].stringValue, displayName: "abc"),
+                messageId: jsonItem["_id"].stringValue,
+                //messageId: "blablala",
+                
+                sentDate: date,
+                kind: .text(jsonItem["description"].stringValue)
+            )
+        }
     }
     
     func makeConversation(jsonItem: JSON) -> Conversation {

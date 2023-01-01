@@ -98,4 +98,7 @@ class ChatView: MessagesViewController, MessagesDataSource, MessagesLayoutDelega
         timer = nil
     }
  
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        avatarView.initials = ""
+    }
 }
