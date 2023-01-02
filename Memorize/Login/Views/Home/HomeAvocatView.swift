@@ -12,7 +12,7 @@ struct HomeAvocatView: View {
     @State var news : [News] = []
     @Binding var showMenu: Bool
     @State  var isSearch = false
-
+    let url = path().url
     var user:User
     var body: some View {
         
@@ -21,7 +21,7 @@ struct HomeAvocatView: View {
                     GeometryReader{_ in
                         
                         Color("Bg").edgesIgnoringSafeArea(.all)
-                        ScrollView() {
+                        ScrollView{
                             VStack(alignment:.leading){
                                 HStack{
                                     Button{
@@ -36,7 +36,7 @@ struct HomeAvocatView: View {
                                     Button(action:{
                                         
                                     }) {
-                                        AsyncImage(url: URL(string: "http://172.17.2.217:5000/img/"+user.image),
+                                        AsyncImage(url: URL(string: "http://\(url)/img/"+user.image),
                                                                   content:{ image in
                                                            image  .resizable()
                                                 .aspectRatio( contentMode: .fill)
@@ -87,7 +87,7 @@ struct HomeAvocatView: View {
                                         
                                        
                                     }
-                                }
+                                }.padding()
                                 
                                 
                                 
@@ -148,13 +148,16 @@ struct TagLineView1: View {
             + Text("\nSpecialist ! ").font(.custom("PlayfairDisplay-Bold", size: 30))
                 .foregroundColor(Color("Primary"))
             Spacer()
-            NavigationLink(destination: RegisterAvocatView(Location: $location),isActive: $isAvocat){
+            
                 Button(action: {
-                    isAvocat = true
+                    self.isAvocat.toggle()
                     
                 }){
                     Text("Devenir un avocat").font(.custom("PlayFairDisplay-Bold", size: 12)).foregroundColor(.gray)
-                }  }      }}
+                }.fullScreenCover(isPresented: $isAvocat)
+            {
+                RegisterAvocatView(Location: $location)
+            }      }}
 }
 
 

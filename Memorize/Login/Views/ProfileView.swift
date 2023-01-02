@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
+import WebKit
 
 struct ProfileView: View {
     @State var showPopup = false
     @State var showDis = false
+    @State var showWeb = false
+    @State    var urlpay = ""
     @ObservedObject  var packViewModel = PackViewModel()
     @ObservedObject  var userViewModel = UserViewModel()
     @State var avocat : User
+    let url = path().url
     @State var user = UserViewModel.currentUser?.id ?? ""
     var body: some View {
         NavigationView{
@@ -41,7 +45,11 @@ struct ProfileView: View {
                         VStack{}.frame(width: 350, height: 200,alignment:.center).background(.white).padding(.top,100).shadow(radius: 6)
                         //   .cornerRadius(20)
                         VStack{
-                            Image("wissal").resizable().frame(width: 100,height: 100).border(Color.white,width: 3.0).cornerRadius(50).padding(.top,5)
+                            AsyncImage(url: URL(string: "http://\(url)/img/"+avocat.image),
+                                       content:{ image in
+                                image  .resizable().frame(width: 100,height: 100).border(Color.white,width: 3.0).cornerRadius(50).padding(.top,5)
+                            },placeholder: { })
+                        
                             HStack{
                                 Text(avocat.firstName).bold().padding()
                                 Text(avocat.lastName).bold().padding()
@@ -49,14 +57,14 @@ struct ProfileView: View {
                             
                             HStack{
                                 Image(systemName: "location")
-                                Text("Tunisia")
+                                Text(avocat.localisation)
                             }
                         }.padding().frame(height: 300)
                         
                     }
                     
                     HStack{
-                        NavigationLink(destination: LoginView(),isActive: $showDis){
+                        NavigationLink(destination: ChatsSwiftUIView(),isActive: $showDis){
                             Button{
                                 showDis = true
                             }label: {
@@ -77,7 +85,21 @@ struct ProfileView: View {
                         ScrollView{
                             
                                 ForEach(0..<userViewModel.avocatPack.count , id: \.self ) { item in
-                                    PackItem(pack: userViewModel.avocatPack[item])
+                                    Button {
+                                        userViewModel.pay(user: UserViewModel.currentUser!, prix: userViewModel.avocatPack[item].prix) { ref, url in
+                                            userViewModel.createQR(idUser: (UserViewModel.currentUser?.id)!, id: ref)
+                                            self.urlpay = url
+                                            showWeb.toggle()
+                                        }
+                                    } label: {
+                                        PackItem(pack: userViewModel.avocatPack[item])
+                                    }.sheet(isPresented: $showWeb)
+                                    {
+                                        WebView(url: URL(string: urlpay)!)
+                                    }
+                                    
+
+                                    
                                 }.padding(.trailing)
                         }.frame(maxWidth: .infinity,maxHeight: .infinity)
                         

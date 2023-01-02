@@ -5,21 +5,31 @@ import AlamofireImage
 import SDWebImageSwiftUI
 import Alamofire
 import SwiftyJSON
+import LocalAuthentication
 class UserViewModel: ObservableObject {
      var firstName : String = ""
     var specialite : String = ""
     var lastName : String  = ""
-    var password : String  = "123"
+    var password : String  = "wassoula"
     var email : String  = "wissal.chebbi@esprit.tn"
     var resetCode : String = ""
     var validateCode : String = ""
     var newPassword : String = ""
     var confirmpass : String = ""
+    @Published   var payUrl : String = ""
+    @Published   var payementRef : String = ""
     @Published   var avocats : [User] = []
     @Published   var avocatsCat : [User] = []
     @Published   var packs : [Pack] = []
     @Published   var avocatPack : [Pack] = []
+    @Published   var Payments : [payment] = []
+    var errorTitleFaceIDPopUp = "Error"
+    var errorMessageFaceIDPopUp = "Face ID/Touch ID may not be configured"
+    var errorOkActionFaceIDPopUp = "ok"
+    @Published var errorPopUpIsDisplayed = false
+    
     init() {
+        let _ = LocalNotification() // Ask permission Push notif
         getAllAvoat(complited: {(success , respnse)in
             if success{
                 let avocats = respnse!
@@ -78,6 +88,27 @@ class UserViewModel: ObservableObject {
            })
            
        }
+    
+    func createQR(idUser: String ,id: String) {
+        
+     
+         AF.request("http://\(url)/user/qr/\(id)/\(idUser)" , method: .post,encoding: JSONEncoding.default)
+             .validate(statusCode: 200..<500)
+             .response{
+                 response in
+                 switch response.result {
+                 case .success:
+                     print(response)
+                     print("success")
+                 case let .failure(error):
+                     print(error)
+                 }
+             }
+     
+         
+         
+     }
+    
 
     func LogIn(email: String,password: String, complited: @escaping(User?)-> Void )
     
@@ -95,7 +126,7 @@ class UserViewModel: ObservableObject {
                     let userResponse = response.object(forKey: "user") as! NSDictionary
                     let email = userResponse.object(forKey: "email") as? String ?? ""
                     let lastName = userResponse.object(forKey: "last_name") as? String ?? ""
-                    let password = userResponse.object(forKey: "password") as? String ?? ""
+           
                     let firstName = userResponse.object(forKey: "first_name") as? String ?? ""
                     let image = userResponse.object(forKey: "image") as? String ?? ""
                     let id = userResponse.object(forKey: "_id")  as? String ?? ""
@@ -109,7 +140,7 @@ class UserViewModel: ObservableObject {
                     currentUser.id = id
                     currentUser.image = image
                     Self.currentUser = currentUser
-                  
+                    UserManager.shared.saveUser(user: currentUser)
                     print("success \(JSON )")
                    
                     complited(currentUser)
@@ -127,8 +158,8 @@ class UserViewModel: ObservableObject {
           
           AF.request("http://\(url)/auth/google" , method: .get ,encoding: JSONEncoding.default)
               .validate(statusCode: 200..<300)
-              .validate(contentType: ["application/json"])
-              .responseJSON {
+              .validate(contentType: ["text/html"])
+              .response {
                   (response) in
                   switch response.result {
                       
@@ -158,12 +189,43 @@ class UserViewModel: ObservableObject {
                       complited(currentUser)
                   case .failure(let error):
                       print("request failed \(error)")
+                      print("request failed \(error.errorDescription)")
                       complited(nil)
                   }
               }
     
       }
-    
+    func pay(user: User,prix: Float,completion: @escaping (String,String)-> Void) {
+        print(user)
+        let parametres: [String: Any] = [
+            "first_name": user.firstName,
+            "last_name": user.lastName,
+            "email": user.email,
+            "prix": prix,
+            
+        ]
+        AF.request("http://\(url)/user/pay" , method: .post,parameters:parametres ,encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<500)
+            .validate(contentType: ["application/json"])
+            .responseJSON {
+                response in
+                switch response.result {
+                case .success(let JSON):
+                    let response = JSON as! NSDictionary
+                    let userResponse = response.object(forKey: "data") as! NSDictionary
+                    let payUrl = userResponse.object(forKey: "payUrl") as? String ?? ""
+                    let payementRef = userResponse.object(forKey: "paymentRef") as? String ?? ""
+                    print("success  \(payUrl)")
+                    self.payUrl = payUrl
+                    self.payementRef = payementRef
+                      completion(payementRef,payUrl)
+                case let .failure(error):
+                    print(error)
+                }
+                
+            }
+        
+    }
     func SignUp(user: User) {
         print(user)
         let parametres: [String: Any] = [
@@ -339,16 +401,16 @@ class UserViewModel: ObservableObject {
                 switch response.result {
                 case .success:
              
-                    
+                    var avocats :[User] = []
                
                     for singleJsonItem in JSON(response.data!){
                       
-                        self.avocats.append(self.makeItem(jsonItem:singleJsonItem.1))
+                     avocats.append(self.makeItem(jsonItem:singleJsonItem.1))
                     }
-                    print(self.avocats)
-                    
-                    
-                    complited(true,self.avocats)
+                    print(avocats)
+                
+                    self.avocats = avocats
+                    complited(true,avocats)
                 case let .failure(error):
                     debugPrint(error)
                 complited(false,nil)
@@ -356,6 +418,7 @@ class UserViewModel: ObservableObject {
             }
         
     }
+
     func getAllAvoatCat(complited: @escaping(Bool, [User]?) -> Void) {
       
         
@@ -367,7 +430,7 @@ class UserViewModel: ObservableObject {
                 switch response.result {
                 case .success:
              
-                    
+                    self.avocatsCat = []
                
                     for singleJsonItem in JSON(response.data!){
                       
@@ -384,6 +447,9 @@ class UserViewModel: ObservableObject {
             }
         
     }
+    
+    
+    
     func getPackByAvocat(id : String, complited: @escaping(Bool, [Pack]?) -> Void) {
       
         
@@ -395,7 +461,7 @@ class UserViewModel: ObservableObject {
                 switch response.result {
                 case .success:
              
-                    
+                    self.avocatPack = []
                
                     for singleJsonItem in JSON(response.data!){
                       
@@ -412,19 +478,55 @@ class UserViewModel: ObservableObject {
             }
         
     }
+    func getPaymentByAvocat(id : String, complited: @escaping(Bool, [payment]?) -> Void) {
+      
+        
+        AF.request("http://\(url)/user/qr/"+id , method: .get ,encoding: JSONEncoding.default)
+            .validate(statusCode: 200..<500)
+            .validate(contentType: ["application/json"])
+            .responseData {
+                response in
+                switch response.result {
+                case .success:
+             
+                    self.Payments = []
+               
+                    for singleJsonItem in JSON(response.data!){
+                      
+                        self.Payments.append(self.makeItem(jsonItem:singleJsonItem.1))
+                    }
+                    print(self.Payments)
+                    
+                    
+                    complited(true,self.Payments)
+                case let .failure(error):
+                    debugPrint(error)
+                complited(false,nil)
+                }
+            }
+        
+    }
+    func makeItem(jsonItem : JSON) -> payment {
+        return payment(idUser: jsonItem["idUser"].stringValue, image: jsonItem["image"].stringValue, url: jsonItem["url"].stringValue)
+        
+      
+
+    }
+    
     func makeItem(jsonItem : JSON) -> User {
         return User (id: jsonItem["_id"].stringValue,
                      firstname: jsonItem["first_name"].stringValue,
                      lastName:jsonItem["last_name"].stringValue,
                      specialite:  jsonItem["specialite"].stringValue,
                      experience:  jsonItem["experience"].intValue,
-                     image:    jsonItem["image"].stringValue
+                     image:    jsonItem["image"].stringValue,
+                     location: jsonItem["location"].stringValue
                     
                      
         )
 
     }
-    func updateAvocat(id: String ,specialite:String, experience:Int,location: String) {
+    func updateAvocat(id: String ,specialite: String, experience: Int,location: String) {
         
          let parametres: [String: Any] = [
              "categorie": specialite,
@@ -481,5 +583,28 @@ class UserViewModel: ObservableObject {
                     prix: jsonItem["prix"].floatValue,
                     description: jsonItem["description"].stringValue)
 
+    }
+    
+    
+    private let biometricIDAuth = BiometricIDAuth()
+    
+    func faceIDLogin(completionSuccess: @escaping () -> Void, completionError: @escaping () -> Void) {
+        biometricIDAuth.canEvaluate { (canEvaluate, _, _) in
+            guard canEvaluate else {
+                errorPopUpIsDisplayed = true
+                completionError()
+                return
+            }
+            
+            biometricIDAuth.evaluate { [weak self] (success, error) in
+                guard success else {
+                    self?.errorPopUpIsDisplayed = true
+                    completionError()
+                    return
+                }
+                self?.errorPopUpIsDisplayed = false
+                completionSuccess()
+            }
+        }
     }
 }

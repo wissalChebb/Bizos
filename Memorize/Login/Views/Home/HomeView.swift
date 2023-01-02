@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 import Alamofire
 import SwiftyJSON
 struct HomeView: View {
+    let url = path().url
     @Binding  var showMenu :Bool
     var user:User
     @ObservedObject  var categorieViewModel = CategorieViewModel()
@@ -39,7 +40,7 @@ struct HomeView: View {
                                 Button(action:{
                                     
                                 }) {
-                                    AsyncImage(url: URL(string: "http://172.17.1.190:5000/img/"+user.image),
+                                    AsyncImage(url: URL(string: "http://\(url)/img/"+user.image),
                                                content:{ image in
                                         image  .resizable()
                                             .aspectRatio( contentMode: .fill)
@@ -162,10 +163,11 @@ struct CategorieView: View {
     var image : Image? = Image("")
     var categorie :Categorie
     var size : CGFloat
+    let url = path().url
     var body: some View {
         
         VStack {
-            AsyncImage(url: URL(string: "http://192.168.1.188:5000/img/"+categorie.image),
+            AsyncImage(url: URL(string: "http://\(url)/img/"+categorie.image),
                                       content:{ image in
                                image.resizable()
                     .aspectRatio( contentMode: .fill)
@@ -182,6 +184,7 @@ struct CategorieView: View {
 
 struct AvocatView:View{
     var user:User
+    let url = path().url
     var body: some View {
         ZStack{
             Image("pac").frame(width: 340,height: 190).cornerRadius(30)
@@ -205,7 +208,7 @@ struct AvocatView:View{
                 }.padding()
                 VStack(alignment: .leading){
                   
-                    AsyncImage(url: URL(string: "http://192.168.1.188:5000/img/"+user.image),
+                    AsyncImage(url: URL(string: "http://\(url)/img/"+user.image),
                                               content:{ image in
                                        image  .resizable()
                             .aspectRatio( contentMode: .fill)

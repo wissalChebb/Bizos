@@ -6,22 +6,23 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct SideBarClient: View {
     @State var firstName:String = UserViewModel.currentUser?.firstName ?? ""
-    
+    let url = path().url
     @ObservedObject var viewModel = UserViewModel()
   
     @State var   lastname:String = UserViewModel.currentUser?.lastName ?? ""
-    
+    @State var   email:String = UserViewModel.currentUser?.email ?? ""
     @Binding var showMenu : Bool
     @State var logout : Bool = false
     @State var showingsetting : Bool = false
-    
+    @State var show : Bool = false
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
             VStack(alignment: .leading, spacing: 14){
-                AsyncImage(url: URL(string: "http://172.17.1.18:5000/img/"+(UserViewModel.currentUser?.image ?? "image1.jpg")),
+                AsyncImage(url: URL(string: "http://\(url)/img/"+(UserViewModel.currentUser?.image ?? "image1.jpg")),
                     content:{ image in
                                    image
                         .resizable().aspectRatio(contentMode: .fill).frame(width: 65,height: 65).clipShape(Circle())
@@ -39,7 +40,7 @@ struct SideBarClient: View {
                     VStack(alignment: .leading, spacing: 45){
                         TabButton(title: "Signature", image: "signature")
                         TabButton(title: "My case", image: "suitcase")
-                        
+                        TabButton(title: "History", image: "archivebox")
                       
                         
                         
@@ -55,10 +56,37 @@ struct SideBarClient: View {
                         
                           
                     Divider()
-                    TabButton(title: "change Password", image: " ")
-                        .padding()
+                    Button{
+                                           self.show.toggle()
+                                       }label: {
+                                           HStack(spacing: 14){
+                                               Image(systemName: "wallet.pass")
+                                               Text("Change Password")
+                                           }
+                                           .foregroundColor(.primary)
+                                           .frame(maxWidth: .infinity,alignment: .leading).padding()
+                                           .padding(.leading)
+                                              
+                                           
+                                       }.sheet(isPresented: $show)
+                                       {
+                                           ChangePasswordView1(email: $email)
+                                       }
+                    Divider()
+                    Button{
+                        let twoSecondsFromNow = DispatchTime.now() + 0.2
+                        DispatchQueue.main.asyncAfter(deadline: twoSecondsFromNow) {
+                            SKStoreReviewController.requestReview()
+                        }
+                    }label: {
+                        HStack(spacing: 14){
+                            Image(systemName: "star.fill")
+                            Text("Review The app")
+                        }
+                        .foregroundColor(.primary)
+                        .frame(maxWidth: .infinity,alignment: .leading).padding()
                         .padding(.leading)
-                    
+                    }
                     VStack(alignment: .leading, spacing: 30) {
                        
                        
@@ -89,14 +117,14 @@ struct SideBarClient: View {
                 }
                     Spacer()
                     Button{
-                        self.showingsetting.toggle()
-                    }label: {
-                        Image(systemName: "gearshape")
-                        
-                    }.sheet(isPresented: $showingsetting)
-                    {
-                        SettingView()
-                    }
+                                           self.showingsetting.toggle()
+                                       }label: {
+                                           Image(systemName: "gearshape")
+                                           
+                                       }.sheet(isPresented: $showingsetting)
+                                       {
+                                           SettingView()
+                                       }
                 }.padding([.horizontal,.top],15)
                     .foregroundColor(.primary)
              }
@@ -118,11 +146,16 @@ struct SideBarClient: View {
             switch title
             {
             case "My case":
-                CaseView()
+                CaseUserView()
             case "My documents":
                 ScannerView()
             case "Signature":
                 SigniatureView()
+            case "History":
+                HistoryView()
+            
+               
+            
             default:
                 Text("daadadz")
             }
@@ -148,9 +181,11 @@ struct SideBarAvocat: View {
     @State var firstName:String = UserViewModel.currentUser?.firstName ?? ""
     
     @ObservedObject var viewModel = UserViewModel()
-  
+    @State var   email:String = UserViewModel.currentUser?.email ?? ""
     @State var   lastname:String = UserViewModel.currentUser?.lastName ?? ""
+    @State var showingsetting : Bool = false
     @Binding var showMenu : Bool
+    @State var show : Bool = false
     var user : User
     var body: some View {
         VStack(alignment: .leading, spacing: 0){
@@ -182,7 +217,23 @@ struct SideBarAvocat: View {
                     .padding(.leading)
                     .padding(.top , 45)
                     
-                    
+                    Divider()
+                    Button{
+                                           self.show.toggle()
+                                       }label: {
+                                           HStack(spacing: 14){
+                                               Image(systemName: "wallet.pass")
+                                               Text("Change Password")
+                                           }
+                                           .foregroundColor(.primary)
+                                           .frame(maxWidth: .infinity,alignment: .leading).padding()
+                                           .padding(.leading)
+                                              
+                                           
+                                       }.sheet(isPresented: $show)
+                                       {
+                                           ChangePasswordView1(email: $email)
+                                       }
                    
                     VStack(alignment: .leading, spacing: 30) {
                        
@@ -201,20 +252,17 @@ struct SideBarAvocat: View {
                 HStack{
 
                     
-              NavigationLink(destination: LoginView().navigationBarBackButtonHidden(true),isActive: $logout ){
-                  Button{
-                      UserViewModel.currentUser = nil
-                      logout=true
-                  }label: {
-                      Image(systemName: "rectangle.portrait.and.arrow.forward")
-                     
-                  }
-              }
+              
                   Spacer()
-                  Button{}label: {
-                      Image(systemName: "gearshape")
-                      
-                  }
+                    Button{
+                                           self.showingsetting.toggle()
+                                       }label: {
+                                           Image(systemName: "gearshape")
+                                           
+                                       }.sheet(isPresented: $showingsetting)
+                                       {
+                                           SettingView()
+                                       }
                 }.padding([.horizontal,.top],15)
                     .foregroundColor(.primary)
              }
@@ -243,6 +291,8 @@ struct SideBarAvocat: View {
        
             case "Agenda":
                 agenda()
+                
+          
             default:
                 Text("daadadz")
             }

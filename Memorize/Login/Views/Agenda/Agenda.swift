@@ -9,7 +9,7 @@ import SwiftUI
 
 struct agenda: View {
     @State var currentData : Date = Date()
-    
+    @ObservedObject  var ViewModel = RendezVousViewModel()
     var body: some View {
         ScrollView(.vertical, showsIndicators: false){
             VStack(spacing: 20)
@@ -21,8 +21,7 @@ struct agenda: View {
         .safeAreaInset(edge: .bottom){
             HStack{
                 Button {
-                    tasks.append(TaskMetaData(task: [
-                        Task(title: "new task")],taskDate: currentData,idUser: "", idAvocat: ""))
+                    ViewModel.addRendezVous(rendezVous: RendezVous(idUser: (UserViewModel.currentUser?.id)!, idAvocat: (UserViewModel.currentUser?.id)!, date: currentData))
                 } label: {
                     Text("Add Task")
                         .fontWeight(.bold)

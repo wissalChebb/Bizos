@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import LocalAuthentication
 struct LoginView: View {
     
     @ObservedObject var viewModel = UserViewModel()
@@ -15,7 +15,9 @@ struct LoginView: View {
     
     var currentUser: User?
     @State private var isShowingRegisterView = false
+   
     var body: some View {
+        
         NavigationView{
             VStack(alignment: .leading ,spacing: 40){
                 // Top View
@@ -41,6 +43,32 @@ struct LoginView: View {
                                 .padding()
                                 .background()
                                 .cornerRadius(20.0)
+                            
+                            Button("FaceID") {
+                                viewModel.faceIDLogin {
+                                    print("Login FaceID success")
+                                    let (email, password) =                      UserManager.shared.getUserData()
+                                    if email != nil && password != nil {
+                                        viewModel.LogIn(email: email ?? "", password:password ?? "",complited: {(user ) in
+                                            if let  _ = user {
+                                               
+                                                print("logged in ")
+                                                isLogin=true
+                                            }else{
+                                                print("not loged in ")
+                                                isLogin=false
+                                            }
+                                        })
+                                    }
+
+                                } completionError: {
+                                    print("Login FaceID Error")
+                                }
+
+                            }.alert(isPresented: $viewModel.errorPopUpIsDisplayed) {
+                                Alert(title: Text(viewModel.errorTitleFaceIDPopUp), message: Text(viewModel.errorMessageFaceIDPopUp), dismissButton: .default(Text(viewModel.errorOkActionFaceIDPopUp)))
+                            }
+
                             
                         }.padding([.leading,.trailing],27.5)
                         
@@ -68,7 +96,43 @@ struct LoginView: View {
                     }
                     .frame(width:100, height: 50).foregroundColor(Color(uiColor: UIColor(red: 0.235, green: 0.247, blue: 0.306, alpha: 1))).background(Color(uiColor: UIColor(red: 0.886, green: 0.851, blue: 0.765, alpha: 1))).cornerRadius(15).shadow(radius: 3)
                  
-                    
+//                    NavigationLink(destination:ControlLogin() .navigationBarBackButtonHidden(true), isActive: $isLogin){
+//                        Button("FaceId", action: {
+//
+//
+//                                let context = LAContext()
+//                                var error: NSError? = nil
+//                              if        context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+//                               let reason = "Identify yourself!"
+//                               context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
+//                                                      localizedReason: reason) {
+//                                  success, authenticationError in
+//                                   DispatchQueue.main.async {
+//                                      guard success, error == nil else{
+//                                      //Authentication failed, prompt an error message to the
+//                                      //user
+//                                     return
+//                                   }
+//                               //Authentication successful! Proceed to next app screen.
+//                             isLogin = true
+//                              }
+//                             }
+//                            } else {
+//                                LoginView().alert(isPresented: $isLogin){
+//                                    Alert(title: Text("Unvailable"),message: Text("face Id") ,dismissButton: nil)
+//                                }
+//                            //No biometrics available
+//                            let alert = UIAlertController(title: "Unavailable", message: "FaceID Auth not available", preferredStyle: .alert)
+//                            alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+//
+//                            }
+//
+//
+//                        }
+//                        )
+//
+//                    }
+                   
                     Spacer()
                     NavigationLink(destination: ForgetView()){
                         Text("forget ")
@@ -88,9 +152,20 @@ struct LoginView: View {
                         HStack {
                             Button{
                                     
-                                
+                                UserAuthModel().signIn { email in
+                                                                 viewModel.LogIn(email: email, password: "Azerty123",complited: {(user ) in
+                                                                     if let  _ = user {
+                                                                        
+                                                                         print("logged in ")
+                                                                         isLogin=true
+                                                                     }else{
+                                                                         print("not loged in ")
+                                                                         isLogin=false
+                                                                     }
+                                                                 })
+                                                             }
                                     
-                                    viewModel.LogInGoogle(complited: {(user ) in
+                                    /*viewModel.LogInGoogle(complited: {(user ) in
                                         if let  _ = user {
                                            
                                             print("logged in ")
@@ -99,7 +174,7 @@ struct LoginView: View {
                                             print("not loged in ")
                                             isLogin=false
                                         }
-                                    })
+                                    })*/
                                     
                                         }label: {
                                             Image("google")
@@ -133,7 +208,9 @@ struct LoginView: View {
             
         }.navigationBarBackButtonHidden(true)
         
+        
     }
+    
     
 }
 

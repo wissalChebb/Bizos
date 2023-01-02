@@ -7,7 +7,7 @@
 
 
 import Foundation
-struct RendezVous {
+struct RendezVous : Decodable{
     var idUser: String
     var idAvocat: String
     var date : Date
@@ -17,7 +17,7 @@ struct RendezVous {
     
     init(  idUser: String ,idAvocat: String , date: Date ) {
         self.idUser = idUser
-        self.idAvocat = "825384301124-e7qnedsdkv2rbqv7jsmfd17ubj1e3uoa.apps.googleusercontent.com"
+        self.idAvocat = idAvocat
         self.date = date
      }
     

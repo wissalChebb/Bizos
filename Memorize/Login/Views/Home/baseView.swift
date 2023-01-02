@@ -17,7 +17,7 @@ struct baseView: View {
     }
     var body: some View {
         let sideBarWidth = getRect().width - 90
-        NavigationView{
+        HStack{
             HStack(spacing: 0){
                 SideBarAvocat(showMenu: $showMenu, user: User(firstname: "", password: "", email: "", lastName: "", specialite: "", image: "", experience: 0, role: ""))
                 VStack{
@@ -29,7 +29,7 @@ struct baseView: View {
                             }
                        
                    
-                       Text("message")
+                        ChatsSwiftUIView()
                             
                             .tabItem {
                                 Label("Messagerie", systemImage: "message").foregroundColor(Color(uiColor: UIColor(red: 0.88, green: 0.85, blue: 0.77, alpha: 1)))

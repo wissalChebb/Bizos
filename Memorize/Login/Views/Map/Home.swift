@@ -97,7 +97,7 @@ struct Home : View {
                                     
                                 
                                 }
-                                NavigationLink(destination:  RegisterAvocatView(Location:$name), isActive: $next)
+                                NavigationLink(destination:  RegisterAvocatView(Location:$name).navigationBarBackButtonHidden(true), isActive: $next)
                                 {
                                     Button(action: {
                                         
