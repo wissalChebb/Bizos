@@ -7,6 +7,8 @@
 import SwiftUI
 
 struct SettingView: View {
+    @State var showWeb = false
+    @State var urlPrivacy = ""
     var body: some View {
         
         NavigationView{
@@ -24,6 +26,16 @@ struct SettingView: View {
                         FormRowStaticView(icon: "checkmark.seal", FirstText: "Compatibility", secondText: "iPhone")
                         FormRowStaticView(icon: "keyboard", FirstText: "Developer", secondText: "Hassen/Wissal")
                         FormRowStaticView(icon: "flag", FirstText: "Verion", secondText: "1.0.0")
+                        Button {
+                            showWeb.toggle()
+                        } label: {
+                            FormRowStaticView(icon: "hand.raised", FirstText: "Privecy and conditions", secondText: "")
+                        }.sheet(isPresented: $showWeb)
+                        {
+                            WebView(url: URL(string: urlPrivacy)!)
+                        }
+
+                        
                        
                     }.padding(.vertical,3)
                     
